@@ -50,7 +50,7 @@
 							Click="PlayButtonClicked"
 							HorizontalAlignment="Center"
 							Margin="10">
-						<Image Name="Image"
+						<Image Name="PB_Image"
 							   Width="50"
 							   Source="{StaticResource playbutton}"/>
 					</Button>
@@ -61,6 +61,14 @@
 							Margin="10">
 						<Image Width="50"
 							   Source="{StaticResource stopbutton}"/>
+					</Button>
+					<Button Name="LoopButton"
+							Click="LB_Click"
+							HorizontalAlignment="Center"
+							Margin="10"
+							IsEnabled="False">
+						<Image Width="50"
+							   Source="{StaticResource looparrow}"/>
 					</Button>
 				</StackPanel>
 				<Slider Name="MusSlider"

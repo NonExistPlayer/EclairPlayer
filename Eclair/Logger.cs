@@ -38,7 +38,9 @@ internal static class Logger
         };
     }
 
-    public static void WriteLine(string message, LogLevel type = LogLevel.Debug, string? callerstr = null)
+    private static string Format(string message, LogLevel type, string? callerstr) => $"[{DateTime.Now:HH:mm:ss}] ({callerstr ?? "<unknown>"}) {type}: {message}";
+
+    public static void Write(string message, LogLevel type = LogLevel.Debug, string? callerstr = null)
     {
         lock (_lock)
         {
@@ -52,14 +54,17 @@ internal static class Logger
                     callerstr = caller.DeclaringType.FullName + "." + caller.Name;
             }
 
-            message = $"[{DateTime.Now:HH:mm:ss}] ({callerstr ?? "<unknown>"}) {type}: {message}";
+            if (OperatingSystem.IsAndroid())
+                message = Format(message, type, callerstr);
+            else if (Console.CursorLeft == 0)
+                message = Format(message, type, callerstr);
 
-            FileStream?.WriteLine(message);
-            System.Diagnostics.Debug.WriteLine(message);
+            FileStream?.Write(message);
+            System.Diagnostics.Debug.Write(message);
             if (!OperatingSystem.IsAndroid())
             {
                 if (type != Error)
-                    Console.WriteLine(message);
+                    Console.Write(message);
                 else
                     Console.Error.WriteLine(message);
             }
@@ -67,4 +72,6 @@ internal static class Logger
             if (!OperatingSystem.IsAndroid()) Console.ResetColor();
         }
     }
+
+    public static void WriteLine(string message, LogLevel type = LogLevel.Debug, string? callerstr = null) => Write(message + "\n", type, callerstr);
 }

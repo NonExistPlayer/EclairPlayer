@@ -17,19 +17,16 @@
 
   
   <ItemGroup>
-    <AvaloniaXaml Remove="assets\DefaultLightTheme.axaml" />
     <AvaloniaXaml Remove="Assets\DefaultTheme.axaml" />
     <AvaloniaXaml Remove="assets\themes\DefaultStyle.axaml" />
   </ItemGroup>
 
   
   <ItemGroup>
-    <None Remove="Assets\themes\defaultlight\looparrow.svg" />
     <None Remove="Assets\themes\default\looparrow.svg" />
     <None Remove="Assets\themes\default\pausebutton.svg" />
     <None Remove="Assets\themes\default\playbutton.svg" />
     <None Remove="Assets\themes\default\stopbutton.svg" />
-    <None Remove="Assets\themes\default\threeline.svg" />
   </ItemGroup>
 
   
@@ -67,9 +64,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <AvaloniaResource Update="Assets\DefaultLightTheme.axaml">
-      <SubType>Designer</SubType>
-    </AvaloniaResource>
     <AvaloniaResource Update="Assets\DefaultTheme.axaml">
       <SubType>Designer</SubType>
     </AvaloniaResource>

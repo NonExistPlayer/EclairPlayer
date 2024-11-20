@@ -41,6 +41,8 @@ public partial class MainView : UserControl
             rttransform = MusicPicture.RenderTransform as RotateTransform;
         else
             MusicPicture.Clip = null;
+
+        
     }
 
     private async void PlayButtonClicked(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
@@ -93,6 +95,7 @@ public partial class MainView : UserControl
 
             StopButton.IsEnabled = true;
             MusSlider.IsEnabled = true;
+            LoopButton.IsEnabled = true;
         }
         else
         {
@@ -155,14 +158,9 @@ public partial class MainView : UserControl
             player.Pause();
         else
         {
-            player.Play();
-
-            if (App.Config.UseCircleIconAnimation)
-            {
-                Logger.WriteLine("waiting for LibVLC#...");
-                while (!player.IsPlaying) Thread.Sleep(100); // waiting for LibVLC# to start playing
+            if (player.Play()
+                && App.Config.UseCircleIconAnimation)
                 Task.Run(AnimateIcon);
-            }
         }
     }
 
@@ -200,13 +198,30 @@ public partial class MainView : UserControl
 
     private void PlayButtonSetImage(string imagename)
     {
-        var image = PlayButton.FindControl<Image>("Image"); if (image == null || Application.Current == null) return;
-        image.Source = (SvgImage?)Application.Current.Resources[imagename + "button"];
+        if (Application.Current == null) return;
+        PB_Image.Source = (SvgImage?)Application.Current.Resources[imagename + "button"];
     }
 
     private async void AnimateIcon()
     {
         if (rttransform == null) return;
+
+        if (!player.IsPlaying)
+        {
+            Logger.WriteLine("waiting for LibVLC#...");
+            for (byte i = 1; i < 25; i++) // waiting for LibVLC# to start playing
+            {
+                Logger.Write($"attempt {i}... ");
+                if (player.IsPlaying)
+                {
+                    Logger.WriteLine("success");
+                    break;
+                }
+                Thread.Sleep(100);
+            }
+            if (!player.IsPlaying)
+                Logger.WriteLine("Failed to animate music icon.", Notice);
+        }
 
         while (player.IsPlaying)
         {
@@ -217,4 +232,6 @@ public partial class MainView : UserControl
             });
         }
     }
+
+    private void LB_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e) => loop = !loop;
 }

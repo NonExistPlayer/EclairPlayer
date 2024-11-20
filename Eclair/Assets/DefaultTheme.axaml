@@ -10,6 +10,6 @@
 	<SvgImage x:Key="threelines"
 			  Source="/Assets/themes/default/threeline.svg"/>
 	<SvgImage x:Key="looparrow"
-			  Source="/Assets/themes/default/threeline.svg"/>
+			  Source="/Assets/themes/default/looparrow.svg"/>
 	<Bitmap x:Key="unknowntrack">/Assets/themes/unknowntrack.png</Bitmap>
 </ResourceDictionary>
