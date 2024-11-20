@@ -166,8 +166,7 @@ public partial class MainView : UserControl
 
     private void Stop()
     {
-        var image = PlayButton.FindControl<Image>("Image"); if (image == null || Application.Current == null) return;
-        image.Source = (SvgImage?)Application.Current.Resources["playbutton"];
+        PlayButtonSetImage("play");
         MusSlider.Value = 0;
 
         player.Stop();

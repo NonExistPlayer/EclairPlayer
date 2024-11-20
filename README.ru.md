@@ -1,12 +1,26 @@
 # Введение
 **Eclair** - это open-source аудиоплеер.
+## Поддерживаемые аудио-форматы
+| Формат | Название                                              |
+| :-:    | :-:                                                   |
+| `.mp3` | MPEG-1 Audio Layer III                                |
+| `.aac` | Advanced Audio Coding                                 |
+| `.asf` | Active Streaming Format или Advanced Streaming Format |
+| `.wma` | Windows Media Audio                                   |
+| `.ogg` | Ogg                                                   |
+| `.flac`| Free Lossless Audio Codec                             |
+| `.flv` | Flash Video File                                      |
+| `.midi`| MIDI                                                  |
 
-## Какие платформы поддерживает Eclair?
+## Поддерживаемые ОС
 * `Windows`
 * `Android`
 * `Linux`
-* ~~`iOS`~~ Почему? Прочитайте [этот документ](res/about_apple_devices.md).
-* ~~`MacOS`~~ Почему? Прочитайте [этот документ](res/about_apple_devices.md).
+## Не поддерживаемые ОС
+* `iOS`
+* `MacOS`
+Почему? Прочитайте [этот документ](res/about_apple_devices.md).
+
 # Установка
 ## Установка на Windows
 ## Установка на Linux
@@ -15,7 +29,7 @@
 sudo apt install vlc libvlc-dev libvlccore-dev
 ```
 ## Установка на Android
-> [!WARNING]
+> [!CAUTION]
 > При удалении данных приложения скорее всего приложение больше не запустится!
 > Нужно будет переустановить приложение чтобы, оно продолжило работать.
 
@@ -39,13 +53,21 @@ sudo apt install vlc libvlc-dev libvlccore-dev
 
 <details>
 <summary>Характеристики ПК</summary>
-Процессор: Intel(R) Core(TM) i5-8400 CPU @ 2.80GHz, 2808 МГц, ядер: 6
+
+|Ключ|Значение|
+|:-:|:-:|
+|Процессор|Intel(R) Core(TM) i5-8400 CPU @ 2.80GHz, 2808 МГц, ядер: 6|
 </details>
 
 ### Windows
 **Система**: **Microsoft Windows 11 Pro** *10.0.22621 сборка 22621*
 ### Linux
 **Система**: **Ubuntu 24.04**
+
+# Список задач
+- [ ] Создание собственной кроссплатформенной аудио-библиотеки.
+    - Аудио-библиотека будет называться `EclairLib`.
+    прогресс создания библиотеки будет находится [здесь](EclairLib/).
 
 # Лицензия
 **Eclair** защищён лицензией [MIT](https://choosealicense.com/licenses/mit/#). Просмотрите файл [LICENSE](LICENSE).
