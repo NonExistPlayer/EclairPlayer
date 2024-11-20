@@ -65,9 +65,6 @@ sudo apt install vlc libvlc-dev libvlccore-dev
 **Система**: **Ubuntu 24.04**
 
 # Список задач
-- [ ] Создание собственной кроссплатформенной аудио-библиотеки.
-    - Аудио-библиотека будет называться `EclairLib`.
-    прогресс создания библиотеки будет находится [здесь](EclairLib/).
 
 # Лицензия
 **Eclair** защищён лицензией [MIT](https://choosealicense.com/licenses/mit/#). Просмотрите файл [LICENSE](LICENSE).
