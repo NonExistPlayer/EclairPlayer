@@ -1,0 +1,73 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:Eclair.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Eclair.Views.MainView"
+             x:DataType="vm:MainViewModel">
+  <Design.DataContext>
+    <vm:MainViewModel />
+  </Design.DataContext>
+	
+	<Grid>
+		<Menu VerticalAlignment="Top"
+			  HorizontalAlignment="Right">
+			<MenuItem Header="≡"
+					  FontSize="30">
+				<MenuItem Header="{Binding Settings}"
+						  Click="GotoSettings"/>
+				<MenuItem Header="{Binding SelectFile}"
+						  Click="SelectFile"
+						  HotKey="CTRL + O"/>
+			</MenuItem>
+		</Menu>
+		<StackPanel HorizontalAlignment="Center"
+					VerticalAlignment="Center"
+					Width="1000">
+			<Image Name="MusicPicture"
+					MaxWidth="250"
+					MaxHeight="250"
+					Margin="0,10"
+					Source="{StaticResource unknowntrack}">
+				<Image.RenderTransform>
+					<RotateTransform Angle="0"/>
+				</Image.RenderTransform>
+				<Image.Clip>
+					<EllipseGeometry Center="125,125"
+									 RadiusX="125"
+									 RadiusY="125"/>
+				</Image.Clip>
+			</Image>
+			<Label Name="TitleLabel"
+				   HorizontalAlignment="Center"
+				   Content="-"/>
+			<StackPanel Orientation="Vertical"
+						VerticalAlignment="Center">
+				<StackPanel Orientation="Horizontal"
+					  HorizontalAlignment="Center">
+					<Button Name="PlayButton"
+							Click="PlayButtonClicked"
+							HorizontalAlignment="Center"
+							Margin="10">
+						<Image Name="Image"
+							   Width="50"
+							   Source="{StaticResource playbutton}"/>
+					</Button>
+					<Button Name="StopButton"
+							Click="StopButtonClicked"
+							HorizontalAlignment="Center"
+							IsEnabled="False"
+							Margin="10">
+						<Image Width="50"
+							   Source="{StaticResource stopbutton}"/>
+					</Button>
+				</StackPanel>
+				<Slider Name="MusSlider"
+						IsEnabled="False"
+						ValueChanged="SliderValueChanged"
+						Maximum="100"/>
+			</StackPanel>
+		</StackPanel>
+	</Grid>
+</UserControl>

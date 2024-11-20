@@ -1,0 +1,15 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+					xmlns:sys="clr-namespace:System;assembly=netstandard">
+    <SvgImage x:Key="playbutton"
+			  Source="/Assets/themes/default/playbutton.svg"/>
+	<SvgImage x:Key="pausebutton"
+			  Source="/Assets/themes/default/pausebutton.svg"/>
+	<SvgImage x:Key="stopbutton"
+			  Source="/Assets/themes/default/stopbutton.svg"/>
+	<SvgImage x:Key="threelines"
+			  Source="/Assets/themes/default/threeline.svg"/>
+	<SvgImage x:Key="looparrow"
+			  Source="/Assets/themes/default/threeline.svg"/>
+	<Bitmap x:Key="unknowntrack">/Assets/themes/unknowntrack.png</Bitmap>
+</ResourceDictionary>
