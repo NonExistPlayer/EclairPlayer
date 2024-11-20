@@ -66,7 +66,7 @@ internal static class Logger
                 if (type != Error)
                     Console.Write(message);
                 else
-                    Console.Error.WriteLine(message);
+                    Console.Error.Write(message);
             }
 
             if (!OperatingSystem.IsAndroid()) Console.ResetColor();

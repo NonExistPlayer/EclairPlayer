@@ -209,7 +209,7 @@ public partial class MainView : UserControl
         if (!player.IsPlaying)
         {
             Logger.WriteLine("waiting for LibVLC#...");
-            for (byte i = 1; i < 25; i++) // waiting for LibVLC# to start playing
+            for (byte i = 1; i <= 25; i++) // waiting for LibVLC# to start playing
             {
                 Logger.Write($"attempt {i}... ");
                 if (player.IsPlaying)
@@ -217,10 +217,14 @@ public partial class MainView : UserControl
                     Logger.WriteLine("success");
                     break;
                 }
+                Logger.WriteLine("failed", i >= 10 ? Error : Notice);
                 Thread.Sleep(100);
             }
             if (!player.IsPlaying)
-                Logger.WriteLine("Failed to animate music icon.", Notice);
+            {
+                Logger.WriteLine("All attempts are wasted. Failed to animate music icon.", Notice);
+                return;
+            }
         }
 
         while (player.IsPlaying)
