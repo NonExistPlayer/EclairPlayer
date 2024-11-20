@@ -22,7 +22,7 @@ public partial class MainView : UserControl
     readonly MediaPlayer player;
     bool calledByPlayer;
 
-    bool loop;
+    bool loop = false;
 
     readonly RotateTransform? rttransform;
 
@@ -41,8 +41,6 @@ public partial class MainView : UserControl
             rttransform = MusicPicture.RenderTransform as RotateTransform;
         else
             MusicPicture.Clip = null;
-
-        
     }
 
     private async void PlayButtonClicked(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
@@ -86,9 +84,8 @@ public partial class MainView : UserControl
                 Dispatcher.UIThread.InvokeAsync(delegate
                 {
                     MusSlider.Value = 0;
-                    PlayButtonSetImage("play");
-                    if (rttransform != null)
-                        rttransform.Angle = 0;
+                    if (loop) PlayOrPause();
+                    else PlayButtonSetImage("play");
                 });
             };
             player.PositionChanged += Player_PositionChanged;
@@ -158,9 +155,10 @@ public partial class MainView : UserControl
             player.Pause();
         else
         {
+            if (player.Position == 0) player.Stop();
             if (player.Play()
                 && App.Config.UseCircleIconAnimation)
-                Task.Run(AnimateIcon);
+                    Task.Run(AnimateIcon);
         }
     }
 
@@ -198,7 +196,10 @@ public partial class MainView : UserControl
     private void PlayButtonSetImage(string imagename)
     {
         if (Application.Current == null) return;
-        PB_Image.Source = (SvgImage?)Application.Current.Resources[imagename + "button"];
+        Dispatcher.UIThread.Invoke(delegate
+        {
+            PB_Image.Source = (SvgImage?)Application.Current.Resources[imagename + "button"];
+        });
     }
 
     private async void AnimateIcon()
@@ -208,7 +209,7 @@ public partial class MainView : UserControl
         if (!player.IsPlaying)
         {
             Logger.WriteLine("waiting for LibVLC#...");
-            for (byte i = 1; i <= 25; i++) // waiting for LibVLC# to start playing
+            for (byte i = 1; i <= 10; i++) // waiting for LibVLC# to start playing
             {
                 Logger.Write($"attempt {i}... ");
                 if (player.IsPlaying)
@@ -216,7 +217,7 @@ public partial class MainView : UserControl
                     Logger.WriteLine("success");
                     break;
                 }
-                Logger.WriteLine("failed", i >= 10 ? Error : Notice);
+                Logger.WriteLine("failed", i == 10 ? Error : Notice);
                 Thread.Sleep(100);
             }
             if (!player.IsPlaying)

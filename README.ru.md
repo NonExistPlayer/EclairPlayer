@@ -2,7 +2,7 @@
 **Eclair** - это open-source аудиоплеер.
 ## Поддерживаемые аудио-форматы
 | Формат | Название                                              |
-| :-:    | :-:                                                   |
+| :----: | :---------------------------------------------------: |
 | `.mp3` | MPEG-1 Audio Layer III                                |
 | `.aac` | Advanced Audio Coding                                 |
 | `.asf` | Active Streaming Format или Advanced Streaming Format |
@@ -41,7 +41,7 @@ sudo apt install vlc libvlc-dev libvlccore-dev
 ## Библиотеки
 * [Avalonia](https://github.com/AvaloniaUI/Avalonia)
     - [Avalonia.Svg.Skia](https://github.com/wieslawsoltes/Svg.Skia) (11.0.0)
-    - [MessageBox.Avalonia](https://github.com/AvaloniaCommunity/MessageBox.Avalonia) (3.1.0)
+    - [MessageBox.Avalonia](https://github`.com/AvaloniaCommunity/MessageBox.Avalonia) (3.1.0)
 * [LibVLCSharp](https://github.com/videolan/libvlcsharp)
 * [Newtonsoft.Json](https://github.com/JamesNK/Newtonsoft.Json/)
 * [TagLibSharp](https://github.com/mono/taglib-sharp)
