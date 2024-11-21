@@ -33,7 +33,7 @@ public partial class App : Application
     internal readonly static Config Config = Config.Load();
 
     public override void Initialize()
-    {  
+    { 
         if (!Directory.Exists(SavePath)) Directory.CreateDirectory(SavePath);
         if (!Directory.Exists(TempPath)) Directory.CreateDirectory(TempPath);
         try
