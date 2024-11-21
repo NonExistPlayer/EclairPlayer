@@ -46,7 +46,7 @@ internal static class Logger
         {
             if (!OperatingSystem.IsAndroid()) Console.ForegroundColor = GetColorByLLevel(type);
 
-            MethodBase? caller = new StackFrame(message.EndsWith('\n') ? 2 : 1).GetMethod();
+            MethodBase? caller = new StackFrame(message.EndsWith('\n').GetHashCode() + 1).GetMethod();
 
             if (caller != null && callerstr == null)
             {
