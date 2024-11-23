@@ -9,8 +9,6 @@ using System;
 using System.Diagnostics;
 using System.IO;
 
-#pragma warning disable CA2211
-
 namespace Eclair;
 
 public partial class App : Application
@@ -31,6 +29,8 @@ public partial class App : Application
         );
 
     internal readonly static Config Config = Config.Load();
+
+    internal static IPlatformManager PManager = IPlatformManager.Null;
 
     public override void Initialize()
     { 
@@ -107,6 +107,7 @@ public partial class App : Application
 
     internal static void OnExit(int exitcode)
     {
+        PManager.HidePlayerNotification();
         try
         {
             ClearTemp();

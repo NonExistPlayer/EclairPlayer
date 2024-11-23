@@ -41,6 +41,8 @@ public partial class MainView : UserControl
             rttransform = MusicPicture.RenderTransform as RotateTransform;
         else
             MusicPicture.Clip = null;
+
+        App.PManager.TogglePause += PlayOrPause;
     }
 
     private async void PlayButtonClicked(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
@@ -96,9 +98,7 @@ public partial class MainView : UserControl
         }
         else
         {
-            player.Stop();
-            MusSlider.Value = 0;
-            rttransform!.Angle = 0;
+            Stop();
             player.Media.Dispose();
         }
 
@@ -152,13 +152,17 @@ public partial class MainView : UserControl
         PlayButtonSetImage(player.IsPlaying ? "play" : "pause");
 
         if (player.IsPlaying)
+        {
             player.Pause();
+            App.PManager.ShowPlayerNotification(TitleLabel.Content?.ToString()!, false);
+        }
         else
         {
             if (player.Position == 0) player.Stop();
             if (player.Play()
                 && App.Config.UseCircleIconAnimation)
-                    Task.Run(AnimateIcon);
+                Task.Run(AnimateIcon);
+            App.PManager.ShowPlayerNotification(TitleLabel.Content?.ToString()!, true);
         }
     }
 
@@ -166,6 +170,8 @@ public partial class MainView : UserControl
     {
         PlayButtonSetImage("play");
         MusSlider.Value = 0;
+        rttransform!.Angle = 0;
+        App.PManager.HidePlayerNotification();
 
         player.Stop();
     }

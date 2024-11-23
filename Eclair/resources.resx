@@ -129,4 +129,16 @@
   <data name="ui.selectfile" xml:space="preserve">
     <value>Select File</value>
   </data>
+  <data name="mplayer.play" xml:space="preserve">
+    <value>Play</value>
+  </data>
+  <data name="mplayer.pause" xml:space="preserve">
+    <value>Pause</value>
+  </data>
+  <data name="mplayer.nowplaying" xml:space="preserve">
+    <value>Now Playing: </value>
+  </data>
+  <data name="android.notifications.mplayer" xml:space="preserve">
+    <value>Mini-Audio Player</value>
+  </data>
 </root>

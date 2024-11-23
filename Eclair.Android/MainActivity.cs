@@ -16,6 +16,8 @@ public class MainActivity : AvaloniaMainActivity<App>
 {
     protected override AppBuilder CustomizeAppBuilder(AppBuilder builder)
     {
+        App.PManager = new PlatformManager();
+
         return base.CustomizeAppBuilder(builder)
             .WithInterFont()
             .UseReactiveUI();

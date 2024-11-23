@@ -61,6 +61,42 @@ namespace Eclair {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Mini-Audio Player.
+        /// </summary>
+        internal static string android_notifications_mplayer {
+            get {
+                return ResourceManager.GetString("android.notifications.mplayer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Now Playing: .
+        /// </summary>
+        internal static string mplayer_nowplaying {
+            get {
+                return ResourceManager.GetString("mplayer.nowplaying", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Pause.
+        /// </summary>
+        internal static string mplayer_pause {
+            get {
+                return ResourceManager.GetString("mplayer.pause", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Play.
+        /// </summary>
+        internal static string mplayer_play {
+            get {
+                return ResourceManager.GetString("mplayer.play", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на All audio formats.
         /// </summary>
         internal static string ui_ofd_audiofiles {

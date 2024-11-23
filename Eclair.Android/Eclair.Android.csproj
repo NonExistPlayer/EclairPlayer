@@ -2,7 +2,7 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net8.0-android</TargetFramework>
-    <SupportedOSPlatformVersion>22.0</SupportedOSPlatformVersion>
+    <SupportedOSPlatformVersion>26.0</SupportedOSPlatformVersion>
     <Nullable>enable</Nullable>
     <ApplicationId>net.nonexistplayer.eclair</ApplicationId>
     <ApplicationVersion>1</ApplicationVersion>
