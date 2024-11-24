@@ -188,7 +188,8 @@ public partial class MainView : UserControl
 
     protected override void OnSizeChanged(SizeChangedEventArgs e)
     {
-        if (e.WidthChanged) MusSlider.MaxWidth = (double)(e.NewSize.Width / 1.5);
+        if (e.WidthChanged) MusSlider.Width = (double)(e.NewSize.Width / 1.5);
+        Logger.WriteLine($"Size changed: {e.NewSize}");
 
         base.OnSizeChanged(e);
     }

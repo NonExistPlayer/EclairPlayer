@@ -71,10 +71,18 @@
 							   Source="{StaticResource looparrow}"/>
 					</Button>
 				</StackPanel>
-				<Slider Name="MusSlider"
-						IsEnabled="False"
-						ValueChanged="SliderValueChanged"
-						Maximum="100"/>
+				<StackPanel Orientation="Horizontal"
+							MaxWidth="1000"
+							HorizontalAlignment="Center">
+					<Label Content="00:00"
+						   Margin="2,13"/>
+					<Slider Name="MusSlider"
+							IsEnabled="False"
+							ValueChanged="SliderValueChanged"
+							Maximum="100"/>
+					<Label Content="10:00"
+						   Margin="2,13"/>
+				</StackPanel>
 			</StackPanel>
 		</StackPanel>
 	</Grid>
