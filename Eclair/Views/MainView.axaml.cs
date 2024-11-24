@@ -100,6 +100,17 @@ public partial class MainView : UserControl
             };
             player.PositionChanged += Player_PositionChanged;
 
+            player.Playing += delegate
+            {
+                Dispatcher.UIThread.Invoke(delegate
+                {
+                    if (App.Config.UseCircleIconAnimation)
+                        Task.Run(AnimateIcon, ctsource.Token);
+
+                    MusDurationLabel.Content = TimeSpan.FromMilliseconds(player.Media!.Duration).ToString(@"mm\:ss");
+                });
+            };
+
             StopButton.IsEnabled = true;
             MusSlider.IsEnabled = true;
             LoopButton.IsEnabled = true;
@@ -168,13 +179,8 @@ public partial class MainView : UserControl
         {
             if (player.Position == 0) player.Stop();
 
-            if (player.Play() && WaitForPlayer())
-            {
-                if (App.Config.UseCircleIconAnimation)
-                    Task.Run(AnimateIcon, ctsource.Token);
+            player.Play();
 
-                MusDurationLabel.Content = TimeSpan.FromMilliseconds(player.Media!.Duration).ToString(@"mm\:ss");
-            }
             App.PManager.ShowPlayerNotification(TitleLabel.Content?.ToString()!, true);
         }
     }
@@ -221,32 +227,6 @@ public partial class MainView : UserControl
         {
             PB_Image.Source = (SvgImage?)Application.Current.Resources[imagename + "button"];
         });
-    }
-
-    private bool WaitForPlayer()
-    {
-        if (!player.IsPlaying)
-        {
-            Logger.WriteLine("waiting for LibVLC#...");
-            for (byte i = 1; i <= 10; i++) // waiting for LibVLC# to start playing
-            {
-                Logger.Write($"attempt {i}... ");
-                if (player.IsPlaying)
-                {
-                    Logger.WriteLine("success");
-                    return true;
-                }
-                Logger.WriteLine("failed", i == 10 ? Error : Notice);
-                Thread.Sleep(100);
-            }
-            if (!player.IsPlaying)
-            {
-                Logger.WriteLine("All attempts are wasted. The player does not play.", Notice);
-                return false;
-            }
-        }
-
-        return false;
     }
 
     private async void AnimateIcon()
