@@ -141,4 +141,7 @@
   <data name="android.notifications.mplayer" xml:space="preserve">
     <value>Мини-аудио плеер</value>
   </data>
+  <data name="mplayer.stop" xml:space="preserve">
+    <value>Стоп</value>
+  </data>
 </root>

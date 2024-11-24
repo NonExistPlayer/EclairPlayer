@@ -8,6 +8,7 @@ namespace Eclair.Android;
 internal class PlatformManager : IPlatformManager
 {
     public Action? TogglePause { get; set; }
+    public Action? Stop { get; set; }
 
     public const int NOTIFICATION_ID = 1001;
 
@@ -17,6 +18,13 @@ internal class PlatformManager : IPlatformManager
     {
         const string CHANNEL_ID = "audio_player_channel";
 
+        static PendingIntent GetIntent(string action)
+        {
+            var intent = new Intent(Application.Context, typeof(NotificationReceiver));
+            intent.SetAction(action);
+            return PendingIntent.GetBroadcast(Application.Context, 0, intent, PendingIntentFlags.UpdateCurrent | PendingIntentFlags.Immutable)!;
+        }
+
         if (nManager is null)
         {
             nManager = (NotificationManager)Application.Context.GetSystemService(Context.NotificationService)!;
@@ -24,7 +32,7 @@ internal class PlatformManager : IPlatformManager
             var channel = new NotificationChannel(
                 CHANNEL_ID,
                 resources.android_notifications_mplayer,
-                NotificationImportance.Min);
+                NotificationImportance.Low);
 
             nManager.CreateNotificationChannel(channel);
         }
@@ -37,14 +45,14 @@ internal class PlatformManager : IPlatformManager
             .SetVisibility(NotificationCompat.VisibilitySecret)
             .SetOngoing(true);
 
-        var intent = new Intent(Application.Context, typeof(NotificationReceiver));
-        intent.SetAction("ACTION_TOGGL");
-        var action_toggle = PendingIntent.GetBroadcast(Application.Context, 0, intent, PendingIntentFlags.UpdateCurrent | PendingIntentFlags.Immutable)!;
+        var action_toggle = GetIntent("ACTION_TOGGLE");
 
         if (isPlaying)
             builder.AddAction(Resource.Drawable.ic_pause, resources.mplayer_pause, action_toggle);
         else
             builder.AddAction(Resource.Drawable.ic_play, resources.mplayer_play, action_toggle);
+
+        builder.AddAction(Resource.Drawable.ic_stop, resources.mplayer_stop, GetIntent("ACTION_STOP"));
 
         nManager.Notify(NOTIFICATION_ID, builder.Build());
     }

@@ -107,7 +107,6 @@ public partial class App : Application
 
     internal static void OnExit(int exitcode)
     {
-        PManager.HidePlayerNotification();
         try
         {
             ClearTemp();

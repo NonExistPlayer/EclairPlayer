@@ -22,4 +22,11 @@ public class MainActivity : AvaloniaMainActivity<App>
             .WithInterFont()
             .UseReactiveUI();
     }
+
+    protected override void Dispose(bool disposing)
+    {
+        App.PManager.HidePlayerNotification();
+
+        base.Dispose(disposing);
+    }
 }

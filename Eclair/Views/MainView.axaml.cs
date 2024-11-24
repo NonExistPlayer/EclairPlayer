@@ -43,6 +43,7 @@ public partial class MainView : UserControl
             MusicPicture.Clip = null;
 
         App.PManager.TogglePause += PlayOrPause;
+        App.PManager.Stop += Stop;
     }
 
     private async void PlayButtonClicked(object? sender, Avalonia.Interactivity.RoutedEventArgs e)

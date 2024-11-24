@@ -97,6 +97,15 @@ namespace Eclair {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Stop.
+        /// </summary>
+        internal static string mplayer_stop {
+            get {
+                return ResourceManager.GetString("mplayer.stop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на All audio formats.
         /// </summary>
         internal static string ui_ofd_audiofiles {
