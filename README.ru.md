@@ -73,4 +73,4 @@ sudo apt install vlc libvlc-dev libvlccore-dev
 # Список задач
 
 # Лицензия
-**Eclair** защищён лицензией [MIT](https://choosealicense.com/licenses/mit/#). Просмотрите файл [LICENSE](LICENSE).
+**Eclair** защищён лицензией [MIT](https://choosealicense.com/licenses/mit). Просмотрите файл [LICENSE](LICENSE).
