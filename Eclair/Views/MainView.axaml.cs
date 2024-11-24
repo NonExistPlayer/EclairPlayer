@@ -79,6 +79,8 @@ public partial class MainView : UserControl
             return;
         }
 
+        MusDurationLabel.Content = "00:00";
+
         if (player.Media == null)
         {
             player.EndReached += delegate
@@ -159,9 +161,14 @@ public partial class MainView : UserControl
         else
         {
             if (player.Position == 0) player.Stop();
-            if (player.Play()
-                && App.Config.UseCircleIconAnimation)
-                Task.Run(AnimateIcon);
+
+            if (player.Play() && WaitForPlayer())
+            {
+                if (App.Config.UseCircleIconAnimation)
+                    Task.Run(AnimateIcon);
+
+                MusDurationLabel.Content = TimeSpan.FromMilliseconds(player.Media!.Duration).ToString(@"mm\:ss");
+            }
             App.PManager.ShowPlayerNotification(TitleLabel.Content?.ToString()!, true);
         }
     }
@@ -178,6 +185,7 @@ public partial class MainView : UserControl
 
     private void SliderValueChanged(object? sender, Avalonia.Controls.Primitives.RangeBaseValueChangedEventArgs e)
     {
+        MusPositionLabel.Content = TimeSpan.FromMilliseconds((double)(player.Media!.Duration * player.Position)).ToString(@"mm\:ss");
         if (calledByPlayer)
         {
             calledByPlayer = false;
@@ -209,10 +217,8 @@ public partial class MainView : UserControl
         });
     }
 
-    private async void AnimateIcon()
+    private bool WaitForPlayer()
     {
-        if (rttransform == null) return;
-
         if (!player.IsPlaying)
         {
             Logger.WriteLine("waiting for LibVLC#...");
@@ -222,25 +228,36 @@ public partial class MainView : UserControl
                 if (player.IsPlaying)
                 {
                     Logger.WriteLine("success");
-                    break;
+                    return true;
                 }
                 Logger.WriteLine("failed", i == 10 ? Error : Notice);
                 Thread.Sleep(100);
             }
             if (!player.IsPlaying)
             {
-                Logger.WriteLine("All attempts are wasted. Failed to animate music icon.", Notice);
-                return;
+                Logger.WriteLine("All attempts are wasted. The player does not play.", Notice);
+                return false;
             }
         }
 
+        return false;
+    }
+
+    private async void AnimateIcon()
+    {
+        if (rttransform == null) return;
+
         while (player.IsPlaying)
         {
-            await Dispatcher.UIThread.Invoke(async delegate
+            try
             {
-                rttransform.Angle += OperatingSystem.IsAndroid() ? 1 : 0.001;
-                if (OperatingSystem.IsAndroid()) await Task.Delay(20);
-            });
+                await Dispatcher.UIThread.Invoke(async delegate
+                {
+                    rttransform.Angle += OperatingSystem.IsAndroid() ? 1 : 0.001;
+                    if (OperatingSystem.IsAndroid()) await Task.Delay(20);
+                });
+            }
+            catch (TaskCanceledException) { }
         }
     }
 

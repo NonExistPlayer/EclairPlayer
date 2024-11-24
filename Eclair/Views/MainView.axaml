@@ -73,15 +73,18 @@
 				</StackPanel>
 				<StackPanel Orientation="Horizontal"
 							MaxWidth="1000"
-							HorizontalAlignment="Center">
-					<Label Content="00:00"
-						   Margin="2,13"/>
+							HorizontalAlignment="Center"
+							Spacing="3">
+					<Label Name="MusPositionLabel"
+						   Content="00:00"
+						   Margin="0,13"/>
 					<Slider Name="MusSlider"
 							IsEnabled="False"
 							ValueChanged="SliderValueChanged"
 							Maximum="100"/>
-					<Label Content="10:00"
-						   Margin="2,13"/>
+					<Label Name="MusDurationLabel"
+						   Content="00:00"
+						   Margin="0,13"/>
 				</StackPanel>
 			</StackPanel>
 		</StackPanel>
