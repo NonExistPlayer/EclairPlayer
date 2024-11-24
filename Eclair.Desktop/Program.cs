@@ -13,6 +13,7 @@ class Program
     [STAThread]
     public static void Main(string[] args)
     {
+        App.PManager = new PlatformManager();
 #if DEBUG
         if (OperatingSystem.IsWindows())
             WinApi.AllocConsole();

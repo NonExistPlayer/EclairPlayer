@@ -1,16 +1,15 @@
 # Введение
 **Eclair** - это open-source аудиоплеер.
 ## Поддерживаемые аудио-форматы
-| Формат | Название                                              |
-| :----: | :---------------------------------------------------: |
-| `.mp3` | MPEG-1 Audio Layer III                                |
-| `.aac` | Advanced Audio Coding                                 |
-| `.asf` | Active Streaming Format или Advanced Streaming Format |
-| `.wma` | Windows Media Audio                                   |
-| `.ogg` | Ogg                                                   |
-| `.flac`| Free Lossless Audio Codec                             |
-| `.flv` | Flash Video File                                      |
-| `.midi`| MIDI                                                  |
+| Формат | Название                                                |
+| :----: | :------------------------------------------------------ |
+| `.mp3` | *MPEG-1 Audio Layer III*                                |
+| `.aac` | *Advanced Audio Coding*                                 |
+| `.asf` | *Active Streaming Format или Advanced Streaming Format* |
+| `.wma` | *Windows Media Audio*                                   |
+| `.ogg` | *Ogg*                                                   |
+| `.flac`| *Free Lossless Audio Codec*                             |
+| `.midi`| *MIDI*                                                    |
 
 ## Поддерживаемые ОС
 * `Windows`
@@ -54,15 +53,22 @@ sudo apt install vlc libvlc-dev libvlccore-dev
 <details>
 <summary>Характеристики ПК</summary>
 
-|Ключ|Значение|
-|:-:|:-:|
 |Процессор|Intel(R) Core(TM) i5-8400 CPU @ 2.80GHz, 2808 МГц, ядер: 6|
+|:-:|:--|
+|**Архитектура**|**x64**|
+|**ОЗУ**|**16,0 ГБ**|
+
 </details>
 
 ### Windows
 **Система**: **Microsoft Windows 11 Pro** *10.0.22621 сборка 22621*
 ### Linux
 **Система**: **Ubuntu 24.04**
+### Android
+|Устройство|Xiaomi POCO M3 Pro 5G|
+|:-:|:-:|
+|**Система**|**Android 13**|
+|**Номер сборки**|**TQ2A.230505.002 PixelExperience_Plus_camellia-13.0-20230610-2200-UNOFFICIAL**|
 
 # Список задач
 
