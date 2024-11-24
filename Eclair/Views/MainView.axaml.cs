@@ -20,6 +20,7 @@ public partial class MainView : UserControl
 {
     readonly LibVLC vlc;
     readonly MediaPlayer player;
+    readonly CancellationTokenSource ctsource = new();
     bool calledByPlayer;
 
     bool loop = false;
@@ -89,7 +90,11 @@ public partial class MainView : UserControl
                 Dispatcher.UIThread.InvokeAsync(delegate
                 {
                     MusSlider.Value = 0;
-                    if (loop) PlayOrPause();
+                    if (loop)
+                    {
+                        PlayOrPause();
+                        ctsource.Cancel();
+                    }
                     else PlayButtonSetImage("play");
                 });
             };
@@ -166,7 +171,7 @@ public partial class MainView : UserControl
             if (player.Play() && WaitForPlayer())
             {
                 if (App.Config.UseCircleIconAnimation)
-                    Task.Run(AnimateIcon);
+                    Task.Run(AnimateIcon, ctsource.Token);
 
                 MusDurationLabel.Content = TimeSpan.FromMilliseconds(player.Media!.Duration).ToString(@"mm\:ss");
             }
