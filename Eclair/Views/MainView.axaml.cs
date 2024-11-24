@@ -38,6 +38,32 @@ public partial class MainView : UserControl
 
         player = new(vlc);
 
+        player.EndReached += delegate
+        {
+            Dispatcher.UIThread.InvokeAsync(delegate
+            {
+                MusSlider.Value = 0;
+                if (loop)
+                {
+                    PlayOrPause();
+                    ctsource.Cancel();
+                }
+                else PlayButtonSetImage("play");
+            });
+        };
+        player.PositionChanged += Player_PositionChanged;
+
+        player.Playing += delegate
+        {
+            Dispatcher.UIThread.Invoke(delegate
+            {
+                if (App.Config.UseCircleIconAnimation)
+                    Task.Run(AnimateIcon, ctsource.Token);
+
+                MusDurationLabel.Content = TimeSpan.FromMilliseconds(player.Media!.Duration).ToString(@"mm\:ss");
+            });
+        };
+
         if (App.Config.UseCircleIconAnimation)
             rttransform = MusicPicture.RenderTransform as RotateTransform;
         else
@@ -85,32 +111,6 @@ public partial class MainView : UserControl
 
         if (player.Media == null)
         {
-            player.EndReached += delegate
-            {
-                Dispatcher.UIThread.InvokeAsync(delegate
-                {
-                    MusSlider.Value = 0;
-                    if (loop)
-                    {
-                        PlayOrPause();
-                        ctsource.Cancel();
-                    }
-                    else PlayButtonSetImage("play");
-                });
-            };
-            player.PositionChanged += Player_PositionChanged;
-
-            player.Playing += delegate
-            {
-                Dispatcher.UIThread.Invoke(delegate
-                {
-                    if (App.Config.UseCircleIconAnimation)
-                        Task.Run(AnimateIcon, ctsource.Token);
-
-                    MusDurationLabel.Content = TimeSpan.FromMilliseconds(player.Media!.Duration).ToString(@"mm\:ss");
-                });
-            };
-
             StopButton.IsEnabled = true;
             MusSlider.IsEnabled = true;
             LoopButton.IsEnabled = true;
