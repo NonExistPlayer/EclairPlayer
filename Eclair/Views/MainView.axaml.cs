@@ -215,10 +215,7 @@ public partial class MainView : UserControl
     }
     private async void SelectFile(object? sender, Avalonia.Interactivity.RoutedEventArgs e) => await GetMusicFile();
 
-    private void GotoSettings(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
-    {
-        (Parent as MainWindow)?.ShowSettings();
-    }
+    private void GotoSettings(object? sender, Avalonia.Interactivity.RoutedEventArgs e) => App.ChangeView(new SettingsView(), this);
 
     private void PlayButtonSetImage(string imagename)
     {

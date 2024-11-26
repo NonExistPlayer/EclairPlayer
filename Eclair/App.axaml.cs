@@ -8,6 +8,7 @@ using Eclair.Views;
 using System;
 using System.Diagnostics;
 using System.IO;
+using System.Reflection.Metadata;
 
 namespace Eclair;
 
@@ -137,11 +138,22 @@ public partial class App : Application
         }
     }
 
-    internal static void ClearTemp()
+    private static void ClearTemp()
     {
         string[] files = Directory.GetFiles(TempPath);
 
         foreach (string file in files)
             File.Delete(file);
+    }
+
+    internal static void ChangeView(UserControl view, UserControl sender)
+    {
+        if (!OperatingSystem.IsAndroid())
+        {
+            MainWindow win = new(view);
+            win.Show();
+        }
+        else
+            sender.Content = view;
     }
 }
