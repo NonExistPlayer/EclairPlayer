@@ -41,7 +41,7 @@ internal class PlatformManager : IPlatformManager
             .SetContentTitle("Eclair")
             .SetContentText(resources.mplayer_nowplaying + currentTrackTitle)
             .SetPriority(NotificationCompat.PriorityMin)
-            .SetSmallIcon(Resource.Drawable.Icon)
+            .SetSmallIcon(isPlaying ? Resource.Drawable.ic_play : Resource.Drawable.ic_pause)
             .SetVisibility(NotificationCompat.VisibilitySecret)
             .SetOngoing(true);
 
