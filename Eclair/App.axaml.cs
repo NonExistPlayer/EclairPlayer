@@ -8,7 +8,6 @@ using Eclair.Views;
 using System;
 using System.Diagnostics;
 using System.IO;
-using System.Reflection.Metadata;
 
 namespace Eclair;
 
@@ -49,13 +48,13 @@ public partial class App : Application
             else throw;
         }
 
-#if DEBUG
-        if (Process.GetCurrentProcess().ProcessName == "eclairplayer") // otherwise the program is launched for preview designer
-            Logger.Init(
-                new StreamWriter(LogPath +
-                $"{DateTime.Now.ToString().Replace(':', '-').Replace(' ', '-')}.log")
-            );
-#endif
+        Logger.Init(
+            new StreamWriter(LogPath +
+            $"{DateTime.Now.ToString()
+                .Replace(':', '-')
+                .Replace(' ', '-')
+                .Replace('/', '-') /*<-- for android */}.log")
+        );
 
         AppDomain.CurrentDomain.ProcessExit += delegate
         {

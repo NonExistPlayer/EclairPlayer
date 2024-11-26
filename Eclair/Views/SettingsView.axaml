@@ -12,8 +12,21 @@
 			<ColumnDefinition Width="200"/>
 			<ColumnDefinition Width="*"/>
 		</Grid.ColumnDefinitions>
+		
+		<Button HorizontalAlignment="Left"
+				VerticalAlignment="Top"
+				Width="64"
+				Height="64"
+				Click="GotoBack">
+			<Image>
+				<Image.Source>
+					<SvgImage Source="/Assets/themes/backarrow.svg"/>
+				</Image.Source>
+			</Image>
+		</Button>
 
-		<StackPanel Grid.Column="0"
+		<StackPanel Name="Sections"
+					Grid.Column="0"
 					Background="Gray">
 			<Button Content="UI"
 					HorizontalAlignment="Center"

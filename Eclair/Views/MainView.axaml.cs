@@ -18,6 +18,8 @@ namespace Eclair.Views;
 
 public partial class MainView : UserControl
 {
+    internal static object? prevcontent;
+
     readonly LibVLC vlc;
     readonly MediaPlayer player;
     readonly CancellationTokenSource ctsource = new();
@@ -215,7 +217,11 @@ public partial class MainView : UserControl
     }
     private async void SelectFile(object? sender, Avalonia.Interactivity.RoutedEventArgs e) => await GetMusicFile();
 
-    private void GotoSettings(object? sender, Avalonia.Interactivity.RoutedEventArgs e) => App.ChangeView(new SettingsView(), this);
+    private void GotoSettings(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+    {
+        prevcontent = Content;
+        App.ChangeView(new SettingsView(), this);
+    }
 
     private void PlayButtonSetImage(string imagename)
     {
