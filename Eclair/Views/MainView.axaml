@@ -5,9 +5,9 @@
              xmlns:vm="clr-namespace:Eclair.ViewModels"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Eclair.Views.MainView"
-             x:DataType="vm:MainViewModel">
+             x:DataType="vm:ViewModel">
   <Design.DataContext>
-    <vm:MainViewModel />
+    <vm:ViewModel />
   </Design.DataContext>
 	
 	<Grid>
@@ -20,6 +20,9 @@
 				<MenuItem Header="{Binding SelectFile}"
 						  Click="SelectFile"
 						  HotKey="CTRL + O"/>
+				<Separator/>
+				<MenuItem Header="{Binding About}"
+						  Click="GotoAbout"/>
 			</MenuItem>
 		</Menu>
 		<StackPanel HorizontalAlignment="Center"

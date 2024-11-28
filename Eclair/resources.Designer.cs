@@ -106,6 +106,33 @@ namespace Eclair {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на About Eclair.
+        /// </summary>
+        internal static string ui_about {
+            get {
+                return ResourceManager.GetString("ui.about", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Created By.
+        /// </summary>
+        internal static string ui_about_createdby {
+            get {
+                return ResourceManager.GetString("ui.about.createdby", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Official Eclair GitHub repository:.
+        /// </summary>
+        internal static string ui_about_originalrepo {
+            get {
+                return ResourceManager.GetString("ui.about.originalrepo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на All audio formats.
         /// </summary>
         internal static string ui_ofd_audiofiles {

@@ -251,4 +251,10 @@ public partial class MainView : UserControl
     }
 
     private void LB_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e) => loop = !loop;
+
+    private void GotoAbout(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+    {
+        prevcontent = Content;
+        App.ChangeView(new AboutView(), this);
+    }
 }

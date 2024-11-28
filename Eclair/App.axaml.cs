@@ -6,7 +6,6 @@ using Avalonia.Markup.Xaml;
 using Eclair.ViewModels;
 using Eclair.Views;
 using System;
-using System.Diagnostics;
 using System.IO;
 
 namespace Eclair;
@@ -48,13 +47,13 @@ public partial class App : Application
             else throw;
         }
 
-        Logger.Init(
-            new StreamWriter(LogPath +
-            $"{DateTime.Now.ToString()
-                .Replace(':', '-')
-                .Replace(' ', '-')
-                .Replace('/', '-') /*<-- for android */}.log")
-        );
+        //Logger.Init(
+        //    new StreamWriter(LogPath +
+        //    $"{DateTime.Now.ToString()
+        //        .Replace(':', '-')
+        //        .Replace(' ', '-')
+        //        .Replace('/', '-')}.log")
+        //);
 
         AppDomain.CurrentDomain.ProcessExit += delegate
         {
@@ -91,14 +90,14 @@ public partial class App : Application
         {
             desktop.MainWindow = new MainWindow
             {
-                DataContext = new MainViewModel()
+                DataContext = new ViewModel()
             };
         }
         else if (ApplicationLifetime is ISingleViewApplicationLifetime singleViewPlatform)
         {
             singleViewPlatform.MainView = new MainView
             {
-                DataContext = new MainViewModel()
+                DataContext = new ViewModel()
             };
         }
 

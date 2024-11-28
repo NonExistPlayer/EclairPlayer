@@ -144,4 +144,13 @@
   <data name="mplayer.stop" xml:space="preserve">
     <value>Stop</value>
   </data>
+  <data name="ui.about.createdby" xml:space="preserve">
+    <value>Created By</value>
+  </data>
+  <data name="ui.about.originalrepo" xml:space="preserve">
+    <value>Official Eclair GitHub repository:</value>
+  </data>
+  <data name="ui.about" xml:space="preserve">
+    <value>About Eclair</value>
+  </data>
 </root>
