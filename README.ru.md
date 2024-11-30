@@ -9,7 +9,7 @@
 | `.wma` | *Windows Media Audio*                                   |
 | `.ogg` | *Ogg*                                                   |
 | `.flac`| *Free Lossless Audio Codec*                             |
-| `.midi`| *MIDI*                                                    |
+| `.midi`| *MIDI*                                                  |
 
 ## Поддерживаемые ОС
 * `Windows`
@@ -20,6 +20,7 @@
 * `MacOS`
 Почему? Прочитайте [этот документ](res/about_apple_devices.md).
 
+<!--
 # Установка
 ## Установка на Windows
 ## Установка на Linux
@@ -31,10 +32,7 @@ sudo apt install vlc libvlc-dev libvlccore-dev
 > [!CAUTION]
 > При удалении данных приложения скорее всего приложение больше не запустится!
 > Нужно будет переустановить приложение чтобы, оно продолжило работать.
-
-# Использование
-## Горячие клавиши
-* `CTRL + O` - Открывает файл.
+-->
 
 # Использованые...
 ## Библиотеки
@@ -47,7 +45,6 @@ sudo apt install vlc libvlc-dev libvlccore-dev
 ## Сайты
 [Иконки](https://icon-icons.com)
 [Нейросеть](https://blackbox.ai)
-[Онлайн SVG-редакор](https://mediamodifier.com/free-svg-editor)
 ## Устройства
 
 <details>
@@ -69,8 +66,6 @@ sudo apt install vlc libvlc-dev libvlccore-dev
 |:-:|:-:|
 |**Система**|**Android 13**|
 |**Номер сборки**|**TQ2A.230505.002 PixelExperience_Plus_camellia-13.0-20230610-2200-UNOFFICIAL**|
-
-# Список задач
 
 # Лицензия
 **Eclair** защищён лицензией [MIT](https://choosealicense.com/licenses/mit). Просмотрите файл [LICENSE](LICENSE).
