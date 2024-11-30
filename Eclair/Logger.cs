@@ -9,7 +9,7 @@ namespace Eclair;
 
 internal static class Logger
 {
-    private static object _lock = new();
+    private readonly static object _lock = new();
     public static bool Init(TextWriter? file)
     {
         try
