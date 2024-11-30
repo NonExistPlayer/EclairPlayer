@@ -10,22 +10,27 @@ namespace Eclair;
 internal static class Logger
 {
     private readonly static object _lock = new();
-    public static bool Init(TextWriter? file)
+    public static void Init(TextWriter? file)
     {
-        try
+        FileStream = file;
+        if (IsConsoleAvaliable)
         {
-            FileStream = file;
-            if (!OperatingSystem.IsAndroid()) Console.Title = "Eclair Dev Console";
-            WriteLine("Eclair.Logger was initialized.");
-            return true;
+            try
+            {
+                Console.Title = "Eclair Dev Console";
+            }
+            catch (IOException)
+            {
+                IsConsoleAvaliable = false;
+            }
         }
-        catch
-        {
-            return false;
-        }
+
+        WriteLine("Eclair.Logger was initialized.");
     }
 
     public static TextWriter? FileStream { get; private set; }
+
+    public static bool IsConsoleAvaliable { get; private set; } = !OperatingSystem.IsAndroid();
 
     private static ConsoleColor GetColorByLLevel(LogLevel t)
     {
@@ -44,7 +49,7 @@ internal static class Logger
     {
         lock (_lock)
         {
-            if (!OperatingSystem.IsAndroid()) Console.ForegroundColor = GetColorByLLevel(type);
+            if (IsConsoleAvaliable) Console.ForegroundColor = GetColorByLLevel(type);
 
             MethodBase? caller = new StackFrame(message.EndsWith('\n').GetHashCode() + 1).GetMethod();
 
@@ -54,14 +59,14 @@ internal static class Logger
                     callerstr = caller.DeclaringType.FullName + "." + caller.Name;
             }
 
-            if (OperatingSystem.IsAndroid())
+            //if (!IsConsoleAvaliable)
                 message = Format(message, type, callerstr);
-            else if (Console.CursorLeft == 0)
-                message = Format(message, type, callerstr);
+            //else if (Console.CursorLeft == 0)
+            //    message = Format(message, type, callerstr);
 
             FileStream?.Write(message);
             System.Diagnostics.Debug.Write(message);
-            if (!OperatingSystem.IsAndroid())
+            if (IsConsoleAvaliable)
             {
                 if (type != Error)
                     Console.Write(message);
@@ -69,7 +74,7 @@ internal static class Logger
                     Console.Error.Write(message);
             }
 
-            if (!OperatingSystem.IsAndroid()) Console.ResetColor();
+            if (IsConsoleAvaliable) Console.ResetColor();
         }
     }
 
