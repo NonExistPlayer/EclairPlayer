@@ -8,4 +8,5 @@ public class ViewModel : ViewModelBase
 
     public string About_CreatedBy => resources.ui_about_createdby + " NonExistPlayer";
     public string About_OriginalRepo => resources.ui_about_originalrepo;
+    public string About_License => resources.ui_about_license;
 }

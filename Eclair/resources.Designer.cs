@@ -124,7 +124,16 @@ namespace Eclair {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Official Eclair GitHub repository:.
+        ///   Ищет локализованную строку, похожую на Eclair&apos;s source code is licensed under the MIT license..
+        /// </summary>
+        internal static string ui_about_license {
+            get {
+                return ResourceManager.GetString("ui.about.license", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Official Eclair GitHub repository.
         /// </summary>
         internal static string ui_about_originalrepo {
             get {

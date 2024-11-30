@@ -148,9 +148,12 @@
     <value>Created By</value>
   </data>
   <data name="ui.about.originalrepo" xml:space="preserve">
-    <value>Official Eclair GitHub repository:</value>
+    <value>Official Eclair GitHub repository</value>
   </data>
   <data name="ui.about" xml:space="preserve">
     <value>About Eclair</value>
+  </data>
+  <data name="ui.about.license" xml:space="preserve">
+    <value>Eclair's source code is licensed under the MIT license.</value>
   </data>
 </root>

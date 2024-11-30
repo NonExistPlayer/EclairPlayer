@@ -23,6 +23,7 @@
 
   
   <ItemGroup>
+    <None Remove="Assets\icon.png" />
     <None Remove="Assets\themes\default\looparrow.svg" />
     <None Remove="Assets\themes\default\pausebutton.svg" />
     <None Remove="Assets\themes\default\playbutton.svg" />
@@ -67,6 +68,12 @@
   <ItemGroup>
     <AvaloniaResource Update="Assets\DefaultTheme.axaml">
       <SubType>Designer</SubType>
+    </AvaloniaResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <AvaloniaResource Update="Assets\icon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </AvaloniaResource>
   </ItemGroup>
 </Project>

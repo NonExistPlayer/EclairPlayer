@@ -16,13 +16,16 @@
 			<MenuItem Header="≡"
 					  FontSize="30">
 				<MenuItem Header="{Binding Settings}"
-						  Click="GotoSettings"/>
+						  Click="GotoSettings"
+						  FontSize="16"/>
 				<MenuItem Header="{Binding SelectFile}"
 						  Click="SelectFile"
-						  HotKey="CTRL + O"/>
+						  HotKey="CTRL + O"
+						  FontSize="16"/>
 				<Separator/>
 				<MenuItem Header="{Binding About}"
-						  Click="GotoAbout"/>
+						  Click="GotoAbout"
+						  FontSize="16"/>
 			</MenuItem>
 		</Menu>
 		<StackPanel HorizontalAlignment="Center"

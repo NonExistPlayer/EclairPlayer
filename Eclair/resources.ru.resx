@@ -148,9 +148,12 @@
     <value>Сделано</value>
   </data>
   <data name="ui.about.originalrepo" xml:space="preserve">
-    <value>Оффициальный GitHub-репозиторий Eclair:</value>
+    <value>Оффициальный GitHub-репозиторий Eclair</value>
   </data>
   <data name="ui.about" xml:space="preserve">
     <value>О Eclair</value>
+  </data>
+  <data name="ui.about.license" xml:space="preserve">
+    <value>Исходный код Eclair защищён лицензией MIT.</value>
   </data>
 </root>
