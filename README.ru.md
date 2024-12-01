@@ -1,4 +1,6 @@
 # Введение
+<image src="Eclair/Assets/icon.png" width="300"/>
+
 **Eclair** - это open-source аудиоплеер.
 ## Поддерживаемые аудио-форматы
 | Формат | Название                                                |

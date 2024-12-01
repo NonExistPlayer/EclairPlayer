@@ -1,4 +1,6 @@
 # Introduction
+<image src="Eclair/Assets/icon.png" width="300"/>
+
 **Eclair** is an open-source audio player.
 ## Supported audio formats
 | Format | Name |
