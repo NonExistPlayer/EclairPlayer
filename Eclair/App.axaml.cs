@@ -12,7 +12,7 @@ namespace Eclair;
 
 public partial class App : Application
 {
-    public const string Version = "0.1.0.0";
+    public const string Version = "0.1.0.1";
     public readonly static string SavePath = OperatingSystem.IsWindows() ? 
         $"{Environment.GetEnvironmentVariable("LOCALAPPDATA")}\\EclairPlayer\\" : (OperatingSystem.IsAndroid() ?
         "/data/data/net.nonexistplayer.eclair/files/" :

@@ -11,5 +11,21 @@
 		WindowStartupLocation="CenterScreen"
         Icon="/Assets/avalonia-logo.ico"
         Title="Eclair">
-        <views:MainView />
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="30"/>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
+		<StackPanel Name="BorderPanel"
+					Orientation="Horizontal"
+					HorizontalAlignment="Right">
+			<Button Content="-"
+					Background="Transparent"
+					Click="Button_Click"/>
+			<Button Content="x"
+					Background="Transparent"
+					Click="Button_Click"/>
+		</StackPanel>
+        <views:MainView Grid.Row="1"/>
+	</Grid>
 </Window>
