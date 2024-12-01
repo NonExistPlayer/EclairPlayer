@@ -17,12 +17,19 @@
     <AndroidSigningKeyPass>$(KeyStorePass)</AndroidSigningKeyPass>
     <AndroidSigningStorePass>$(KeyStorePass)</AndroidSigningStorePass>
     <AndroidSigningKeyAlias>$(KeyStoreAlias)</AndroidSigningKeyAlias>
+    <AndroidUseAapt2>True</AndroidUseAapt2>
+    <AndroidCreatePackagePerAbi>False</AndroidCreatePackagePerAbi>
+    <AndroidPackageFormat>aab</AndroidPackageFormat>
+    <EmbedAssembliesIntoApk>False</EmbedAssembliesIntoApk>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <AndroidKeyStore>True</AndroidKeyStore>
     <AndroidSigningKeyPass>$(KeyStorePass)</AndroidSigningKeyPass>
     <AndroidSigningStorePass>$(KeyStorePass)</AndroidSigningStorePass>
     <AndroidSigningKeyAlias>$(KeyStoreAlias)</AndroidSigningKeyAlias>
+    <AndroidUseAapt2>True</AndroidUseAapt2>
+    <AndroidCreatePackagePerAbi>False</AndroidCreatePackagePerAbi>
+    <AndroidPackageFormat>aab</AndroidPackageFormat>
   </PropertyGroup>
 
   <ItemGroup>
