@@ -44,6 +44,9 @@
 					Click="GotoGitHubRepo"
 					HorizontalAlignment="Center"
 					Height="30"/>
+
+			<TextBlock Text="{Binding About_Version}"
+					   HorizontalAlignment="Center"/>
 			<TextBlock Text="{Binding About_License}"
 					   HorizontalAlignment="Center"/>
 			<TextBlock Text="Copyright © 2024 Ilya Korobov" FontWeight="Bold"

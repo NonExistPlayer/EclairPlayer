@@ -115,7 +115,7 @@ namespace Eclair {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Created By.
+        ///   Ищет локализованную строку, похожую на created by.
         /// </summary>
         internal static string ui_about_createdby {
             get {
@@ -138,6 +138,15 @@ namespace Eclair {
         internal static string ui_about_originalrepo {
             get {
                 return ResourceManager.GetString("ui.about.originalrepo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Version: .
+        /// </summary>
+        internal static string ui_about_version {
+            get {
+                return ResourceManager.GetString("ui.about.version", resourceCulture);
             }
         }
         
