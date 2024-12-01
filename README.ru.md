@@ -1,5 +1,5 @@
 # Введение
-<image src="Eclair/Assets/icon.png" width="300"/>
+![Logo]("Eclair/Assets/icon.png")
 
 **Eclair** - это open-source аудиоплеер.
 ## Поддерживаемые аудио-форматы
