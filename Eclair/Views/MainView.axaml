@@ -78,7 +78,6 @@
 					</Button>
 				</StackPanel>
 				<StackPanel Orientation="Horizontal"
-							MaxWidth="1000"
 							HorizontalAlignment="Center"
 							Spacing="3">
 					<Label Name="MusPositionLabel"

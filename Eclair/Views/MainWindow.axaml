@@ -6,7 +6,8 @@
         xmlns:views="clr-namespace:Eclair.Views"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="Eclair.Views.MainWindow"
-		Width="1280" Height="714" CanResize="False"
+		MaxWidth="1424" MaxHeight="714"
+		MinWidth="790" MinHeight="670"
 		WindowStartupLocation="CenterScreen"
         Icon="/Assets/avalonia-logo.ico"
         Title="Eclair">
