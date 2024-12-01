@@ -6,7 +6,7 @@
     <Nullable>enable</Nullable>
     <ApplicationId>net.nonexistplayer.eclair</ApplicationId>
     <ApplicationVersion>1</ApplicationVersion>
-    <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+    <ApplicationDisplayVersion>$(Version)</ApplicationDisplayVersion>
     <AndroidPackageFormat>apk</AndroidPackageFormat>
     <AndroidEnableProfiledAot>False</AndroidEnableProfiledAot>
     <AssemblyName></AssemblyName>
@@ -24,9 +24,6 @@
     <AndroidSigningStorePass>$(KeyStorePass)</AndroidSigningStorePass>
     <AndroidSigningKeyAlias>$(KeyStoreAlias)</AndroidSigningKeyAlias>
   </PropertyGroup>
-  <ItemGroup>
-    <None Remove="Simple Endless Cars.keystore" />
-  </ItemGroup>
 
   <ItemGroup>
     <AndroidResource Include="Icon.png">
