@@ -10,7 +10,23 @@
     <AndroidPackageFormat>apk</AndroidPackageFormat>
     <AndroidEnableProfiledAot>False</AndroidEnableProfiledAot>
     <AssemblyName></AssemblyName>
+    <AndroidSigningKeyStore>eclairplayer.keystore</AndroidSigningKeyStore>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <AndroidKeyStore>True</AndroidKeyStore>
+    <AndroidSigningKeyPass>$(KeyStorePass)</AndroidSigningKeyPass>
+    <AndroidSigningStorePass>$(KeyStorePass)</AndroidSigningStorePass>
+    <AndroidSigningKeyAlias>$(KeyStoreAlias)</AndroidSigningKeyAlias>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <AndroidKeyStore>True</AndroidKeyStore>
+    <AndroidSigningKeyPass>$(KeyStorePass)</AndroidSigningKeyPass>
+    <AndroidSigningStorePass>$(KeyStorePass)</AndroidSigningStorePass>
+    <AndroidSigningKeyAlias>$(KeyStoreAlias)</AndroidSigningKeyAlias>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="Simple Endless Cars.keystore" />
+  </ItemGroup>
 
   <ItemGroup>
     <AndroidResource Include="Icon.png">

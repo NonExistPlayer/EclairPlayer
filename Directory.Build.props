@@ -1,4 +1,6 @@
 <Project>
+  <Import Project="keystoreinfo.props"
+          Condition="Exists('keystoreinfo.props')" />
   <PropertyGroup>
     <Nullable>enable</Nullable>
     <AvaloniaVersion>11.2.2</AvaloniaVersion>

@@ -452,3 +452,7 @@ $RECYCLE.BIN/
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+
+*.keystore
+# This file stores information about the keystore data.
+keystoreinfo.props
