@@ -49,8 +49,6 @@
 					   HorizontalAlignment="Center"/>
 			<TextBlock Text="{Binding About_License}"
 					   HorizontalAlignment="Center"/>
-			<TextBlock Text="Copyright © 2024 Ilya Korobov" FontWeight="Bold"
-					   HorizontalAlignment="Center"/>
 		</StackPanel>
 	</Grid>
 </UserControl>
