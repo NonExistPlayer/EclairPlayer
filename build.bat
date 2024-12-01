@@ -11,9 +11,8 @@ call :build Eclair.Desktop linux x64
 call :build Eclair.Desktop linux arm64
 
 call :build Eclair.Android android x64
-call :build Eclair.Android android arm64
 
-exit
+exit /b 0
 :build
 rem %1 = project
 rem %2 = platform
@@ -24,12 +23,17 @@ if exist "publish\%2-%3.zip" (
     exit /b 1
     rem skip
 )
-set additionalargs = ""
 echo Starting building %1 for %2-%3...
 echo MSBuild:
-echo dotnet build %1 -c Release --os %2 -a %3 -v m -o publish\%2-%3\
-echo.
-dotnet build %1 -c Release --os %2 -a %3 -v m -o publish\%2-%3\
+if "%1"=="Eclair.Desktop" (
+    echo dotnet build %1 -c Release --os %2 -a %3 -v m -o publish\%2-%3\
+    echo.
+    dotnet build %1 -c Release --os %2 -a %3 -v m -o publish\%2-%3\
+) else (
+    echo dotnet build %1 -c Release -o publish/%2-%3/
+    echo.
+    dotnet build %1 -c Release -o publish/%2-%3/
+)
 if errorlevel 1 (
     echo.
     echo dotnet exited with code: 1
