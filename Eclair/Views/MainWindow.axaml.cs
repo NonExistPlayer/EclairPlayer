@@ -10,6 +10,8 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
         Background = new SolidColorBrush(new Color(125, 0, 0, 0));
+        MinWidth = 790;
+        MinHeight = 670;
         if (OperatingSystem.IsWindows())
         {
             ExtendClientAreaChromeHints = Avalonia.Platform.ExtendClientAreaChromeHints.NoChrome;
@@ -23,8 +25,6 @@ public partial class MainWindow : Window
         InitializeComponent();
 
         Content = view;
-        MaxWidth = 600;
-        MaxHeight = 450;
         Width = 600;
         Height = 450;
         CanResize = false;

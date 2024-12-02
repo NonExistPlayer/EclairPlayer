@@ -7,7 +7,6 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="Eclair.Views.MainWindow"
 		MaxWidth="1424" MaxHeight="714"
-		MinWidth="790" MinHeight="670"
 		WindowStartupLocation="CenterScreen"
         Icon="/Assets/avalonia-logo.ico"
         Title="Eclair">
