@@ -78,7 +78,8 @@ public partial class MainView : UserControl
     private async void PlayButtonClicked(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
     {
         if (player.Media == null) await GetMusicFile();
-        PlayOrPause();
+        if (player.Media != null)
+            PlayOrPause();
     }
 
     private async Task GetMusicFile()
