@@ -11,5 +11,7 @@
 			  Source="/Assets/themes/default/threeline.svg"/>
 	<SvgImage x:Key="looparrow"
 			  Source="/Assets/themes/default/looparrow.svg"/>
+	<SvgImage x:Key="selectedlooparrow"
+			  Source="/Assets/themes/default/selectedlooparrow.svg"/>
 	<Bitmap x:Key="unknowntrack">/Assets/themes/unknowntrack.png</Bitmap>
 </ResourceDictionary>

@@ -116,7 +116,6 @@ public partial class MainView : UserControl
         {
             StopButton.IsEnabled = true;
             MusSlider.IsEnabled = true;
-            LoopButton.IsEnabled = true;
         }
         else
         {
@@ -251,7 +250,15 @@ public partial class MainView : UserControl
         }
     }
 
-    private void LB_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e) => loop = !loop;
+    private void LB_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+    {
+        loop = !loop;
+        if (Application.Current == null) return;
+        Dispatcher.UIThread.Invoke(delegate
+        {
+            LB_Image.Source = (SvgImage?)Application.Current.Resources[(loop ? "selected" : "") + "looparrow"];
+        });
+    }
 
     private void GotoAbout(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
     {

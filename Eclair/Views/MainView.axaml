@@ -71,9 +71,8 @@
 					<Button Name="LoopButton"
 							Click="LB_Click"
 							HorizontalAlignment="Center"
-							Margin="10"
-							IsEnabled="False">
-						<Image Width="50"
+							Margin="10">
+						<Image Name="LB_Image" Width="50"
 							   Source="{StaticResource looparrow}"/>
 					</Button>
 				</StackPanel>
