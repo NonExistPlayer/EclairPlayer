@@ -13,6 +13,7 @@ using File = System.IO.File;
 using TagFile = TagLib.File;
 using Avalonia.Media;
 using System.Threading;
+using Avalonia.Controls.ApplicationLifetimes;
 
 namespace Eclair.Views;
 
@@ -134,7 +135,7 @@ public partial class MainView : UserControl
             TitleLabel.Content = files[0].Name;
 
         if (!OperatingSystem.IsAndroid())
-            (Parent as MainWindow)!.Title = $"Eclair - {files[0].Name}";
+            (Application.Current!.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime)!.MainWindow!.Title = $"Eclair - {files[0].Name}";
 
         IPicture? picture = tags.Pictures.Length > 0 ? tags.Pictures[0] : null;
 
