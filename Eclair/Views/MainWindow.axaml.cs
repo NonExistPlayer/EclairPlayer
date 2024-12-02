@@ -9,15 +9,20 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
-        Background = new SolidColorBrush(new Color(125, 0, 0, 0));
+        Background = new SolidColorBrush(App.Config.BGColor);
         MinWidth = 790;
         MinHeight = 670;
-        if (OperatingSystem.IsWindows())
+        if (OperatingSystem.IsWindows() && !App.Config.DisableCustomBorder)
         {
             ExtendClientAreaChromeHints = Avalonia.Platform.ExtendClientAreaChromeHints.NoChrome;
             ExtendClientAreaToDecorationsHint = true;
         }
-        else BorderPanel.IsVisible = false;
+        else
+        {
+            BorderPanel.IsVisible = false;
+            MainGrid.RowDefinitions.RemoveAt(1);
+            MainGrid.RowDefinitions[0].Height = GridLength.Star;
+        }
     }
 
     public MainWindow(UserControl view)

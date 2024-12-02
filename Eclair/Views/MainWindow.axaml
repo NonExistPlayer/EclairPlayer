@@ -10,7 +10,7 @@
 		WindowStartupLocation="CenterScreen"
         Icon="/Assets/avalonia-logo.ico"
         Title="Eclair">
-	<Grid>
+	<Grid Name="MainGrid">
 		<Grid.RowDefinitions>
 			<RowDefinition Height="30"/>
 			<RowDefinition Height="*"/>

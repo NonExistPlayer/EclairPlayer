@@ -1,6 +1,7 @@
 ﻿using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
+using Avalonia.Media;
 using Newtonsoft.Json;
 using System;
 using System.IO;
@@ -21,6 +22,12 @@ internal sealed class Config
             config = JsonConvert.DeserializeObject<Config>(File.ReadAllText(App.SavePath + "config.json"));
             if (config == null)
                 return new Config().SaveAndReturn();
+
+            if (config.BackgroundColor.Length != 3)
+            {
+                config.BackgroundColor = [0, 0, 0];
+                config.Save();
+            }
 
             return config;
         }
@@ -43,6 +50,11 @@ internal sealed class Config
 
     public string Theme = "Default";
     public bool UseCircleIconAnimation = true;
+    public bool DisableCustomBorder = !OperatingSystem.IsWindows();
+    public byte TransparentLevel = 125;
+    public byte[] BackgroundColor = [0, 0, 0];
+
+    public Color BGColor => new(TransparentLevel, BackgroundColor[0], BackgroundColor[1], BackgroundColor[2]);
 
     public void LoadResources()
     {
