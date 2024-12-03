@@ -159,4 +159,7 @@
   <data name="ui.about.version" xml:space="preserve">
     <value>Версия: </value>
   </data>
+  <data name="ui.settings.usecircleiconanimation" xml:space="preserve">
+    <value>Круглая иконка музыки</value>
+  </data>
 </root>

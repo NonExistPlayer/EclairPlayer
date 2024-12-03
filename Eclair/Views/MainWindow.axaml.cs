@@ -8,6 +8,7 @@ namespace Eclair.Views;
 public partial class MainWindow : Window
 {
     internal static List<MainWindow> OtherWindows = [];
+    
     public MainWindow()
     {
         InitializeComponent();

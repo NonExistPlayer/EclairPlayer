@@ -22,7 +22,7 @@ public partial class MainView : UserControl
     internal static object? prevcontent;
 
     readonly LibVLC vlc;
-    readonly MediaPlayer player;
+    internal MediaPlayer player;
     readonly CancellationTokenSource ctsource = new();
     bool calledByPlayer;
 

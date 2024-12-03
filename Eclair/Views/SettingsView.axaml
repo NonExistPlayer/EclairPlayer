@@ -2,7 +2,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 xmlns:vm="clr-namespace:Eclair.ViewModels;assembly=Eclair"
+             mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="450"
+			 x:DataType="vm:ViewModel"
              x:Class="Eclair.Views.SettingsView">
 	
 	<Grid>
@@ -31,6 +33,24 @@
 					Width="190"
 					Background="Gray"
 					MaxHeight="30"/>
+		</StackPanel>
+
+		<StackPanel Grid.Column="1"
+					Margin="10">
+			<TextBlock Text="UI"
+					   HorizontalAlignment="Center"
+					   FontWeight="Bold"
+					   FontSize="30"/>
+			<UniformGrid Rows="2" Columns="1">
+				<UniformGrid Rows="1" Columns="2">
+					<TextBlock Text="UseCircleIconAnimation" VerticalAlignment="Center"/>
+					<CheckBox Name="CB_UseCircleIconAnimation" Click="CheckBoxClicked"
+							  VerticalAlignment="Center"/>
+					<TextBlock Text="DisableCustomBorder" VerticalAlignment="Center"/>
+					<CheckBox Name="CB_DisableCustomBorder" Click="CheckBoxClicked"
+							  VerticalAlignment="Center"/>
+				</UniformGrid>
+			</UniformGrid>
 		</StackPanel>
 		
 	</Grid>

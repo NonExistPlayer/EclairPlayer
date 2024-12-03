@@ -185,5 +185,14 @@ namespace Eclair {
                 return ResourceManager.GetString("ui.settings", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Round music icon.
+        /// </summary>
+        internal static string ui_settings_usecircleiconanimation {
+            get {
+                return ResourceManager.GetString("ui.settings.usecircleiconanimation", resourceCulture);
+            }
+        }
     }
 }
