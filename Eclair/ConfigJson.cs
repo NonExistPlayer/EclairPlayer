@@ -23,12 +23,6 @@ internal sealed class ConfigJson
             if (config == null)
                 return new ConfigJson().SaveAndReturn();
 
-            if (config.BackgroundColor.Length != 3)
-            {
-                config.BackgroundColor = [0, 0, 0];
-                config.Save();
-            }
-
             return config;
         }
         catch
@@ -52,9 +46,7 @@ internal sealed class ConfigJson
     public bool UseCircleIconAnimation = true;
     public bool DisableCustomBorder = !OperatingSystem.IsWindows();
     public byte TransparentLevel = 125;
-    public byte[] BackgroundColor = [0, 0, 0];
-
-    public Color BGColor => new(TransparentLevel, BackgroundColor[0], BackgroundColor[1], BackgroundColor[2]);
+    public Color BackgroundColor = new(125, 0, 0, 0);
 
     public void LoadResources()
     {

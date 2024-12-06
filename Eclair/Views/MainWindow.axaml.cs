@@ -32,7 +32,7 @@ public partial class MainWindow : Window
 
     private void InitializeBackground()
     {
-        Background = new SolidColorBrush(Config.BGColor);
+        Background = new SolidColorBrush(Config.BackgroundColor);
         if (OperatingSystem.IsWindows() && !Config.DisableCustomBorder)
         {
             ExtendClientAreaChromeHints = Avalonia.Platform.ExtendClientAreaChromeHints.NoChrome;
