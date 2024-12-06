@@ -13,6 +13,7 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
         InitializeBackground();
+        SetTitle("Eclair");
         MinWidth = 790;
         MinHeight = 670;
         View.Content = new MainView();
@@ -22,12 +23,19 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
         InitializeBackground();
+        SetTitle(view.GetType().Name.Replace("View", null));
         View.Content = view;
         Width = 600;
         Height = 450;
         CanResize = false;
 
         OtherWindows.Add(this);
+    }
+
+    public void SetTitle(string title)
+    {
+        Title = title;
+        WinTitle.Text = title;
     }
 
     private void InitializeBackground()
@@ -41,6 +49,7 @@ public partial class MainWindow : Window
         else
         {
             BorderPanel.IsVisible = false;
+            WinTitle.IsVisible = false;
             MainGrid.RowDefinitions.RemoveAt(1);
             MainGrid.RowDefinitions[0].Height = GridLength.Star;
         }

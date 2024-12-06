@@ -9,13 +9,15 @@
 		MaxWidth="1424" MaxHeight="714"
 		WindowStartupLocation="CenterScreen"
         Icon="/Assets/avalonia-logo.ico"
-        Title="Eclair"
 		TransparencyLevelHint="AcrylicBlur">
 	<Grid Name="MainGrid">
 		<Grid.RowDefinitions>
 			<RowDefinition Height="30"/>
 			<RowDefinition Height="*"/>
 		</Grid.RowDefinitions>
+		<TextBlock Name="WinTitle"
+				   HorizontalAlignment="Left"
+				   Margin="10,7"/>
 		<StackPanel Name="BorderPanel"
 					Orientation="Horizontal"
 					HorizontalAlignment="Right">
