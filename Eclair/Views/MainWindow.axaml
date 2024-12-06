@@ -9,7 +9,8 @@
 		MaxWidth="1424" MaxHeight="714"
 		WindowStartupLocation="CenterScreen"
         Icon="/Assets/avalonia-logo.ico"
-        Title="Eclair">
+        Title="Eclair"
+		TransparencyLevelHint="AcrylicBlur">
 	<Grid Name="MainGrid">
 		<Grid.RowDefinitions>
 			<RowDefinition Height="30"/>
