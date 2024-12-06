@@ -1,8 +1,5 @@
 ﻿using System;
 
-[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("Eclair.Android")]
-[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("eclairplayer")]
-
 namespace Eclair;
 
 internal interface IPlatformManager

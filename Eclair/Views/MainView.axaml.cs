@@ -34,10 +34,7 @@ public partial class MainView : UserControl
     {
         InitializeComponent();
         vlc = new();
-        vlc.Log += (s, e) =>
-        {
-            Logger.WriteLine(e.Message, e.Level, "<LibVLC>");
-        };
+        vlc.Log += LibVlcOutput;
 
         player = new(vlc);
 
@@ -60,21 +57,23 @@ public partial class MainView : UserControl
         {
             Dispatcher.UIThread.Invoke(delegate
             {
-                if (App.Config.UseCircleIconAnimation)
+                if (Config.UseCircleIconAnimation)
                     Task.Run(AnimateIcon, ctsource.Token);
 
                 MusDurationLabel.Content = TimeSpan.FromMilliseconds(player.Media!.Duration).ToString(@"mm\:ss");
             });
         };
 
-        if (App.Config.UseCircleIconAnimation)
+        if (Config.UseCircleIconAnimation)
             rttransform = MusicPicture.RenderTransform as RotateTransform;
         else
             MusicPicture.Clip = null;
 
-        App.PManager.TogglePause += PlayOrPause;
-        App.PManager.Stop += Stop;
+        PManager.TogglePause += PlayOrPause;
+        PManager.Stop += Stop;
     }
+
+    private void LibVlcOutput(object? sender, LogEventArgs e) => Logger.Log(e.Message, new((ushort)e.Level));
 
     private async void PlayButtonClicked(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
     {
@@ -141,7 +140,7 @@ public partial class MainView : UserControl
 
         if (picture != null)
         {
-            string fpath = App.TempPath + $"{tags.Title}-picture0";
+            string fpath = TempPath + $"{tags.Title}-picture0";
 
             if (File.Exists(fpath))
                 goto display;
@@ -176,7 +175,7 @@ public partial class MainView : UserControl
         if (player.IsPlaying)
         {
             player.Pause();
-            App.PManager.ShowPlayerNotification(TitleLabel.Content?.ToString()!, false);
+            PManager.ShowPlayerNotification(TitleLabel.Content?.ToString()!, false);
         }
         else
         {
@@ -184,7 +183,7 @@ public partial class MainView : UserControl
 
             player.Play();
 
-            App.PManager.ShowPlayerNotification(TitleLabel.Content?.ToString()!, true);
+            PManager.ShowPlayerNotification(TitleLabel.Content?.ToString()!, true);
         }
     }
 
@@ -193,7 +192,7 @@ public partial class MainView : UserControl
         PlayButtonSetImage("play");
         MusSlider.Value = 0;
         rttransform!.Angle = 0;
-        App.PManager.HidePlayerNotification();
+        PManager.HidePlayerNotification();
 
         player.Stop();
     }
@@ -212,7 +211,7 @@ public partial class MainView : UserControl
     protected override void OnSizeChanged(SizeChangedEventArgs e)
     {
         if (e.WidthChanged) MusSlider.Width = (double)(e.NewSize.Width / 1.5);
-        Logger.WriteLine($"Size changed: {e.NewSize}");
+        Logger.Log($"Size changed: {e.NewSize}");
 
         base.OnSizeChanged(e);
     }

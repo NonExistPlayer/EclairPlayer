@@ -1,7 +1,9 @@
 ﻿
-using Eclair;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 
 [assembly: AssemblyTitle("EclairPlayer DLL")]
-[assembly: AssemblyVersion(App.Version)]
-[assembly: AssemblyFileVersion(App.Version)]
+[assembly: AssemblyVersion(Version)]
+[assembly: AssemblyFileVersion(Version)]
+[assembly: InternalsVisibleTo("Eclair.Android")]
+[assembly: InternalsVisibleTo("eclairplayer")]

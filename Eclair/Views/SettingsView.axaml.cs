@@ -12,8 +12,8 @@ public partial class SettingsView : UserControl
         if (OperatingSystem.IsAndroid())
             Sections.IsVisible = false;
 
-        CB_UseCircleIconAnimation.IsChecked = App.Config.UseCircleIconAnimation;
-        CB_DisableCustomBorder.IsChecked = App.Config.DisableCustomBorder;
+        CB_UseCircleIconAnimation.IsChecked = Config.UseCircleIconAnimation;
+        CB_DisableCustomBorder.IsChecked = Config.DisableCustomBorder;
     }
 
     private void GotoBack(object? sender, Avalonia.Interactivity.RoutedEventArgs e) => Content = MainView.prevcontent;
@@ -23,15 +23,15 @@ public partial class SettingsView : UserControl
         if (sender is not CheckBox cb) return;
         string cfgparam = cb.Name![3..];
 
-        var pInfo = typeof(Config).GetField(cfgparam);
+        var pInfo = typeof(ConfigJson).GetField(cfgparam);
 
         if (pInfo == null)
         {
-            Logger.WriteLine($"pInfo was null. cfgparam: {cfgparam}", Error);
+            Logger.Error($"pInfo was null. cfgparam: {cfgparam}");
             return;
         }
-        pInfo.SetValue(App.Config, cb.IsChecked);
+        pInfo.SetValue(Config, cb.IsChecked);
 
-        App.Config.Save();
+        Config.Save();
     }
 }

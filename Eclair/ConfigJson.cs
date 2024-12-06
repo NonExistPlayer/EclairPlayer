@@ -9,19 +9,19 @@ using System.IO;
 namespace Eclair;
 
 // Representing config.json as a .NET object.
-internal sealed class Config
+internal sealed class ConfigJson
 {
-    public static Config Load()
+    public static ConfigJson Load()
     {
-        Config? config;
-        if (!File.Exists(App.SavePath + "config.json"))
-            return new Config().SaveAndReturn();
+        ConfigJson? config;
+        if (!File.Exists(SavePath + "config.json"))
+            return new ConfigJson().SaveAndReturn();
 
         try
         {
-            config = JsonConvert.DeserializeObject<Config>(File.ReadAllText(App.SavePath + "config.json"));
+            config = JsonConvert.DeserializeObject<ConfigJson>(File.ReadAllText(SavePath + "config.json"));
             if (config == null)
-                return new Config().SaveAndReturn();
+                return new ConfigJson().SaveAndReturn();
 
             if (config.BackgroundColor.Length != 3)
             {
@@ -33,16 +33,16 @@ internal sealed class Config
         }
         catch
         {
-            return new Config().SaveAndReturn();
+            return new ConfigJson().SaveAndReturn();
         }
     }
 
     public void Save()
     {
-        File.WriteAllText(App.SavePath + "config.json", JsonConvert.SerializeObject(this));
-        Logger.WriteLine("config.json saved.");
+        File.WriteAllText(SavePath + "config.json", JsonConvert.SerializeObject(this));
+        Logger.Log("config.json saved.");
     }
-    private Config SaveAndReturn()
+    private ConfigJson SaveAndReturn()
     {
         Save();
         return this;
@@ -58,16 +58,16 @@ internal sealed class Config
 
     public void LoadResources()
     {
-        Logger.WriteLine("Loading resources...");
+        Logger.Log("Loading resources...");
 
         if (LoadResources(Theme))
-            Logger.WriteLine("Theme installed successfully.");
+            Logger.Log("Theme installed successfully.");
         else
         {
-            Logger.WriteLine($"Failed to set theme: '{Theme}'", Error);
+            Logger.Error($"Failed to set theme: '{Theme}'");
             Theme = "Default";
             Save();
-            Logger.WriteLine("Setting to default...", Notice);
+            Logger.Log("Setting to default...", Notice);
             LoadResources("Default");
         }
 
@@ -92,7 +92,7 @@ internal sealed class Config
         }
         catch (Exception ex)
         {
-            Logger.WriteLine("App.SetResources() thren an exception:\n" + ex.ToString(), Error);
+            Logger.Error("App.SetResources() thren an exception:\n" + ex.ToString());
             return false;
         }
     }

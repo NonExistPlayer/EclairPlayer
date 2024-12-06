@@ -25,13 +25,13 @@ public partial class AboutView : UserControl
 
         if (launcher is null)
         {
-            Logger.WriteLine("launcher is null.", Notice);
+            Logger.Log("launcher is null.", Notice);
             return;
         }
 
         bool success = await launcher.LaunchUriAsync(new("https://github.com/NonExistPlayer/EclairPlayer"));
 
         if (!success)
-            Logger.WriteLine("LaunchUriAsync() failed.", Error);
+            Logger.Error("LaunchUriAsync() failed.");
     }
 }

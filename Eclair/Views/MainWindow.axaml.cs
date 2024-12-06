@@ -12,10 +12,10 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
-        Background = new SolidColorBrush(App.Config.BGColor);
+        Background = new SolidColorBrush(Config.BGColor);
         MinWidth = 790;
         MinHeight = 670;
-        if (OperatingSystem.IsWindows() && !App.Config.DisableCustomBorder)
+        if (OperatingSystem.IsWindows() && !Config.DisableCustomBorder)
         {
             ExtendClientAreaChromeHints = Avalonia.Platform.ExtendClientAreaChromeHints.NoChrome;
             ExtendClientAreaToDecorationsHint = true;
@@ -44,11 +44,11 @@ public partial class MainWindow : Window
     {
         if (Width != 600 /*other windows are always this width*/)
         {
-            Logger.WriteLine("Closing other windows...");
+            Logger.Log("Closing other windows...");
             for (int i = 0; i < OtherWindows.Count; i++)
             {
                 var win = OtherWindows[i];
-                Logger.WriteLine($"Closing window {win} with index {i}...");
+                Logger.Log($"Closing window {win} with index {i}...");
                 win.Close();
             }
         }

@@ -42,7 +42,7 @@ public sealed class Playlist
         }
         catch (Exception ex)
         {
-            Logger.WriteLine("JsonConvert.DeserializeObject() threw an exception:" + ex.ToString(), Notice);
+            Logger.Log("JsonConvert.DeserializeObject() threw an exception:" + ex.ToString(), Notice);
             return new();
         }
     }

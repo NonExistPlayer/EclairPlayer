@@ -12,28 +12,8 @@ namespace Eclair;
 
 public partial class App : Application
 {
-    public const string Version = "0.1.0.1";
-    public readonly static string SavePath = OperatingSystem.IsWindows() ? 
-        $"{Environment.GetEnvironmentVariable("LOCALAPPDATA")}\\EclairPlayer\\" : (OperatingSystem.IsAndroid() ?
-        "/data/data/net.nonexistplayer.eclair/files/" :
-        $"{Environment.GetEnvironmentVariable("HOME")}/.eclairplayer/" // linux
-        );
-    public static string LogPath = OperatingSystem.IsAndroid() ?
-        "/storage/emulated/0/Android/data/net.nonexistplayer.eclair/cache/logs/" :
-        SavePath + $"logs{Path.DirectorySeparatorChar}";
-
-    public readonly static string TempPath = OperatingSystem.IsWindows() ?
-        $"{Environment.GetEnvironmentVariable("TEMP")}\\EclairPlayer\\" : (OperatingSystem.IsAndroid() ?
-        "/data/data/net.nonexistplayer.eclair/cache/" :
-        "/tmp/eclairplayer/"
-        );
-
-    internal readonly static Config Config = Config.Load();
-
-    internal static IPlatformManager PManager = IPlatformManager.Null;
-
     public override void Initialize()
-    { 
+    {
         if (!Directory.Exists(SavePath)) Directory.CreateDirectory(SavePath);
         if (!Directory.Exists(TempPath)) Directory.CreateDirectory(TempPath);
         try
@@ -47,14 +27,6 @@ public partial class App : Application
                 LogPath = SavePath + "cache/logs/";
             else throw;
         }
-
-        //Logger.Init(
-        //    new StreamWriter(LogPath +
-        //    $"{DateTime.Now.ToString()
-        //        .Replace(':', '-')
-        //        .Replace(' ', '-')
-        //        .Replace('/', '-')}.log")
-        //);
 
         AppDomain.CurrentDomain.ProcessExit += delegate
         {
@@ -74,7 +46,7 @@ public partial class App : Application
 
     private void UnhandledException(object sender, UnhandledExceptionEventArgs e)
     {
-        Logger.WriteLine(e.ExceptionObject.ToString() ?? "<failed to get exception>", Error);
+        Logger.Error(e.ExceptionObject.ToString() ?? "<failed to get exception>");
         try
         {
             Console.WriteLine("Press any key to exit...");
@@ -110,15 +82,15 @@ public partial class App : Application
         try
         {
             ClearTemp();
-            Logger.WriteLine("All temporary files have been deleted.");
+            Logger.Log("All temporary files have been deleted.");
         }
         catch (Exception ex)
         {
-            Logger.WriteLine("ClearTemp() threw an exception:\n" + ex.ToString(), Error);
+            Logger.Error("ClearTemp() threw an exception:\n" + ex.ToString());
         }
         try
         {
-            Logger.WriteLine($"Application exited with code: {exitcode}\n---END-OF-LOG---");
+            Logger.Log($"Application exited with code: {exitcode}\n---END-OF-LOG---");
 #if DEBUG
             Logger.FileStream?.Close();
             if (OperatingSystem.IsWindows())
