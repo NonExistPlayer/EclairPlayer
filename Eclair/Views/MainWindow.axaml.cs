@@ -12,9 +12,27 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
-        Background = new SolidColorBrush(Config.BGColor);
+        InitializeBackground();
         MinWidth = 790;
         MinHeight = 670;
+        View.Content = new MainView();
+    }
+
+    public MainWindow(UserControl view)
+    {
+        InitializeComponent();
+        InitializeBackground();
+        View.Content = view;
+        Width = 600;
+        Height = 450;
+        CanResize = false;
+
+        OtherWindows.Add(this);
+    }
+
+    private void InitializeBackground()
+    {
+        Background = new SolidColorBrush(Config.BGColor);
         if (OperatingSystem.IsWindows() && !Config.DisableCustomBorder)
         {
             ExtendClientAreaChromeHints = Avalonia.Platform.ExtendClientAreaChromeHints.NoChrome;
@@ -26,18 +44,6 @@ public partial class MainWindow : Window
             MainGrid.RowDefinitions.RemoveAt(1);
             MainGrid.RowDefinitions[0].Height = GridLength.Star;
         }
-    }
-
-    public MainWindow(UserControl view)
-    {
-        InitializeComponent();
-
-        Content = view;
-        Width = 600;
-        Height = 450;
-        CanResize = false;
-
-        OtherWindows.Add(this);
     }
 
     protected override void OnClosed(EventArgs e)

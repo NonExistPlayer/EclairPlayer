@@ -25,6 +25,6 @@
 					Background="Transparent"
 					Click="Button_Click"/>
 		</StackPanel>
-        <views:MainView Name="MainView" Grid.Row="1"/>
+        <UserControl Name="View" Grid.Row="1"/>
 	</Grid>
 </Window>
