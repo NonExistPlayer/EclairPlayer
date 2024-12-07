@@ -26,9 +26,9 @@ if exist "publish\%2-%3.zip" (
 echo Starting building %1 for %2-%3...
 echo MSBuild:
 if "%1"=="Eclair.Desktop" (
-    echo dotnet build %1 -c Release --os %2 -a %3 -v m -o publish\%2-%3\
+    echo dotnet build %1 -c Release --os %2 -a %3 -v m -o publish\%2-%3\ --sc
     echo.
-    dotnet build %1 -c Release --os %2 -a %3 -v m -o publish\%2-%3\
+    dotnet build %1 -c Release --os %2 -a %3 -v m -o publish\%2-%3\ --sc
 ) else (
     echo dotnet build %1 -c Release -o publish/%2-%3/
     echo.
