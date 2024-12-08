@@ -7,7 +7,7 @@
 			 x:DataType="vm:ViewModel"
              x:Class="Eclair.Views.SettingsView">
 	
-	<Grid>
+	<Grid Name="MainGrid">
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="200"/>
 			<ColumnDefinition Width="*"/>
