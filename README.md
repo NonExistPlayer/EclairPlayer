@@ -44,6 +44,7 @@ sudo apt install vlc libvlc-dev libvlccore-dev
 * [LibVLCSharp](https://github.com/videolan/libvlcsharp)
 * [Newtonsoft.Json](https://github.com/JamesNK/Newtonsoft.Json/)
 * [TagLibSharp](https://github.com/mono/taglib-sharp)
+* [NonExistPlayer/Logging](https://github.com/NonExistPlayer/Logging)
 ## Sites
 [Icons](https://icon-icons.com)
 [AI](https://blackbox.ai)
