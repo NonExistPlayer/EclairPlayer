@@ -16,7 +16,7 @@ public class MainActivity : AvaloniaMainActivity<App>
 {
     protected override AppBuilder CustomizeAppBuilder(AppBuilder builder)
     {
-        App.PManager = new PlatformManager();
+        Main.PManager = new PlatformManager();
 
         return base.CustomizeAppBuilder(builder)
             .WithInterFont()
@@ -25,7 +25,7 @@ public class MainActivity : AvaloniaMainActivity<App>
 
     protected override void Dispose(bool disposing)
     {
-        App.PManager.HidePlayerNotification();
+        Main.PManager.HidePlayerNotification();
 
         base.Dispose(disposing);
     }

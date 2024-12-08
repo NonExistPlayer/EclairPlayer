@@ -11,10 +11,10 @@ public class NotificationReceiver : BroadcastReceiver
         switch (action)
         {
             case "ACTION_TOGGLE":
-                App.PManager.TogglePause?.Invoke();
+                Main.PManager.TogglePause?.Invoke();
                 break;
             case "ACTION_STOP":
-                App.PManager.Stop?.Invoke();
+                Main.PManager.Stop?.Invoke();
                 break;
         }
     }
