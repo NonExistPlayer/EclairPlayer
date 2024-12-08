@@ -192,7 +192,7 @@ public partial class MainView : UserControl
     {
         PlayButtonSetImage("play");
         MusSlider.Value = 0;
-        rttransform!.Angle = 0;
+        if (rttransform != null) rttransform.Angle = 0;
         PManager.HidePlayerNotification();
 
         player.Stop();
