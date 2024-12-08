@@ -10,7 +10,10 @@ public partial class SettingsView : UserControl
         InitializeComponent();
 
         if (OperatingSystem.IsAndroid())
+        {
             Sections.IsVisible = false;
+            MainGrid.ColumnDefinitions.RemoveAt(0);
+        }
 
         CB_UseCircleIconAnimation.IsChecked = Config.UseCircleIconAnimation;
         CB_DisableCustomBorder.IsChecked = Config.DisableCustomBorder;
