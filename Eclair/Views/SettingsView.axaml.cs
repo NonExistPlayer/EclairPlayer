@@ -1,4 +1,6 @@
-﻿using Avalonia.Controls;
+﻿using Avalonia;
+using Avalonia.Controls;
+using Avalonia.Controls.ApplicationLifetimes;
 using System;
 
 namespace Eclair.Views;
@@ -17,6 +19,7 @@ public partial class SettingsView : UserControl
 
         CB_UseCircleIconAnimation.IsChecked = Config.UseCircleIconAnimation;
         CB_DisableCustomBorder.IsChecked = Config.DisableCustomBorder;
+        CB_DisableCustomBorder.IsEnabled = OperatingSystem.IsWindows();
     }
 
     private void GotoBack(object? sender, Avalonia.Interactivity.RoutedEventArgs e) => Content = MainView.prevcontent;
@@ -36,5 +39,27 @@ public partial class SettingsView : UserControl
         pInfo.SetValue(Config, cb.IsChecked);
 
         Config.Save();
+
+        MainView? view;
+        MainWindow? window = ((Application.Current?.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime)?
+                .MainWindow as MainWindow);
+
+        if (OperatingSystem.IsAndroid())
+            view = (Application.Current?.ApplicationLifetime as ISingleViewApplicationLifetime)?.MainView as MainView;
+        else
+            view = window?.View.Content as MainView;
+
+        if (view is null) return;
+
+        switch (cfgparam)
+        {
+            case "UseCircleIconAnimation": view.Update_UCIA(); break;
+            case "DisableCustomBorder":
+                if (window is null) return;
+                window.Update_DCB();
+                foreach (var win in MainWindow.OtherWindows)
+                    win.Update_DCB();
+                break;
+        }
     }
 }

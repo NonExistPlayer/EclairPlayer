@@ -28,7 +28,7 @@ public partial class MainView : UserControl
 
     bool loop = false;
 
-    readonly RotateTransform? rttransform;
+    RotateTransform? rttransform;
 
     public MainView()
     {
@@ -235,15 +235,14 @@ public partial class MainView : UserControl
 
     private async void AnimateIcon()
     {
-        if (rttransform == null) return;
-
         while (player.IsPlaying)
         {
             try
             {
                 await Dispatcher.UIThread.Invoke(async delegate
                 {
-                    rttransform.Angle += OperatingSystem.IsAndroid() ? 1 : 0.001;
+                    if (rttransform != null)
+                        rttransform.Angle += OperatingSystem.IsAndroid() ? 1 : 0.001;
                     if (OperatingSystem.IsAndroid()) await Task.Delay(20);
                 });
             }
@@ -265,5 +264,29 @@ public partial class MainView : UserControl
     {
         prevcontent = Content;
         App.ChangeView(new AboutView(), this);
+    }
+
+    //                   UseCircleIconAnimation
+    internal void Update_UCIA()
+    {
+        if (Config.UseCircleIconAnimation)
+        {
+            rttransform = MusicPicture.RenderTransform as RotateTransform;
+            MusicPicture.Clip = new EllipseGeometry()
+            {
+                Center = new(125, 125),
+                RadiusX = 125,
+                RadiusY = 125
+            };
+            if (player.IsPlaying)
+                Task.Run(AnimateIcon, ctsource.Token);
+        }
+        else
+        {
+            rttransform!.Angle = 0;
+            MusicPicture.Clip = null;
+            rttransform = null;
+            if (player.IsPlaying) ctsource.Cancel();
+        }
     }
 }

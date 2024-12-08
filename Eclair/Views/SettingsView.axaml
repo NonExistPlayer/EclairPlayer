@@ -41,15 +41,11 @@
 					   HorizontalAlignment="Center"
 					   FontWeight="Bold"
 					   FontSize="30"/>
-			<UniformGrid Rows="2" Columns="1">
-				<UniformGrid Rows="1" Columns="2">
+			<UniformGrid Columns="2">
 					<TextBlock Text="UseCircleIconAnimation" VerticalAlignment="Center"/>
-					<CheckBox Name="CB_UseCircleIconAnimation" Click="CheckBoxClicked"
-							  VerticalAlignment="Center"/>
+					<CheckBox Name="CB_UseCircleIconAnimation" Click="CheckBoxClicked"/>
 					<TextBlock Text="DisableCustomBorder" VerticalAlignment="Center"/>
-					<CheckBox Name="CB_DisableCustomBorder" Click="CheckBoxClicked"
-							  VerticalAlignment="Center"/>
-				</UniformGrid>
+					<CheckBox Name="CB_DisableCustomBorder" Click="CheckBoxClicked"/>
 			</UniformGrid>
 		</StackPanel>
 		

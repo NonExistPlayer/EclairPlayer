@@ -79,4 +79,23 @@ public partial class MainWindow : Window
         else
             Close();
     }
+
+    //                   DisableCustomBorder
+    internal void Update_DCB()
+    {
+        if (Config.DisableCustomBorder)
+        {
+            ExtendClientAreaChromeHints = Avalonia.Platform.ExtendClientAreaChromeHints.Default;
+            ExtendClientAreaToDecorationsHint = false;
+        }
+        else
+        {
+            BorderPanel.IsVisible = true;
+            WinTitle.IsVisible = true;
+            MainGrid.RowDefinitions.Add(new(GridLength.Star));
+            MainGrid.RowDefinitions[0].Height = new(30);
+        }
+
+        InitializeBackground();
+    }
 }
