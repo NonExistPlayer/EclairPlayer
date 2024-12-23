@@ -50,6 +50,8 @@ public partial class MainView : UserControl
                 }
                 else PlayButtonSetImage("play");
             });
+            if (PManager != null && !loop)
+                PManager.Stop!();
         };
         player.PositionChanged += Player_PositionChanged;
 
@@ -122,7 +124,7 @@ public partial class MainView : UserControl
             Stop();
             player.Media.Dispose();
         }
-
+        
         Stream stream = await files[0].OpenReadAsync();
 
         var file = TagFile.Create(new ReadOnlyFileImplementation(files[0].Name, stream));
