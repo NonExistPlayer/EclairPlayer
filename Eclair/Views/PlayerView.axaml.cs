@@ -17,7 +17,7 @@ using Avalonia.Controls.ApplicationLifetimes;
 
 namespace Eclair.Views;
 
-public partial class MainView : UserControl
+public partial class PlayerView : UserControl
 {
     internal static object? prevcontent;
 
@@ -30,7 +30,7 @@ public partial class MainView : UserControl
 
     RotateTransform? rttransform;
 
-    public MainView()
+    public PlayerView()
     {
         InitializeComponent();
         vlc = new();

@@ -22,7 +22,7 @@ public partial class SettingsView : UserControl
         CB_DisableCustomBorder.IsEnabled = OperatingSystem.IsWindows();
     }
 
-    private void GotoBack(object? sender, Avalonia.Interactivity.RoutedEventArgs e) => Content = MainView.prevcontent;
+    private void GotoBack(object? sender, Avalonia.Interactivity.RoutedEventArgs e) => Content = PlayerView.prevcontent;
 
     private void CheckBoxClicked(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
     {
@@ -40,14 +40,14 @@ public partial class SettingsView : UserControl
 
         Config.Save();
 
-        MainView? view;
+        PlayerView? view;
         MainWindow? window = ((Application.Current?.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime)?
                 .MainWindow as MainWindow);
 
         if (OperatingSystem.IsAndroid())
-            view = (Application.Current?.ApplicationLifetime as ISingleViewApplicationLifetime)?.MainView as MainView;
+            view = (Application.Current?.ApplicationLifetime as ISingleViewApplicationLifetime)?.MainView as PlayerView;
         else
-            view = window?.View.Content as MainView;
+            view = window?.View.Content as PlayerView;
 
         if (view is null) return;
 

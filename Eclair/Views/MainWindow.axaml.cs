@@ -16,7 +16,7 @@ public partial class MainWindow : Window
         SetTitle("Eclair");
         MinWidth = 790;
         MinHeight = 670;
-        View.Content = new MainView();
+        View.Content = new PlayerView();
     }
 
     public MainWindow(UserControl view)
