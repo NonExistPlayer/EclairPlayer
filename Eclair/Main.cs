@@ -8,16 +8,16 @@ namespace Eclair;
 public static class Main
 {
     public const string Version = "0.1.1";
-    public readonly static string SavePath = OperatingSystem.IsWindows() ?
+    public static string SavePath { get; } = OperatingSystem.IsWindows() ?
         $"{Environment.GetEnvironmentVariable("LOCALAPPDATA")}\\EclairPlayer\\" : (OperatingSystem.IsAndroid() ?
         "/data/data/net.nonexistplayer.eclair/files/" :
         $"{Environment.GetEnvironmentVariable("HOME")}/.eclairplayer/" // linux
         );
-    public static string LogPath = OperatingSystem.IsAndroid() ?
+    public static string LogPath { get; internal set; } = OperatingSystem.IsAndroid() ?
         "/storage/emulated/0/Android/data/net.nonexistplayer.eclair/cache/logs/" :
         SavePath + $"logs{Path.DirectorySeparatorChar}";
 
-    public readonly static string TempPath = OperatingSystem.IsWindows() ?
+    public static string TempPath { get; } = OperatingSystem.IsWindows() ?
         $"{Environment.GetEnvironmentVariable("TEMP")}\\EclairPlayer\\" : (OperatingSystem.IsAndroid() ?
         "/data/data/net.nonexistplayer.eclair/cache/" :
         "/tmp/eclairplayer/"
