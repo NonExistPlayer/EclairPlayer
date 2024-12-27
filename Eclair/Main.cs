@@ -1,4 +1,5 @@
 ﻿global using static Eclair.Main;
+using Newtonsoft.Json;
 using NonExistPlayer.Logging;
 using System;
 using System.Collections.Generic;
@@ -40,28 +41,30 @@ public static class Main
 
     internal static IPlatformManager PManager = IPlatformManager.Null;
 
-    internal static string[] ScanDirectoryForMusic(string targetdir)
+    internal static void ScanDirectoryForMusic(string targetdir, Action<string> finded)
     {
-        List<string> files = [];
+        if (!Directory.Exists(targetdir)) return;
 
-        if (!Directory.Exists(targetdir)) return [];
-
-        string[] dirfiles;
+        string[] files;
         try
         {
-            dirfiles = Directory.GetFiles(targetdir);
+            files = Directory.GetFiles(targetdir);
         }
         catch (UnauthorizedAccessException)
         {
-            return [];
+            return;
         }
         catch (Exception ex)
         {
             Logger.Error(ex);
-            return [];
+            return;
         }
 
-        files.AddRange(dirfiles.Where(HasSupportedFormat).ToArray());
+        foreach (string file in files)
+        {
+            if (HasSupportedFormat(file))
+                finded(file);
+        }
 
         // It is assumed that if the previous request to get files
         // in the directory was successful.
@@ -69,13 +72,8 @@ public static class Main
         string[] dirs = Directory.GetDirectories(targetdir);
 
         foreach (string dir in dirs)
-            files.AddRange(
-                ScanDirectoryForMusic(
-                    Path.GetFullPath(dir)
-                    )
-                );
-
-        return files.ToArray();
+            if (!Path.GetFileName(dir)!.StartsWith('.'))
+                ScanDirectoryForMusic(Path.GetFullPath(dir), finded);
     }
 
     internal static bool HasSupportedFormat(string fname)
