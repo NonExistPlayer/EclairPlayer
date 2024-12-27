@@ -81,7 +81,7 @@ public static class Main
     internal static bool HasSupportedFormat(string fname)
     {
         foreach (string format in SupportedFormats)
-            if (fname.EndsWith(format)) return true;
+            if (fname.EndsWith(format[1..])) return true;
         return false;
     }
 }
