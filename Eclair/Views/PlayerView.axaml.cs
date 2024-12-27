@@ -193,6 +193,7 @@ public partial class PlayerView : UserControl
     private void Stop()
     {
         PlayButtonSetImage("play");
+        MusDurationLabel.Content = "00:00";
         MusSlider.Value = 0;
         if (rttransform != null) rttransform.Angle = 0;
         PManager.HidePlayerNotification();
