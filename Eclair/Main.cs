@@ -1,7 +1,9 @@
 ﻿global using static Eclair.Main;
 using NonExistPlayer.Logging;
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace Eclair;
 
@@ -23,6 +25,8 @@ public static class Main
         "/tmp/eclairplayer/"
         );
 
+    public readonly static string[] SupportedFormats = ["*.mp3", "*.aac", "*.asf", "*.wma", "*.ogg", "*.flac", "*.flv", "*.midi"];
+
     public static Logger<EclairLogLevel> Logger { get; } = new(Default)
     {
         OutputFormat = "[%time] (%class.%method/%TYPE): %mes",
@@ -35,4 +39,45 @@ public static class Main
     internal readonly static ConfigJson Config = ConfigJson.Load();
 
     internal static IPlatformManager PManager = IPlatformManager.Null;
+
+    internal static string[] ScanDirectoryForMusic(string targetdir)
+    {
+        List<string> files = [];
+
+        if (!Directory.Exists(targetdir)) return [];
+
+        string[] dirfiles;
+        try
+        {
+            dirfiles = Directory.GetFiles(targetdir);
+        }
+        catch (Exception ex)
+        {
+            Logger.Error(ex);
+            return [];
+        }
+
+        files.AddRange(dirfiles.Where(HasSupportedFormat).ToArray());
+
+        // It is assumed that if the previous request to get files
+        // in the directory was successful.
+        // (otherwise the method would return an empty array)
+        string[] dirs = Directory.GetDirectories(targetdir);
+
+        foreach (string dir in dirs)
+            files.AddRange(
+                ScanDirectoryForMusic(
+                    Path.GetFullPath(dir)
+                    )
+                );
+
+        return files.ToArray();
+    }
+
+    internal static bool HasSupportedFormat(string fname)
+    {
+        foreach (string format in SupportedFormats)
+            if (fname.EndsWith(format)) return true;
+        return false;
+    }
 }
