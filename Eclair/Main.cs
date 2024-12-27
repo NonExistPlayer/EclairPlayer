@@ -5,7 +5,7 @@ using System.IO;
 
 namespace Eclair;
 
-internal static class Main
+public static class Main
 {
     public const string Version = "0.1.1";
     public readonly static string SavePath = OperatingSystem.IsWindows() ?
