@@ -99,7 +99,7 @@ public partial class PlayerView : UserControl
             FileTypeFilter = [
                 new(resources.ui_ofd_audiofiles)
                     {
-                        Patterns = ["*.mp3", "*.aac", "*.asf", "*.wma", "*.ogg", "*.flac", "*.flv", "*.midi"],
+                        Patterns = SupportedFormats,
                         MimeTypes = ["audio/*"]
                     }
             ]
