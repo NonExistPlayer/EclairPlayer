@@ -51,6 +51,10 @@ public static class Main
         {
             dirfiles = Directory.GetFiles(targetdir);
         }
+        catch (UnauthorizedAccessException)
+        {
+            return [];
+        }
         catch (Exception ex)
         {
             Logger.Error(ex);
