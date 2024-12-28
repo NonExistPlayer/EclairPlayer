@@ -173,16 +173,29 @@ public partial class MainView : UserControl
         var playButtonImage = new Image
         {
             Source = (IImage?)Application.Current!.Resources["playbutton"],
-            Height = 48,
-            HorizontalAlignment = HorizontalAlignment.Right
+            Height = 48
+        };
+
+        var button = new Button
+        {
+            Content = playButtonImage,
+            HorizontalAlignment = HorizontalAlignment.Right,
+            Background = Brushes.Transparent
+        };
+
+        button.Click += delegate
+        {
+            LoadMusicFile(name, stream);
+            PlayOrPause();
+            ShowPlayer();
         };
 
         Grid.SetColumn(textBlock, 1);
-        Grid.SetColumn(playButtonImage, 2);
+        Grid.SetColumn(button, 2);
 
         grid.Children.Add(trackImage);
         grid.Children.Add(textBlock);
-        grid.Children.Add(playButtonImage);
+        grid.Children.Add(button);
 
         border.PointerPressed += (s, e) =>
         {
