@@ -70,7 +70,7 @@
 			
 			<TextBlock Name="TitleText"
 					   Grid.Column="1"
-					   Text="Author - Music"
+					   Text="-"
 					   FontWeight="Bold"
 					   VerticalAlignment="Center"/>
 			
