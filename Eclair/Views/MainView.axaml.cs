@@ -145,6 +145,7 @@ public partial class MainView : UserControl
         };
 
         var grid = new Grid { Height = 64 };
+        ToolTip.SetTip(grid, path);
 
         grid.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
         grid.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Star });
