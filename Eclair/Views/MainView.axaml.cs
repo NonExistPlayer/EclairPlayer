@@ -126,10 +126,14 @@ public partial class MainView : UserControl
         }
     }
 
-    internal void AddMusicItem(string path) => AddMusicItem(Path.GetFileName(path), File.OpenRead(path));
-    internal void AddMusicItem(string name, Stream stream)
+    internal void AddMusicItem(string path)
     {
-        Logger.Log($"AddMusicItem({name})");
+        string name = Path.GetFileName(path);
+        Stream stream = File.OpenRead(path);
+        Logger.Log($"AddMusicItem({path})");
+        if (MusicPanel.Children.Count == 1 &&
+            MusicPanel.Children[0] is TextBlock)
+            MusicPanel.Children.Clear();
         var tag = TagFile.Create(new ReadOnlyFileImplementation(name, stream)).Tag;
 
         var border = new Border
