@@ -72,6 +72,8 @@
 					   Grid.Column="1"
 					   Text="-"
 					   FontWeight="Bold"
+					   TextWrapping="Wrap"
+					   HorizontalAlignment="Left"
 					   VerticalAlignment="Center"/>
 			
 			<StackPanel Grid.Column="1"

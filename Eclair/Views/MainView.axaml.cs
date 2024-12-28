@@ -81,6 +81,9 @@ public partial class MainView : UserControl
 
         PManager.TogglePause += PlayOrPause;
         PManager.Stop += Stop;
+
+        if (OperatingSystem.IsAndroid())
+            TitleText.MaxWidth = 128;
     }
     private void LibVlcOutput(object? sender, LogEventArgs e) => Logger.Log(e.Message, new((ushort)e.Level));
 
