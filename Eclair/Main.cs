@@ -26,7 +26,7 @@ public static class Main
         "/tmp/eclairplayer/"
         );
 
-    public readonly static string[] SupportedFormats = ["*.mp3", "*.aac", "*.asf", "*.wma", "*.ogg", "*.flac", "*.flv", "*.midi"];
+    public readonly static string[] SupportedFormats = ["*.mp3", "*.wav", "*.aac", "*.asf", "*.wma", "*.ogg", "*.flac", "*.flv", "*.midi"];
 
     public static Logger<EclairLogLevel> Logger { get; } = new(Default)
     {
