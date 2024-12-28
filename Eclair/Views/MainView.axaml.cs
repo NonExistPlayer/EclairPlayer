@@ -14,6 +14,7 @@ using Avalonia.Layout;
 using Avalonia.Media;
 using Avalonia.Media.Imaging;
 using Avalonia.Controls.ApplicationLifetimes;
+using Avalonia.Svg.Skia;
 
 namespace Eclair.Views;
 
@@ -68,9 +69,15 @@ public partial class MainView : UserControl
         };
 
         if (Config.UseCircleIconAnimation)
+        {
             rttransform = MusicPicture.RenderTransform as RotateTransform;
+            MusicPicture2.RenderTransform = rttransform;
+        }
         else
+        {
             MusicPicture.Clip = null;
+            MusicPicture2.Clip = null;
+        }
 
         PManager.TogglePause += PlayOrPause;
         PManager.Stop += Stop;
@@ -187,7 +194,6 @@ public partial class MainView : UserControl
         {
             LoadMusicFile(name, stream);
             PlayOrPause();
-            ShowPlayer();
         };
 
         Grid.SetColumn(textBlock, 1);
@@ -201,7 +207,6 @@ public partial class MainView : UserControl
         {
             if (!e.GetCurrentPoint(this).Properties.IsLeftButtonPressed) return;
             LoadMusicFile(name, stream);
-            ShowPlayer(s, e);
         };
 
         border.Child = grid;
@@ -227,10 +232,12 @@ public partial class MainView : UserControl
         var file = TagFile.Create(new ReadOnlyFileImplementation(name, stream));
         var tags = file.Tag;
 
-        TitleLabel.Content = $"{string.Join(", ", tags.Performers)} - {tags.Title}";
+        SetTitle($"{string.Join(", ", tags.Performers)} - {tags.Title}");
 
         if (TitleLabel.Content?.ToString() == " - ")
-            TitleLabel.Content = name;
+            SetTitle(name);
+
+        SetTitle(TitleLabel.Content?.ToString());
 
         if (!OperatingSystem.IsAndroid())
             ((Application.Current!.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime)!
@@ -250,9 +257,9 @@ public partial class MainView : UserControl
             outputstream.Close();
 
         display:
-            MusicPicture.Source = new Bitmap(fpath);
+            SetImage(new Bitmap(fpath));
         }
-        else MusicPicture.Source = Application.Current?.FindResource("unknowntrack") as Bitmap;
+        else SetImage(Application.Current?.FindResource("unknowntrack") as Bitmap);
 
         player.Media = new(vlc, new StreamMediaInput(stream));
     }
@@ -275,6 +282,7 @@ public partial class MainView : UserControl
     }
 
     #region Events
+    private async void SelectFile(object? sender, Avalonia.Interactivity.RoutedEventArgs e) => await GetMusicFile();
     private void GotoSettings(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
     {
         prevcontent = Content;
@@ -310,17 +318,46 @@ public partial class MainView : UserControl
     }
     #endregion
 
+    #region Set
+    internal void SetTitle(string? text)
+    {
+        TitleLabel.Content = text;
+        TitleText.Text = text;
+    }
+    internal void SetImage(IImage? image)
+    {
+        MusicPicture.Source = image;
+        MusicPicture2.Source = image;
+    }
+    internal void PlayButtonSetImage(string imagename)
+    {
+        if (Application.Current == null) return;
+        Dispatcher.UIThread.Invoke(delegate
+        {
+            var image = (SvgImage?)Application.Current.Resources[imagename + "button"];
+            PB_Image.Source = image;
+            PB2_Image.Source = image;
+        });
+    }
+    #endregion
+
     //                   UseCircleIconAnimation
     internal void Update_UCIA()
     {
         if (Config.UseCircleIconAnimation)
         {
             rttransform = MusicPicture.RenderTransform as RotateTransform;
-            MusicPicture.Clip = new EllipseGeometry()
+            MusicPicture.Clip = new EllipseGeometry
             {
                 Center = new(125, 125),
                 RadiusX = 125,
                 RadiusY = 125
+            };
+            MusicPicture2.Clip = new EllipseGeometry
+            {
+                Center = new(32, 32),
+                RadiusX = 32,
+                RadiusY = 32
             };
             if (player.IsPlaying)
                 Task.Run(AnimateIcon, ctsource.Token);
@@ -329,6 +366,7 @@ public partial class MainView : UserControl
         {
             rttransform!.Angle = 0;
             MusicPicture.Clip = null;
+            MusicPicture2.Clip = null;
             rttransform = null;
             if (player.IsPlaying) ctsource.Cancel();
         }

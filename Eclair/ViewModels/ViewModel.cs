@@ -4,6 +4,7 @@ public class ViewModel : ViewModelBase
 {
     public string Settings => resources.ui_settings;
     public string SelectFile => resources.ui_selectfile;
+    public string Back => resources.ui_player_back;
     public string About => resources.ui_about;
 
     public string About_Version => resources.ui_about_version + Version;

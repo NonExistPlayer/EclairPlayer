@@ -169,6 +169,15 @@ namespace Eclair {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Back.
+        /// </summary>
+        internal static string ui_player_back {
+            get {
+                return ResourceManager.GetString("ui.player.back", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Select File.
         /// </summary>
         internal static string ui_selectfile {

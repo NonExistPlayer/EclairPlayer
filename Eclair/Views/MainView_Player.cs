@@ -38,7 +38,6 @@ partial class MainView
         }
         player.Position = (float)(e.NewValue / 100);
     }
-    private async void SelectFile(object? sender, Avalonia.Interactivity.RoutedEventArgs e) => await GetMusicFile();
     private void LB_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
     {
         loop = !loop;
@@ -89,7 +88,6 @@ partial class MainView
         }
 
         LoadMusicFile(files[0].Name, await files[0].OpenReadAsync());
-        ShowPlayer();
     }
 
     private void PlayOrPause()
@@ -122,14 +120,5 @@ partial class MainView
         PManager.HidePlayerNotification();
 
         player.Stop();
-    }
-
-    private void PlayButtonSetImage(string imagename)
-    {
-        if (Application.Current == null) return;
-        Dispatcher.UIThread.Invoke(delegate
-        {
-            PB_Image.Source = (SvgImage?)Application.Current.Resources[imagename + "button"];
-        });
     }
 }

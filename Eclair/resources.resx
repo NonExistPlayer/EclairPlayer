@@ -162,4 +162,7 @@
   <data name="ui.settings.usecircleiconanimation" xml:space="preserve">
     <value>Round music icon</value>
   </data>
+  <data name="ui.player.back" xml:space="preserve">
+    <value>Back</value>
+  </data>
 </root>
