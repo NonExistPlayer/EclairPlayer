@@ -13,7 +13,7 @@ public partial class AboutView : UserControl
         {
             BackButton.Click += delegate
             {
-                Content = PlayerView.prevcontent;
+                Content = MainView.prevcontent;
             };
         }
         else BackButton.IsVisible = false;

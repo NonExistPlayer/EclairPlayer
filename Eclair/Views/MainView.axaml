@@ -1,0 +1,126 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:Eclair.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Eclair.Views.MainView"
+             x:DataType="vm:ViewModel">
+	<Design.DataContext>
+		<vm:ViewModel />
+	</Design.DataContext>
+
+	<Grid Name="MainGrid">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="33"/>
+			<RowDefinition Height="*"/>
+			<RowDefinition Height="100"/>
+			<RowDefinition Height="0"/>
+		</Grid.RowDefinitions>
+		<Menu VerticalAlignment="Top"
+			  HorizontalAlignment="Right">
+			<MenuItem Header="≡"
+					  FontSize="30">
+				<MenuItem Header="{Binding Settings}"
+						  Click="GotoSettings"
+						  FontSize="16"/>
+				<MenuItem Header="{Binding SelectFile}"
+						  Click="SelectFile"
+						  HotKey="CTRL + O"
+						  FontSize="16"/>
+				<Separator/>
+				<MenuItem Header="{Binding About}"
+						  Click="GotoAbout"
+						  FontSize="16"/>
+			</MenuItem>
+		</Menu>
+		<Button Name="BackButton"
+				Background="Transparent"
+				Click="BackToList"
+				IsVisible="False"
+				IsEnabled="False">
+			<Label>Back</Label>
+		</Button>
+		<ScrollViewer Margin="2"
+					  Grid.Row="1">
+			<StackPanel Name="MusicPanel"/>
+		</ScrollViewer>
+
+		<StackPanel Name="AudioPanel"
+					Grid.Row="2"
+					Background="DarkGray"
+					PointerPressed="ShowPlayer">
+			<TextBlock Text="This space will be used for minimal music control."
+					   HorizontalAlignment="Center"/>
+			<TextBlock Text="(in dev)"
+					   HorizontalAlignment="Center"/>
+		</StackPanel>
+
+		<Grid Grid.Row="3">
+			<StackPanel HorizontalAlignment="Center"
+						VerticalAlignment="Center"
+						Width="1000">
+				<Image Name="MusicPicture"
+						MaxWidth="250"
+						MaxHeight="250"
+						Margin="0,10"
+						Source="{StaticResource unknowntrack}">
+					<Image.RenderTransform>
+						<RotateTransform Angle="0"/>
+					</Image.RenderTransform>
+					<Image.Clip>
+						<EllipseGeometry Center="125,125"
+										 RadiusX="125"
+										 RadiusY="125"/>
+					</Image.Clip>
+				</Image>
+				<Label Name="TitleLabel"
+					   HorizontalAlignment="Center"
+					   Content="-"/>
+				<StackPanel Orientation="Vertical"
+							VerticalAlignment="Center">
+					<StackPanel Orientation="Horizontal"
+						  HorizontalAlignment="Center">
+						<Button Name="PlayButton"
+								Click="PlayButtonClicked"
+								HorizontalAlignment="Center"
+								Margin="10">
+							<Image Name="PB_Image"
+								   Width="50"
+								   Source="{StaticResource playbutton}"/>
+						</Button>
+						<Button Name="StopButton"
+								Click="StopButtonClicked"
+								HorizontalAlignment="Center"
+								IsEnabled="False"
+								Margin="10">
+							<Image Width="50"
+								   Source="{StaticResource stopbutton}"/>
+						</Button>
+						<Button Name="LoopButton"
+								Click="LB_Click"
+								HorizontalAlignment="Center"
+								Margin="10">
+							<Image Name="LB_Image" Width="50"
+								   Source="{StaticResource looparrow}"/>
+						</Button>
+					</StackPanel>
+					<StackPanel Orientation="Horizontal"
+								HorizontalAlignment="Center"
+								Spacing="3">
+						<Label Name="MusPositionLabel"
+							   Content="00:00"
+							   Margin="0,13"/>
+						<Slider Name="MusSlider"
+								IsEnabled="False"
+								ValueChanged="SliderValueChanged"
+								Maximum="100"/>
+						<Label Name="MusDurationLabel"
+							   Content="00:00"
+							   Margin="0,13"/>
+					</StackPanel>
+				</StackPanel>
+			</StackPanel>
+		</Grid>
+	</Grid>
+</UserControl>

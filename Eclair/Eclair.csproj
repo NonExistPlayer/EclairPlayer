@@ -65,9 +65,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>resources.resx</DependentUpon>
     </Compile>
-    <Compile Update="Views\PlayerView.axaml.cs">
-      <DependentUpon>PlayerView.axaml</DependentUpon>
-    </Compile>
   </ItemGroup>
 
   <ItemGroup>
