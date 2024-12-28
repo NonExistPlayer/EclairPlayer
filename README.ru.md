@@ -2,7 +2,9 @@
 <image src="Eclair/Assets/icon.png" width="300"/>
 <image src="res/screenshot.png"/>
 
-**Eclair** - это open-source аудиоплеер.
+**Eclair** - это open-source аудиоплеер написанный на *C#*.
+Этот плеер постепенно развивается и нацелен не только на прослушивания музыки, но и на красоту и удобство использования.<br>
+Я буду рад любой помощи в развитии проекта!
 ## Поддерживаемые аудио-форматы
 | Формат | Название                                                |
 | :----: | :------------------------------------------------------ |
@@ -51,16 +53,6 @@ sudo apt install vlc libvlc-dev libvlccore-dev
 [Нейросеть](https://blackbox.ai)
 ## Устройства
 
-<details>
-<summary>Характеристики ПК</summary>
-
-|Процессор|Intel(R) Core(TM) i5-8400 CPU @ 2.80GHz, 2808 МГц, ядер: 6|
-|:-:|:--|
-|**Архитектура**|**x64**|
-|**ОЗУ**|**16,0 ГБ**|
-
-</details>
-
 ### Windows
 **Система**: **Microsoft Windows 11 Pro** *10.0.22621 сборка 22621*
 ### Linux
@@ -71,5 +63,5 @@ sudo apt install vlc libvlc-dev libvlccore-dev
 |**Система**|**Android 13**|
 |**Номер сборки**|**TQ2A.230505.002 PixelExperience_Plus_camellia-13.0-20230610-2200-UNOFFICIAL**|
 
-# Лицензия
+# [Лицензия](LICENSE)
 **Eclair** защищён лицензией [MIT](https://choosealicense.com/licenses/mit). Просмотрите файл [LICENSE](LICENSE).

@@ -2,7 +2,9 @@
 <image src="Eclair/Assets/icon.png" width="300"/>
 <image src="res/screenshot.png"/>
 
-**Eclair** is an open-source audio player.
+**Eclair** is an open-source audio player written in *C#*.
+This player is gradually developing and is aimed not only at listening to music, but also at beauty and ease of use.<br>
+I will be glad to any help in developing the project!
 ## Supported audio formats
 | Format | Name |
 | :----: | :------------------------------------------------------ |
@@ -50,17 +52,6 @@ sudo apt install vlc libvlc-dev libvlccore-dev
 [Icons](https://icon-icons.com)
 [AI](https://blackbox.ai)
 ## Devices
-
-<details>
-<summary>PC specifications</summary>
-
-|Processor|Intel(R) Core(TM) i5-8400 CPU @ 2.80GHz, 2808 MHz, cores: 6|
-|:-:|:--|
-|**Architecture**|**x64**|
-|**RAM**|**16.0 GB**|
-
-</details>
-
 ### Windows
 **System**: **Microsoft Windows 11 Pro** *10.0.22621 build 22621*
 ### Linux
@@ -71,5 +62,5 @@ sudo apt install vlc libvlc-dev libvlccore-dev
 |**System**|**Android 13**|
 |**Build Number**|**TQ2A.230505.002 PixelExperience_Plus_camellia-13.0-20230610-2200-UNOFFICIAL**|
 
-# License
+# [License](LICENSE)
 **Eclair** is licensed under the [MIT](https://choosealicense.com/licenses/mit). Please review the [LICENSE](LICENSE) file.
