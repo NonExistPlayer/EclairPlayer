@@ -1,10 +1,7 @@
 ﻿global using static Eclair.Main;
-using Newtonsoft.Json;
 using NonExistPlayer.Logging;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 
 namespace Eclair;
 
