@@ -334,6 +334,10 @@ public partial class MainView : UserControl
             MusicPanel.Children.CopyTo(musicitems, 0);
         }
 
+        if (MusicPanel.Children.Count == 1 &&
+            MusicPanel.Children[0] is TextBlock)
+            MusicPanel.Children.Clear();
+
         MusicPanel.Children.Clear();
 
         MusicPanel.Children.AddRange(
@@ -346,6 +350,15 @@ public partial class MainView : UserControl
                             .Contains(SearchBox.Text ?? "", StringComparison.CurrentCultureIgnoreCase)
             )
         );
+
+        if (MusicPanel.Children.Count == 0)
+            MusicPanel.Children.Add(new TextBlock
+            {
+                Text = resources.ui_nothingfound + "...",
+                HorizontalAlignment = HorizontalAlignment.Center,
+                FontWeight = FontWeight.Bold,
+                FontSize = 24
+            });
     }
     internal void ShowPlayer()
     {

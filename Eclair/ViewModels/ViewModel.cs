@@ -7,6 +7,7 @@ public class ViewModel : ViewModelBase
     public string Back => resources.ui_player_back;
     public string About => resources.ui_about;
     public string Search => resources.ui_search;
+    public string NothingFound => resources.ui_nothingfound + " :(";
 
     public string About_Version => resources.ui_about_version + Version;
     public string About_CreatedBy => "Eclair " + resources.ui_about_createdby + " NonExistPlayer";

@@ -151,6 +151,15 @@ namespace Eclair {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Nothing found.
+        /// </summary>
+        internal static string ui_nothingfound {
+            get {
+                return ResourceManager.GetString("ui.nothingfound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на All audio formats.
         /// </summary>
         internal static string ui_ofd_audiofiles {

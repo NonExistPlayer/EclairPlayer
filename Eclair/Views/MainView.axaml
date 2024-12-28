@@ -51,7 +51,12 @@
 		
 		<ScrollViewer Margin="2"
 					  Grid.Row="1">
-			<StackPanel Name="MusicPanel"/>
+			<StackPanel Name="MusicPanel">
+				<TextBlock Text="{Binding NothingFound}"
+						   HorizontalAlignment="Center"
+						   FontWeight="Bold"
+						   FontSize="24"/>
+			</StackPanel>
 		</ScrollViewer>
 
 		<Grid Name="AudioPanel"

@@ -168,4 +168,7 @@
   <data name="ui.search" xml:space="preserve">
     <value>Искать музыку...</value>
   </data>
+  <data name="ui.nothingfound" xml:space="preserve">
+    <value>Ничего не найдено</value>
+  </data>
 </root>
