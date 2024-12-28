@@ -4,8 +4,9 @@ using TagLib;
 using LibVLCSharp.Shared;
 using System;
 using System.IO;
-using System.Threading.Tasks;
+using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Threading;
@@ -15,6 +16,7 @@ using Avalonia.Media;
 using Avalonia.Media.Imaging;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Svg.Skia;
+
 
 namespace Eclair.Views;
 
@@ -26,6 +28,7 @@ public partial class MainView : UserControl
     internal MediaPlayer player;
     readonly CancellationTokenSource ctsource = new();
     bool calledByPlayer;
+    Control[]? musicitems;
 
     bool loop = false;
 
@@ -302,6 +305,7 @@ public partial class MainView : UserControl
         MainGrid.RowDefinitions[2] = new(new(100));
         MainGrid.RowDefinitions[3] = new(new(0));
         AudioPanel.IsVisible = true;
+        SearchBox.IsEnabled = true;
         BackButton.IsVisible = false;
         BackButton.IsEnabled = false;
     }
@@ -310,14 +314,58 @@ public partial class MainView : UserControl
         if (!e.GetCurrentPoint(this).Properties.IsLeftButtonPressed) return;
         ShowPlayer();
     }
+    private void TextBox_TextChanged(object? sender, TextChangedEventArgs e)
+    {
+        if (SearchBox.Text == "")
+        {
+            MusicPanel.Children.Clear();
+            MusicPanel.Children.AddRange(musicitems ?? []);
+            musicitems = null;
+            return;
+        }
+
+        if (musicitems is null)
+        {
+            musicitems = new Control[MusicPanel.Children.Count];
+            MusicPanel.Children.CopyTo(musicitems, 0);
+        }
+
+        MusicPanel.Children.Clear();
+
+        MusicPanel.Children.AddRange(
+            musicitems.Where(m =>
+                ((TextBlock)
+                    ((Grid)
+                        ((Border)m).Child!)
+                            .Children[1])
+                            .Text!
+                            .Contains(SearchBox.Text ?? "", StringComparison.CurrentCultureIgnoreCase)
+            )
+        );
+    }
     internal void ShowPlayer()
     {
         MainGrid.RowDefinitions[1] = new(new(0));
         MainGrid.RowDefinitions[2] = new(new(0));
         MainGrid.RowDefinitions[3] = new(GridLength.Star);
         AudioPanel.IsVisible = false;
+        SearchBox.IsEnabled = false;
         BackButton.IsVisible = true;
         BackButton.IsEnabled = true;
+    }
+    #endregion
+
+    #region Overrides
+    protected override void OnSizeChanged(SizeChangedEventArgs e)
+    {
+        if (e.WidthChanged)
+        {
+            MusSlider.Width = (double)(e.NewSize.Width / 1.5);
+            SearchBox.Width = (double)(e.NewSize.Width / 1.5);
+        }
+        Logger.Log($"Size changed: {e.NewSize}");
+
+        base.OnSizeChanged(e);
     }
     #endregion
 

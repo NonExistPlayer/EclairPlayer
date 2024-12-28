@@ -178,6 +178,15 @@ namespace Eclair {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Search music....
+        /// </summary>
+        internal static string ui_search {
+            get {
+                return ResourceManager.GetString("ui.search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Select File.
         /// </summary>
         internal static string ui_selectfile {

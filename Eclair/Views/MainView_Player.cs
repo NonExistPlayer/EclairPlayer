@@ -49,16 +49,6 @@ partial class MainView
     }
     #endregion
 
-    #region Overrides
-    protected override void OnSizeChanged(SizeChangedEventArgs e)
-    {
-        if (e.WidthChanged) MusSlider.Width = (double)(e.NewSize.Width / 1.5);
-        Logger.Log($"Size changed: {e.NewSize}");
-
-        base.OnSizeChanged(e);
-    }
-    #endregion
-
     private async Task GetMusicFile()
     {
         bool playing = player.IsPlaying;

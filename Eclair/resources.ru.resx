@@ -165,4 +165,7 @@
   <data name="ui.player.back" xml:space="preserve">
     <value>Назад</value>
   </data>
+  <data name="ui.search" xml:space="preserve">
+    <value>Искать музыку...</value>
+  </data>
 </root>

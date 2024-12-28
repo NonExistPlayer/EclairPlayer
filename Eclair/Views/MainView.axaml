@@ -17,6 +17,12 @@
 			<RowDefinition Height="100"/>
 			<RowDefinition Height="0"/>
 		</Grid.RowDefinitions>
+
+		<TextBox Name="SearchBox"
+				 HorizontalAlignment="Center"
+				 Watermark="{Binding Search}"
+				 TextChanged="TextBox_TextChanged"/>
+		
 		<Menu VerticalAlignment="Top"
 			  HorizontalAlignment="Right">
 			<MenuItem Header="≡"
