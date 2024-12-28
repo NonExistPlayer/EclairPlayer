@@ -17,7 +17,6 @@ using Avalonia.Media.Imaging;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Svg.Skia;
 
-
 namespace Eclair.Views;
 
 public partial class MainView : UserControl
@@ -85,6 +84,8 @@ public partial class MainView : UserControl
         PManager.TogglePause += PlayOrPause;
         PManager.Stop += Stop;
 
+        AudioPanel.Background = new SolidColorBrush(new Color(125, 212, 212, 212));
+
         if (OperatingSystem.IsAndroid())
             TitleText.MaxWidth = 128;
     }
@@ -141,7 +142,7 @@ public partial class MainView : UserControl
             CornerRadius = new CornerRadius(7),
             Margin = new Thickness(5),
             Background = Application.Current?.ActualThemeVariant == ThemeVariant.Light ?
-                Brushes.LightGray : Brushes.Gray
+                new SolidColorBrush(new Color(125, 199, 199, 199)) : new SolidColorBrush(new Color(125, 133, 133, 133))
         };
 
         var grid = new Grid { Height = 64 };
