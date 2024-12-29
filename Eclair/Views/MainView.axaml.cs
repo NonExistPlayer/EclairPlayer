@@ -215,9 +215,9 @@ public partial class MainView : UserControl
         grid.Children.Add(textBlock);
         grid.Children.Add(button);
 
-        border.PointerPressed += (s, e) =>
+        border.PointerReleased += (s, e) =>
         {
-            if (!e.GetCurrentPoint(this).Properties.IsLeftButtonPressed) return;
+            if (e.InitialPressMouseButton == Avalonia.Input.MouseButton.Right /* <-- i have no idea why it works like this*/) return;
             LoadMusicFile(name, stream);
         };
 
@@ -315,9 +315,9 @@ public partial class MainView : UserControl
         BackButton.IsVisible = false;
         BackButton.IsEnabled = false;
     }
-    private void ShowPlayer(object? sender, Avalonia.Input.PointerPressedEventArgs e)
+    private void ShowPlayer(object? sender, Avalonia.Input.PointerReleasedEventArgs e)
     {
-        if (!e.GetCurrentPoint(this).Properties.IsLeftButtonPressed) return;
+        if (e.InitialPressMouseButton == Avalonia.Input.MouseButton.Right) return;
         ShowPlayer();
     }
     private void TextBox_TextChanged(object? sender, TextChangedEventArgs e)

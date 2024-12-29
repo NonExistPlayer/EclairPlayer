@@ -62,7 +62,7 @@
 		<Grid Name="AudioPanel"
 			  Grid.Row="2"
 			  Background="DarkGray"
-			  PointerPressed="ShowPlayer">
+			  PointerReleased="ShowPlayer">
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="Auto"/>
 				<ColumnDefinition Width="*"/>
