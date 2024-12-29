@@ -108,7 +108,7 @@ public partial class MainView : UserControl
         {
             pathes = [
                 "/storage/emulated/0/Music",
-                "/storage/emulated/0/Downloads",
+                "/storage/emulated/0/Download",
             ];
         }
         else // linux
