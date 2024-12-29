@@ -17,13 +17,17 @@ I will be glad to any help in developing the project!
 | `.midi`| *MIDI* |
 
 ## Supported OS
-* `Windows`
-* `Android`
-* `Linux`
-## Not supported OS
-* `iOS`
-* `MacOS`
-Why? Read [this document](res/about_apple_devices.md).
+| System | Minimum Version |
+| :------- | :----------------: |
+| Windows | 8.0 |
+| Debian | 9 |
+| Ubuntu | 16.04 |
+| Fedora | 30 |
+| Android | 8.0 |
+| ~~iOS~~ | - |
+| ~~MacOS~~| - |
+
+Why aren't `iOS` and `MacOS` supported? Read [this document](res/about_apple_devices.md).
 
 <!--
 # Installation
