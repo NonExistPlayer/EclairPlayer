@@ -6,7 +6,6 @@
         xmlns:views="clr-namespace:Eclair.Views"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="Eclair.Views.MainWindow"
-		MaxWidth="1424" MaxHeight="714"
 		WindowStartupLocation="CenterScreen"
         Icon="/Assets/avalonia-logo.ico"
 		TransparencyLevelHint="AcrylicBlur">
@@ -16,18 +15,8 @@
 			<RowDefinition Height="*"/>
 		</Grid.RowDefinitions>
 		<TextBlock Name="WinTitle"
-				   HorizontalAlignment="Left"
+				   HorizontalAlignment="Center"
 				   Margin="10,7"/>
-		<StackPanel Name="BorderPanel"
-					Orientation="Horizontal"
-					HorizontalAlignment="Right">
-			<Button Content="-"
-					Background="Transparent"
-					Click="Button_Click"/>
-			<Button Content="x"
-					Background="Transparent"
-					Click="Button_Click"/>
-		</StackPanel>
         <UserControl Name="View" Grid.Row="1"/>
 	</Grid>
 </Window>

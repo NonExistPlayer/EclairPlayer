@@ -379,7 +379,7 @@ public partial class MainView : UserControl
     {
         if (e.WidthChanged)
         {
-            MusSlider.Width = (double)(e.NewSize.Width / 1.5);
+            MusSlider.Width = Math.Min(e.NewSize.Width / 1.5, 902);
             SearchBox.Width = (double)(e.NewSize.Width / 1.5);
         }
         Logger.Log($"Size changed: {e.NewSize}");

@@ -43,12 +43,10 @@ public partial class MainWindow : Window
         Background = new SolidColorBrush(Config.BackgroundColor);
         if (OperatingSystem.IsWindows() && !Config.DisableCustomBorder)
         {
-            ExtendClientAreaChromeHints = Avalonia.Platform.ExtendClientAreaChromeHints.NoChrome;
             ExtendClientAreaToDecorationsHint = true;
         }
         else
         {
-            BorderPanel.IsVisible = false;
             WinTitle.IsVisible = false;
             MainGrid.RowDefinitions.RemoveAt(1);
             MainGrid.RowDefinitions[0].Height = GridLength.Star;
@@ -85,12 +83,10 @@ public partial class MainWindow : Window
     {
         if (Config.DisableCustomBorder)
         {
-            ExtendClientAreaChromeHints = Avalonia.Platform.ExtendClientAreaChromeHints.Default;
             ExtendClientAreaToDecorationsHint = false;
         }
         else
         {
-            BorderPanel.IsVisible = true;
             WinTitle.IsVisible = true;
             MainGrid.RowDefinitions.Add(new(GridLength.Star));
             MainGrid.RowDefinitions[0].Height = new(30);
