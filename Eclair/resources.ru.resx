@@ -171,4 +171,13 @@
   <data name="ui.nothingfound" xml:space="preserve">
     <value>Ничего не найдено</value>
   </data>
+  <data name="ui.search.newyear" xml:space="preserve">
+    <value>С наступающим новым годом!</value>
+  </data>
+  <data name="ui.search.birthday" xml:space="preserve">
+    <value>С днём рождения Eclair!</value>
+  </data>
+  <data name="ui.search.nonex" xml:space="preserve">
+    <value>С днём рождения, Илья!</value>
+  </data>
 </root>

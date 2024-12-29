@@ -8,6 +8,7 @@ namespace Eclair;
 public static class Main
 {
     public const string Version = "0.2.0";
+    #region Pathes
     public static string SavePath { get; } = OperatingSystem.IsWindows() ?
         $"{Environment.GetEnvironmentVariable("LOCALAPPDATA")}\\EclairPlayer\\" : (OperatingSystem.IsAndroid() ?
         "/data/data/net.nonexistplayer.eclair/files/" :
@@ -22,6 +23,9 @@ public static class Main
         "/data/data/net.nonexistplayer.eclair/cache/" :
         "/tmp/eclairplayer/"
         );
+    #endregion
+
+    #region Fields / Properties
 
     public readonly static string[] SupportedFormats = ["*.mp3", "*.wav", "*.aac", "*.asf", "*.wma", "*.ogg", "*.flac", "*.flv", "*.midi"];
 
@@ -37,7 +41,17 @@ public static class Main
     internal readonly static ConfigJson Config = ConfigJson.Load();
 
     internal static IPlatformManager PManager = IPlatformManager.Null;
+    #endregion
 
+    #region Dates
+    public readonly static DateTime NewYear_Start = new(DateTime.Now.Year, 12, 29);
+    public readonly static DateTime NewYear_End   = new(DateTime.Now.Year, 1, 1);
+
+    public readonly static DateTime EclairBirthday_Start = new(DateTime.Now.Year, 11, 12);
+    public readonly static DateTime EclairBirthday_End   = new(DateTime.Now.Year, 11, 13);
+    #endregion
+
+    #region Methods
     internal static void ScanDirectoryForMusic(string targetdir, Action<string> finded)
     {
         if (!Directory.Exists(targetdir)) return;
@@ -79,4 +93,5 @@ public static class Main
             if (fname.EndsWith(format[1..])) return true;
         return false;
     }
+    #endregion
 }

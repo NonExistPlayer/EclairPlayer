@@ -171,4 +171,13 @@
   <data name="ui.nothingfound" xml:space="preserve">
     <value>Nothing found</value>
   </data>
+  <data name="ui.search.newyear" xml:space="preserve">
+    <value>Happy New Year!</value>
+  </data>
+  <data name="ui.search.birthday" xml:space="preserve">
+    <value>Happy birthday Eclair!</value>
+  </data>
+  <data name="ui.search.nonex" xml:space="preserve">
+    <value>Happy birthday, NonExistPlayer!</value>
+  </data>
 </root>

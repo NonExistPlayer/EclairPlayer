@@ -196,6 +196,33 @@ namespace Eclair {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Happy birthday Eclair!.
+        /// </summary>
+        internal static string ui_search_birthday {
+            get {
+                return ResourceManager.GetString("ui.search.birthday", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Happy New Year!.
+        /// </summary>
+        internal static string ui_search_newyear {
+            get {
+                return ResourceManager.GetString("ui.search.newyear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Happy birthday, NonExistPlayer!.
+        /// </summary>
+        internal static string ui_search_nonex {
+            get {
+                return ResourceManager.GetString("ui.search.nonex", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Select File.
         /// </summary>
         internal static string ui_selectfile {
