@@ -57,10 +57,10 @@ sudo apt install vlc libvlc-dev libvlccore-dev
 ### Linux
 **System**: **Ubuntu 24.04**
 ### Android
-|Device|Xiaomi POCO M3 Pro 5G|
-|:-:|:-:|
-|**System**|**Android 13**|
-|**Build Number**|**TQ2A.230505.002 PixelExperience_Plus_camellia-13.0-20230610-2200-UNOFFICIAL**|
+|Device|System|Build number|
+|:-:|:-:|:-:|
+|[Xiaomi POCO M3 Pro 5G](https://www.google.com/search?q=Xiaomi+POCO+M3+Pro+5g)|Android **13** (**API 33**)|*TQ2A.230505.002 PixelExperience_Plus_camellia-13.0-20230610-2200-UNOFFICIAL*|
+|[Google Pixel 3 XL](https://www.google.com/search?q=Google+Pixel+3+xl)|Android **12** (**API 31**)|*SP1A.210812.016.C1*|
 
 # [License](LICENSE)
 **Eclair** is licensed under the [MIT](https://choosealicense.com/licenses/mit). Please review the [LICENSE](LICENSE) file.
