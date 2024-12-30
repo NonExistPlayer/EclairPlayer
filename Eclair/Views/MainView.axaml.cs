@@ -53,9 +53,10 @@ public partial class MainView : UserControl
                     ctsource.Cancel();
                 }
                 else PlayButtonSetImage("play");
+
+                if (PManager != null && !loop)
+                    PManager.ShowPlayerNotification(TitleLabel.Content?.ToString()!, false);
             });
-            if (PManager != null && !loop)
-                PManager.ShowPlayerNotification(TitleLabel.Content?.ToString()!, false);
         };
         player.PositionChanged += Player_PositionChanged;
 
