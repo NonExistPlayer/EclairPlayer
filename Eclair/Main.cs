@@ -7,7 +7,7 @@ namespace Eclair;
 
 public static class Main
 {
-    public const string Version = "0.2.0";
+    public const string Version = "0.2.1";
     #region Pathes
     public static string SavePath { get; } = OperatingSystem.IsWindows() ?
         $"{Environment.GetEnvironmentVariable("LOCALAPPDATA")}\\EclairPlayer\\" : (OperatingSystem.IsAndroid() ?
