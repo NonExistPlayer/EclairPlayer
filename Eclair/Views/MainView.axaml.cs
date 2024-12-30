@@ -55,7 +55,7 @@ public partial class MainView : UserControl
                 else PlayButtonSetImage("play");
             });
             if (PManager != null && !loop)
-                PManager.Stop!();
+                PManager.ShowPlayerNotification(TitleLabel.Content?.ToString()!, false);
         };
         player.PositionChanged += Player_PositionChanged;
 
