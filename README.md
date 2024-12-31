@@ -5,6 +5,14 @@
 **Eclair** is an open-source audio player written in *C#*.
 This player is gradually developing and is aimed not only at listening to music, but also at beauty and ease of use.<br>
 I will be glad to any help in developing the project!
+
+## Why is Eclair open-source?
+**Eclair** is my hobby, as is programming in general.
+I support free software, and that is why **Eclair** is open-source.
+I want to share my project source code.
+I like developing this project and I do not think that this player should be paid and with closed source code.<br>
+And most likely no one would buy an audio player, especially from [*noname*](https://github.com/NonExistPlayer).
+
 ## Supported audio formats
 | Format | Name |
 | :----: | :------------------------------------------------------ |
