@@ -35,7 +35,7 @@
 | ~~iOS~~  | -                  |
 | ~~MacOS~~| -                  |
 
-Почему `iOS` и `MacOS` не поддерживаются? Прочитайте [этот документ](res/about_apple_devices.md).
+Почему `iOS` и `MacOS` не поддерживаются? Прочитайте [этот документ](res/apple.ru.md).
 
 <!--
 # Установка
@@ -61,7 +61,7 @@ sudo apt install vlc libvlc-dev libvlccore-dev
 * [TagLibSharp](https://github.com/mono/taglib-sharp)
 * [NonExistPlayer/Logging](https://github.com/NonExistPlayer/Logging)
 ## Сайты
-[Иконки](https://icon-icons.com)
+[Иконки](https://icon-icons.com)<br>
 [Нейросеть](https://blackbox.ai)
 ## Устройства
 

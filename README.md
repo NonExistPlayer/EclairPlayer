@@ -35,7 +35,7 @@ And most likely no one would buy an audio player, especially from [*noname*](htt
 | ~~iOS~~ | - |
 | ~~MacOS~~| - |
 
-Why aren't `iOS` and `MacOS` supported? Read [this document](res/about_apple_devices.md).
+Why aren't `iOS` and `MacOS` supported? Read [this document](res/apple.md).
 
 <!--
 # Installation
@@ -61,7 +61,7 @@ sudo apt install vlc libvlc-dev libvlccore-dev
 * [TagLibSharp](https://github.com/mono/taglib-sharp)
 * [NonExistPlayer/Logging](https://github.com/NonExistPlayer/Logging)
 ## Sites
-[Icons](https://icon-icons.com)
+[Icons](https://icon-icons.com)<br>
 [AI](https://blackbox.ai)
 ## Devices
 ### Windows
