@@ -16,6 +16,8 @@ using Avalonia.Media;
 using Avalonia.Media.Imaging;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Svg.Skia;
+using Eclair.Controls;
+using Avalonia.LogicalTree;
 
 namespace Eclair.Views;
 
@@ -32,6 +34,8 @@ public partial class MainView : UserControl
     bool loop = false;
 
     RotateTransform? rttransform;
+
+    Snowfall? snowfall;
 
     public MainView()
     {
@@ -89,6 +93,12 @@ public partial class MainView : UserControl
 
         if (OperatingSystem.IsAndroid())
             TitleText.MaxWidth = 128;
+
+        if (DateTime.Now.Month is 12 or 1 or 2) // winter
+        {
+            snowfall = new();
+            MainGrid.Children.Insert(0, snowfall);
+        }
     }
     private void LibVlcOutput(object? sender, LogEventArgs e) => Logger.Log(e.Message, new((ushort)e.Level));
 
@@ -382,7 +392,10 @@ public partial class MainView : UserControl
         {
             MusSlider.Width = Math.Min(e.NewSize.Width / 1.5, 902);
             SearchBox.Width = (double)(e.NewSize.Width / 1.5);
+            snowfall?.WidthChanged((int)e.NewSize.Width);
         }
+        else if (e.HeightChanged && !OperatingSystem.IsAndroid())
+            snowfall!.Height = (int)e.NewSize.Height;
         Logger.Log($"Size changed: {e.NewSize}");
 
         base.OnSizeChanged(e);
