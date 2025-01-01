@@ -14,9 +14,9 @@ public class ViewModel : ViewModelBase
         {
             var today = DateTime.Now;
 
-            if (today >= NewYear_Start || today <= NewYear_End)
+            if (today >= NewYear_Start && today <= NewYear_End)
                 return "🎉" + resources.ui_search_newyear + "🎉";
-            else if (today >= EclairBirthday_Start || today <= EclairBirthday_End)
+            else if (today >= EclairBirthday_Start && today <= EclairBirthday_End)
                 return "🎂" + resources.ui_search_birthday + "🎂";
             else if (today.Day == 23 && today.Month == 11) // 23 November 2012
                 return resources.ui_search_nonex + " <3";
