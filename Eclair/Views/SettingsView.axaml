@@ -48,6 +48,8 @@
 					<CheckBox Name="CB_DisableCustomBorder" Click="CheckBoxClicked"/>
 					<TextBlock Text="DisableEffects" VerticalAlignment="Center"/>
 					<CheckBox Name="CB_DisableEffects" Click="CheckBoxClicked"/>
+					<TextBlock Text="AutoPlay" VerticalAlignment="Center"/>
+					<CheckBox Name="CB_AutoPlay" Click="CheckBoxClicked"/>
 			</UniformGrid>
 		</StackPanel>
 		

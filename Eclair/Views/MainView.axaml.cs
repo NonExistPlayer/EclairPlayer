@@ -55,7 +55,7 @@ public partial class MainView : UserControl
                     PlayOrPause();
                     ctsource.Cancel();
                 }
-                else
+                else if (Config.AutoPlay)
                 {
                     if (currenttrack + 1 < MusicPanel.Children.Count)
                     {
@@ -65,6 +65,7 @@ public partial class MainView : UserControl
                     }
                     else PlayButtonSetImage("play");
                 }
+                else PlayButtonSetImage("play");
 
                 if (PManager != null && !loop)
                     PManager.ShowPlayerNotification(TitleLabel.Content?.ToString()!, false);

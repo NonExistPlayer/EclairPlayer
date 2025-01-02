@@ -88,5 +88,6 @@ internal sealed class ConfigJson
     public bool UseCircleIconAnimation = true;
     public bool DisableCustomBorder = !OperatingSystem.IsWindows();
     public bool DisableEffects;
+    public bool AutoPlay = true;
     public Color BackgroundColor = new(125, 0, 0, 0);
 }

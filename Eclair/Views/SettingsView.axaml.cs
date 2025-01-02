@@ -21,6 +21,7 @@ public partial class SettingsView : UserControl
         CB_DisableCustomBorder.IsChecked = Config.DisableCustomBorder;
         CB_DisableCustomBorder.IsEnabled = OperatingSystem.IsWindows();
         CB_DisableEffects.IsChecked = Config.DisableEffects;
+        CB_AutoPlay.IsChecked = Config.AutoPlay;
     }
 
     private void GotoBack(object? sender, Avalonia.Interactivity.RoutedEventArgs e) => Content = MainView.prevcontent;
