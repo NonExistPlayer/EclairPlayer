@@ -55,7 +55,16 @@ public partial class MainView : UserControl
                     PlayOrPause();
                     ctsource.Cancel();
                 }
-                else PlayButtonSetImage("play");
+                else
+                {
+                    if (currenttrack + 1 < MusicPanel.Children.Count)
+                    {
+                        currenttrack++;
+                        PlayTrack(currenttrack);
+                        PlayOrPause();
+                    }
+                    else PlayButtonSetImage("play");
+                }
 
                 if (PManager != null && !loop)
                     PManager.ShowPlayerNotification(TitleLabel.Content?.ToString()!, false);
@@ -308,6 +317,17 @@ public partial class MainView : UserControl
             catch (TaskCanceledException) { }
         }
     }
+
+    #region "Playlist"
+    ushort currenttrack = 0;
+    internal void PlayTrack(ushort track)
+    {
+        if (MusicPanel.Children[track] is not Border border) return;
+        if (border.Child is not Grid grid) return;
+        if (ToolTip.GetTip(grid) is string path)
+            LoadMusicFile(Path.GetFileName(path), File.OpenRead(path));
+    }
+    #endregion
 
     #region Events
     private async void SelectFile(object? sender, Avalonia.Interactivity.RoutedEventArgs e) => await GetMusicFile();

@@ -15,7 +15,14 @@ partial class MainView
     #region Events
     private async void PlayButtonClicked(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
     {
-        if (player.Media == null) await GetMusicFile();
+        if (player.Media == null)
+        {
+            if (MusicPanel.Children.Count == 1 &&
+                MusicPanel.Children[0] is TextBlock)
+                await GetMusicFile();
+
+            PlayTrack(0);
+        }
         if (player.Media != null)
             PlayOrPause();
     }
