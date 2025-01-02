@@ -17,7 +17,6 @@ using Avalonia.Media.Imaging;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Svg.Skia;
 using Eclair.Controls;
-using Avalonia.LogicalTree;
 
 namespace Eclair.Views;
 
@@ -96,7 +95,13 @@ public partial class MainView : UserControl
 
         if (DateTime.Now.Month is 12 or 1 or 2) // winter
         {
-            snowfall = new();
+            snowfall = new()
+            {
+                Effect = new BlurEffect()
+                {
+                    Radius = 0.25
+                }
+            };
             MainGrid.Children.Insert(0, snowfall);
         }
     }
