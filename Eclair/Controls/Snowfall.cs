@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Media;
+using Avalonia.Styling;
 
 namespace Eclair.Controls;
 
@@ -40,12 +41,12 @@ public sealed class Snowfall : Control
     {
         updatetimer = new()
         {
-            Interval = 16,
+            Interval = (double)1000 / 60,
             AutoReset = true
         };
         addtimer = new()
         {
-            Interval = rnd.Next(400, 500),
+            Interval = OperatingSystem.IsAndroid() ? 3000 : rnd.Next(400, 500),
             AutoReset = true
         };
 
@@ -64,9 +65,10 @@ public sealed class Snowfall : Control
         for (int i = 0; i < snowflakes.Count; i++)
         {
             var snowflake = snowflakes[i];
+            byte rgb = (byte)(ActualThemeVariant == ThemeVariant.Dark ? 255 : 0);
             context.DrawEllipse(
                 new SolidColorBrush(
-                    new Color(Snowflake.TransparentLevel, 255, 255, 255)),
+                    new Color(Snowflake.TransparentLevel, rgb, rgb, rgb)),
                 null,
                 new Rect(snowflake.X, snowflake.Y, snowflake.Size, snowflake.Size)
             );
