@@ -22,22 +22,25 @@
 				 HorizontalAlignment="Center"
 				 Watermark="{Binding Search}"
 				 TextChanged="TextBox_TextChanged"/>
-		
+
 		<Menu VerticalAlignment="Top"
 			  HorizontalAlignment="Right">
 			<MenuItem Header="≡"
 					  FontSize="30">
 				<MenuItem Header="{Binding Settings}"
 						  Click="GotoSettings"
-						  FontSize="16"/>
+						  FontSize="16"
+						  Icon="{StaticResource settings}"/>
 				<MenuItem Header="{Binding SelectFile}"
 						  Click="SelectFile"
 						  HotKey="CTRL + O"
-						  FontSize="16"/>
+						  FontSize="16"
+						  Icon="{StaticResource selectfile}"/>
 				<Separator/>
 				<MenuItem Header="{Binding About}"
 						  Click="GotoAbout"
-						  FontSize="16"/>
+						  FontSize="16"
+						  Icon="{StaticResource about}"/>
 			</MenuItem>
 		</Menu>
 		

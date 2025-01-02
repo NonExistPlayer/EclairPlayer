@@ -1,6 +1,25 @@
 <ResourceDictionary xmlns="https://github.com/avaloniaui"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 					xmlns:sys="clr-namespace:System;assembly=netstandard">
+	<Design.PreviewWith>
+		<Border Padding="1">
+			<StackPanel Orientation="Horizontal">
+				<Image Source="{StaticResource playbutton}"
+					   MaxHeight="128"/>
+				<Image Source="{StaticResource pausebutton}"
+					   MaxHeight="128"/>
+				<Image Source="{StaticResource stopbutton}"
+					   MaxHeight="128"/>
+				<Image Source="{StaticResource looparrow}"
+					   MaxHeight="128"/>
+				<Image Source="{StaticResource selectedlooparrow}"
+					   MaxHeight="128"/>
+				<Image Source="{StaticResource unknowntrack}"
+					   MaxHeight="128"/>
+			</StackPanel>
+		</Border>
+	</Design.PreviewWith>
+	
     <SvgImage x:Key="playbutton"
 			  Source="/Assets/themes/default/playbutton.svg"/>
 	<SvgImage x:Key="pausebutton"
@@ -13,5 +32,14 @@
 			  Source="/Assets/themes/default/looparrow.svg"/>
 	<SvgImage x:Key="selectedlooparrow"
 			  Source="/Assets/themes/default/selectedlooparrow.svg"/>
+	<Image x:Key="about">
+		<SvgImage Source="/Assets/themes/default/about.svg"/>
+	</Image>
+	<Image x:Key="selectfile">
+		<SvgImage Source="/Assets/themes/default/selectfile.svg"/>
+	</Image>
+	<Image x:Key="settings">
+		<SvgImage Source="/Assets/themes/default/settings.svg"/>
+	</Image>
 	<Bitmap x:Key="unknowntrack">/Assets/themes/unknowntrack.png</Bitmap>
 </ResourceDictionary>
