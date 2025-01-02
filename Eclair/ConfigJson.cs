@@ -11,6 +11,7 @@ namespace Eclair;
 // Representing config.json as a .NET object.
 internal sealed class ConfigJson
 {
+    #region Methods
     public static ConfigJson Load()
     {
         ConfigJson? config;
@@ -42,11 +43,6 @@ internal sealed class ConfigJson
         return this;
     }
 
-    public string Theme = "Default";
-    public bool UseCircleIconAnimation = true;
-    public bool DisableCustomBorder = !OperatingSystem.IsWindows();
-    public Color BackgroundColor = new(125, 0, 0, 0);
-
     public void LoadResources()
     {
         Logger.Log("Loading resources...");
@@ -68,7 +64,6 @@ internal sealed class ConfigJson
             )
             LoadResources(Theme + "Light"); // can return false
     }
-
     public static bool LoadResources(string themename)
     {
         Uri uri = new($"avares://Eclair/Assets/{themename}Theme.axaml");
@@ -78,7 +73,7 @@ internal sealed class ConfigJson
         {
             if (AvaloniaXamlLoader.Load(uri) is not ResourceDictionary resources) return false;
             ((App)Application.Current).SetResources(resources);
-            
+
             return true;
         }
         catch (Exception ex)
@@ -87,4 +82,10 @@ internal sealed class ConfigJson
             return false;
         }
     }
+    #endregion
+
+    public string Theme = "Default";
+    public bool UseCircleIconAnimation = true;
+    public bool DisableCustomBorder = !OperatingSystem.IsWindows();
+    public Color BackgroundColor = new(125, 0, 0, 0);
 }
