@@ -20,6 +20,7 @@ public partial class SettingsView : UserControl
         CB_UseCircleIconAnimation.IsChecked = Config.UseCircleIconAnimation;
         CB_DisableCustomBorder.IsChecked = Config.DisableCustomBorder;
         CB_DisableCustomBorder.IsEnabled = OperatingSystem.IsWindows();
+        CB_DisableEffects.IsChecked = Config.DisableEffects;
     }
 
     private void GotoBack(object? sender, Avalonia.Interactivity.RoutedEventArgs e) => Content = MainView.prevcontent;
@@ -60,6 +61,7 @@ public partial class SettingsView : UserControl
                 foreach (var win in MainWindow.OtherWindows)
                     win.Update_DCB();
                 break;
+            case "DisableEffects": view.Update_DEff(); break;
         }
     }
 }

@@ -93,7 +93,7 @@ public partial class MainView : UserControl
         if (OperatingSystem.IsAndroid())
             TitleText.MaxWidth = 128;
 
-        if (DateTime.Now.Month is 12 or 1 or 2) // winter
+        if (DateTime.Now.Month is 12 or 1 or 2 && !Config.DisableEffects) // winter
         {
             snowfall = new()
             {
@@ -399,8 +399,11 @@ public partial class MainView : UserControl
             SearchBox.Width = (double)(e.NewSize.Width / 1.5);
             snowfall?.WidthChanged((int)e.NewSize.Width);
         }
-        else if (e.HeightChanged && !OperatingSystem.IsAndroid())
-            snowfall!.Height = (int)e.NewSize.Height;
+        else if
+            (e.HeightChanged &&
+            !OperatingSystem.IsAndroid() &&
+            snowfall != null)
+            snowfall.Height = (int)e.NewSize.Height;
         Logger.Log($"Size changed: {e.NewSize}");
 
         base.OnSizeChanged(e);
@@ -430,6 +433,7 @@ public partial class MainView : UserControl
     }
     #endregion
 
+    #region Settings Updates
     //                   UseCircleIconAnimation
     internal void Update_UCIA()
     {
@@ -460,4 +464,27 @@ public partial class MainView : UserControl
             if (player.IsPlaying) ctsource.Cancel();
         }
     }
+    //                   DisableEffects
+    internal void Update_DEff()
+    {
+        if (Config.DisableEffects)
+        {
+            snowfall = null;
+            MainGrid.Children.RemoveAt(0);
+        }
+        else if (DateTime.Now.Month is 12 or 1 or 2)
+        {
+            snowfall = new()
+            {
+                Effect = new BlurEffect()
+                {
+                    Radius = 0.25
+                },
+                Height = (int)Bounds.Height
+            };
+            snowfall.WidthChanged((int)Bounds.Width);
+            MainGrid.Children.Insert(0, snowfall);
+        }
+    }
+    #endregion
 }

@@ -87,5 +87,6 @@ internal sealed class ConfigJson
     public string Theme = "Default";
     public bool UseCircleIconAnimation = true;
     public bool DisableCustomBorder = !OperatingSystem.IsWindows();
+    public bool DisableEffects;
     public Color BackgroundColor = new(125, 0, 0, 0);
 }

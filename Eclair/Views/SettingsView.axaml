@@ -46,6 +46,8 @@
 					<CheckBox Name="CB_UseCircleIconAnimation" Click="CheckBoxClicked"/>
 					<TextBlock Text="DisableCustomBorder" VerticalAlignment="Center"/>
 					<CheckBox Name="CB_DisableCustomBorder" Click="CheckBoxClicked"/>
+					<TextBlock Text="DisableEffects" VerticalAlignment="Center"/>
+					<CheckBox Name="CB_DisableEffects" Click="CheckBoxClicked"/>
 			</UniformGrid>
 		</StackPanel>
 		
