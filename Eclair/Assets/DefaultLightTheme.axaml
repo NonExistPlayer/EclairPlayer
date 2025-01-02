@@ -1,0 +1,14 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+					xmlns:sys="clr-namespace:System;assembly=netstandard">
+
+	<Image x:Key="about">
+		<SvgImage Source="/Assets/themes/default/light/about.svg"/>
+	</Image>
+	<Image x:Key="selectfile">
+		<SvgImage Source="/Assets/themes/default/light/selectfile.svg"/>
+	</Image>
+	<Image x:Key="settings">
+		<SvgImage Source="/Assets/themes/default/light/settings.svg"/>
+	</Image>
+</ResourceDictionary>
