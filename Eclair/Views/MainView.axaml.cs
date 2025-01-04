@@ -17,12 +17,13 @@ using Avalonia.Media.Imaging;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Svg.Skia;
 using Eclair.Controls;
-using Avalonia.Collections;
 
 namespace Eclair.Views;
 
 public partial class MainView : UserControl
 {
+    public const double SnowfallBlurRadius = 5;
+
     internal static object? prevcontent;
 
     readonly LibVLC vlc;
@@ -104,7 +105,7 @@ public partial class MainView : UserControl
             {
                 Effect = new BlurEffect()
                 {
-                    Radius = 0.25
+                    Radius = SnowfallBlurRadius
                 }
             };
             MainGrid.Children.Insert(0, snowfall);
@@ -370,6 +371,7 @@ public partial class MainView : UserControl
         SearchBox.IsEnabled = true;
         BackButton.IsVisible = false;
         BackButton.IsEnabled = false;
+        (snowfall?.Effect as BlurEffect)!.Radius = SnowfallBlurRadius;
     }
     private void ShowPlayer(object? sender, Avalonia.Input.PointerReleasedEventArgs e)
     {
@@ -427,6 +429,7 @@ public partial class MainView : UserControl
         SearchBox.IsEnabled = false;
         BackButton.IsVisible = true;
         BackButton.IsEnabled = true;
+        (snowfall?.Effect as BlurEffect)!.Radius = 10;
     }
     #endregion
 
