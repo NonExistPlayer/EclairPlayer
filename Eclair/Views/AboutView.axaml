@@ -41,12 +41,9 @@
 			<TextBlock Text="{Binding About_CreatedBy}"
 						HorizontalAlignment="Center"/>
 			<local:RefTextButton
+				Text="{Binding About_OriginalRepo}"
 				Link="https://github.com/NonExistPlayer/EclairPlayer"
-				HorizontalAlignment="Center">
-				<TextBlock Text="{Binding About_OriginalRepo}"
-							Foreground="Blue"
-							TextDecorations="Underline"/>
-			</local:RefTextButton>
+				HorizontalAlignment="Center"/>
 			
 			<TextBlock Text="{Binding About_Version}"
 						HorizontalAlignment="Center"/>

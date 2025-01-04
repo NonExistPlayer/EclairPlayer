@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Media;
 
@@ -6,38 +7,34 @@ namespace Eclair.Controls;
 
 public sealed class RefTextButton : Button, INotifyPropertyChanged
 {
-    private string? _text;
+    public static readonly StyledProperty<string> TextProperty =
+        AvaloniaProperty.Register<RefTextButton, string>(nameof(Text), "");
 
     public RefTextButton()
     {
         Background = Brushes.Transparent;
-        UpdateContent();
-        Content = Text;
     }
 
-    public string? Text
+    public string Text
     {
-        get => _text;
-        set
-        {
-            if (_text != value)
-            {
-                _text = value;
-                OnPropertyChanged(nameof(Text));
-                UpdateContent();
-            }
-        }
+        get => GetValue(TextProperty);
+        set => SetValue(TextProperty, value);
     }
     public string? Link { get; set; }
 
-    private void UpdateContent()
+    protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
     {
-        Content = new TextBlock
+        base.OnPropertyChanged(change);
+
+        if (change.Property == TextProperty)
         {
-            Text = _text,
-            Foreground = Brushes.Blue,
-            TextDecorations = TextDecorations.Underline
-        };
+            Content = new TextBlock
+            {
+                Text = Text,
+                Foreground = Brushes.Blue,
+                TextDecorations = TextDecorations.Underline
+            };
+        }
     }
 
     protected async override void OnClick()
@@ -56,12 +53,5 @@ public sealed class RefTextButton : Button, INotifyPropertyChanged
             Logger.Error("LaunchUriAsync() failed.");
 
         base.OnClick();
-    }
-
-    new public event PropertyChangedEventHandler? PropertyChanged;
-
-    void OnPropertyChanged(string propertyName)
-    {
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 }
