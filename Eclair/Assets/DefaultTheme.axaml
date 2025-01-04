@@ -3,19 +3,30 @@
 					xmlns:sys="clr-namespace:System;assembly=netstandard">
 	<Design.PreviewWith>
 		<Border Padding="1">
-			<StackPanel Orientation="Horizontal">
-				<Image Source="{StaticResource playbutton}"
-					   MaxHeight="128"/>
-				<Image Source="{StaticResource pausebutton}"
-					   MaxHeight="128"/>
-				<Image Source="{StaticResource stopbutton}"
-					   MaxHeight="128"/>
-				<Image Source="{StaticResource looparrow}"
-					   MaxHeight="128"/>
-				<Image Source="{StaticResource selectedlooparrow}"
-					   MaxHeight="128"/>
-				<Image Source="{StaticResource unknowntrack}"
-					   MaxHeight="128"/>
+			<StackPanel>
+				<StackPanel Orientation="Horizontal">
+					<Image Source="{StaticResource playbutton}"
+						   MaxHeight="128"/>
+					<Image Source="{StaticResource pausebutton}"
+						   MaxHeight="128"/>
+					<Image Source="{StaticResource stopbutton}"
+						   MaxHeight="128"/>
+					<Image Source="{StaticResource looparrow}"
+						   MaxHeight="128"/>
+					<Image Source="{StaticResource selectedlooparrow}"
+						   MaxHeight="128"/>
+					<Image Source="{StaticResource unknowntrack}"
+						   MaxHeight="128"/>
+				</StackPanel>
+				<StackPanel Orientation="Horizontal">
+					<Image Source="{StaticResource forward}"
+						   MaxHeight="128"/>
+					<Image Source="{StaticResource back}"
+						   MaxHeight="128"/>
+					<StaticResource ResourceKey="about"/>
+					<StaticResource ResourceKey="selectfile"/>
+					<StaticResource ResourceKey="settings"/>
+				</StackPanel>
 			</StackPanel>
 		</Border>
 	</Design.PreviewWith>
@@ -32,6 +43,10 @@
 			  Source="/Assets/themes/default/looparrow.svg"/>
 	<SvgImage x:Key="selectedlooparrow"
 			  Source="/Assets/themes/default/selectedlooparrow.svg"/>
+	<SvgImage x:Key="forward"
+			  Source="/Assets/themes/default/forward.svg"/>
+	<SvgImage x:Key="back"
+			  Source="/Assets/themes/default/back.svg"/>
 	<Image x:Key="about">
 		<SvgImage Source="/Assets/themes/default/about.svg"/>
 	</Image>

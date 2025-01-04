@@ -26,6 +26,8 @@ partial class MainView
         if (player.Media != null)
             PlayOrPause();
     }
+    private void PreviousClicked(object? sender, Avalonia.Interactivity.RoutedEventArgs e) => PlayPrevious();
+    private void SkipForwardClicked(object? sender, Avalonia.Interactivity.RoutedEventArgs e) => PlayNext();
     private void Player_PositionChanged(object? sender, MediaPlayerPositionChangedEventArgs e)
     {
         Dispatcher.UIThread.InvokeAsync(delegate

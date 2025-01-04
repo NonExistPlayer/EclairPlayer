@@ -17,6 +17,7 @@ using Avalonia.Media.Imaging;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Svg.Skia;
 using Eclair.Controls;
+using Avalonia.Collections;
 
 namespace Eclair.Views;
 
@@ -57,13 +58,7 @@ public partial class MainView : UserControl
                 }
                 else if (Config.AutoPlay)
                 {
-                    if (currenttrack + 1 < MusicPanel.Children.Count)
-                    {
-                        currenttrack++;
-                        PlayTrack(currenttrack);
-                        PlayOrPause();
-                    }
-                    else PlayButtonSetImage("play");
+                    if (!PlayNext()) PlayButtonSetImage("play");
                 }
                 else PlayButtonSetImage("play");
 
@@ -157,6 +152,8 @@ public partial class MainView : UserControl
     {
         string name = Path.GetFileName(path);
         Stream stream = File.OpenRead(path);
+        int num = MusicPanel.Children.Count;
+
         Logger.Log($"AddMusicItem({path})");
         if (MusicPanel.Children.Count == 1 &&
             MusicPanel.Children[0] is TextBlock)
@@ -227,9 +224,10 @@ public partial class MainView : UserControl
             HorizontalAlignment = HorizontalAlignment.Right,
             Background = Brushes.Transparent
         };
-
+        
         button.Click += delegate
         {
+            currenttrack = (ushort)num;
             LoadMusicFile(name, stream);
             PlayOrPause();
         };
@@ -244,6 +242,7 @@ public partial class MainView : UserControl
         border.PointerReleased += (s, e) =>
         {
             if (e.InitialPressMouseButton == Avalonia.Input.MouseButton.Right /* <-- i have no idea why it works like this*/) return;
+            currenttrack = (ushort)num;
             LoadMusicFile(name, stream);
         };
 
@@ -258,7 +257,6 @@ public partial class MainView : UserControl
 
         if (player.Media == null)
         {
-            StopButton.IsEnabled = true;
             MusSlider.IsEnabled = true;
         }
         else
@@ -327,6 +325,27 @@ public partial class MainView : UserControl
         if (border.Child is not Grid grid) return;
         if (ToolTip.GetTip(grid) is string path)
             LoadMusicFile(Path.GetFileName(path), File.OpenRead(path));
+    }
+    internal bool PlayNext()
+    {
+        if (currenttrack + 1 > MusicPanel.Children.Count) return false;
+        ++currenttrack;
+        PlayTrack(currenttrack);
+        PlayOrPause();
+        return true;
+    }
+    internal void PlayPrevious()
+    {
+        if (TimeSpan.FromMilliseconds(
+            (double)(player.Media!.Duration * player.Position)).TotalSeconds > 6 ||
+            currenttrack == 0)
+        {
+            player.Position = 0;
+            return;
+        }
+        --currenttrack;
+        PlayTrack(currenttrack);
+        PlayOrPause();
     }
     #endregion
 

@@ -99,8 +99,8 @@
 						   Source="{StaticResource playbutton}" Height="64"/>
 				</Button>
 				<Button Background="Transparent"
-						Click="StopButtonClicked">
-					<Image Source="{StaticResource stopbutton}" Height="64"/>
+						Click="SkipForwardClicked">
+					<Image Source="{StaticResource forward}" Height="64"/>
 				</Button>
 			</StackPanel>
 		</Grid>
@@ -129,27 +129,30 @@
 				<StackPanel Orientation="Vertical"
 							VerticalAlignment="Center">
 					<StackPanel Orientation="Horizontal"
-						  HorizontalAlignment="Center">
+								HorizontalAlignment="Center"
+								Spacing="20">
+						<Button Name="PreviousButton"
+								Click="PreviousClicked"
+								HorizontalAlignment="Center">
+							<Image Width="50"
+								   Source="{StaticResource back}"/>
+						</Button>
 						<Button Name="PlayButton"
 								Click="PlayButtonClicked"
-								HorizontalAlignment="Center"
-								Margin="10">
+								HorizontalAlignment="Center">
 							<Image Name="PB_Image"
 								   Width="50"
 								   Source="{StaticResource playbutton}"/>
 						</Button>
-						<Button Name="StopButton"
-								Click="StopButtonClicked"
-								HorizontalAlignment="Center"
-								IsEnabled="False"
-								Margin="10">
+						<Button Name="ForwardButton"
+								Click="SkipForwardClicked"
+								HorizontalAlignment="Center">
 							<Image Width="50"
-								   Source="{StaticResource stopbutton}"/>
+								   Source="{StaticResource forward}"/>
 						</Button>
 						<Button Name="LoopButton"
 								Click="LB_Click"
-								HorizontalAlignment="Center"
-								Margin="10">
+								HorizontalAlignment="Center">
 							<Image Name="LB_Image" Width="50"
 								   Source="{StaticResource looparrow}"/>
 						</Button>
