@@ -26,8 +26,23 @@ public class ViewModel : ViewModelBase
     }
     public string NothingFound => resources.ui_nothingfound + " :(";
 
+    #region About
     public string About_Version => resources.ui_about_version + Main.Version;
     public string About_CreatedBy => "Eclair " + resources.ui_about_createdby + " NonExistPlayer";
     public string About_OriginalRepo => resources.ui_about_originalrepo;
     public string About_License => resources.ui_about_license;
+    public string About_IconsSource => resources.ui_about_iconssource;
+    #endregion
+
+    #region Icons
+    public string Icons_About => resources.icons_about;
+    public string Icons_Back => resources.icons_back;
+    public string Icons_Forward => resources.icons_forward;
+    public string Icons_Loop => resources.icons_loop;
+    public string Icons_Pause => resources.icons_pause;
+    public string Icons_Play => resources.icons_play;
+    public string Icons_SelectFile => resources.icons_selectfile;
+    public string Icons_Settings => resources.icons_settings;
+    public string Icons_Stop => resources.icons_stop;
+    #endregion
 }

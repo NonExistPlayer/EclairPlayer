@@ -70,6 +70,87 @@ namespace Eclair {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на About icon.
+        /// </summary>
+        internal static string icons_about {
+            get {
+                return ResourceManager.GetString("icons.about", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Back button.
+        /// </summary>
+        internal static string icons_back {
+            get {
+                return ResourceManager.GetString("icons.back", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Forward button.
+        /// </summary>
+        internal static string icons_forward {
+            get {
+                return ResourceManager.GetString("icons.forward", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Loop button.
+        /// </summary>
+        internal static string icons_loop {
+            get {
+                return ResourceManager.GetString("icons.loop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Pause button.
+        /// </summary>
+        internal static string icons_pause {
+            get {
+                return ResourceManager.GetString("icons.pause", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Play button.
+        /// </summary>
+        internal static string icons_play {
+            get {
+                return ResourceManager.GetString("icons.play", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Select file button.
+        /// </summary>
+        internal static string icons_selectfile {
+            get {
+                return ResourceManager.GetString("icons.selectfile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Settings button.
+        /// </summary>
+        internal static string icons_settings {
+            get {
+                return ResourceManager.GetString("icons.settings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Stop button.
+        /// </summary>
+        internal static string icons_stop {
+            get {
+                return ResourceManager.GetString("icons.stop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Now Playing: .
         /// </summary>
         internal static string mplayer_nowplaying {
@@ -120,6 +201,15 @@ namespace Eclair {
         internal static string ui_about_createdby {
             get {
                 return ResourceManager.GetString("ui.about.createdby", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Icons Source.
+        /// </summary>
+        internal static string ui_about_iconssource {
+            get {
+                return ResourceManager.GetString("ui.about.iconssource", resourceCulture);
             }
         }
         

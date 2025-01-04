@@ -180,4 +180,34 @@
   <data name="ui.search.nonex" xml:space="preserve">
     <value>С днём рождения, Илья!</value>
   </data>
+  <data name="ui.about.iconssource" xml:space="preserve">
+    <value>Источник иконок</value>
+  </data>
+  <data name="icons.play" xml:space="preserve">
+    <value>Кнопка "Играть"</value>
+  </data>
+  <data name="icons.about" xml:space="preserve">
+    <value>Иконка "О Eclair"</value>
+  </data>
+  <data name="icons.back" xml:space="preserve">
+    <value>Иконка "Назад"</value>
+  </data>
+  <data name="icons.forward" xml:space="preserve">
+    <value>Кнопка "Дальше"</value>
+  </data>
+  <data name="icons.loop" xml:space="preserve">
+    <value>Кнопка "Повтор"</value>
+  </data>
+  <data name="icons.pause" xml:space="preserve">
+    <value>Кнопка "Пауза"</value>
+  </data>
+  <data name="icons.selectfile" xml:space="preserve">
+    <value>Кнопка "Выбрать файл"</value>
+  </data>
+  <data name="icons.settings" xml:space="preserve">
+    <value>Кнопка "Настройки"</value>
+  </data>
+  <data name="icons.stop" xml:space="preserve">
+    <value>Кнопка "Стоп"</value>
+  </data>
 </root>

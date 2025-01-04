@@ -180,4 +180,34 @@
   <data name="ui.search.nonex" xml:space="preserve">
     <value>Happy birthday, NonExistPlayer!</value>
   </data>
+  <data name="ui.about.iconssource" xml:space="preserve">
+    <value>Icons Source</value>
+  </data>
+  <data name="icons.play" xml:space="preserve">
+    <value>Play button</value>
+  </data>
+  <data name="icons.about" xml:space="preserve">
+    <value>About icon</value>
+  </data>
+  <data name="icons.back" xml:space="preserve">
+    <value>Back button</value>
+  </data>
+  <data name="icons.forward" xml:space="preserve">
+    <value>Forward button</value>
+  </data>
+  <data name="icons.loop" xml:space="preserve">
+    <value>Loop button</value>
+  </data>
+  <data name="icons.pause" xml:space="preserve">
+    <value>Pause button</value>
+  </data>
+  <data name="icons.selectfile" xml:space="preserve">
+    <value>Select file button</value>
+  </data>
+  <data name="icons.settings" xml:space="preserve">
+    <value>Settings button</value>
+  </data>
+  <data name="icons.stop" xml:space="preserve">
+    <value>Stop button</value>
+  </data>
 </root>
