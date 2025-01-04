@@ -1,5 +1,10 @@
 # Introduction
-<image src="Eclair/Assets/icon.png" width="300"/>
+<div style="display: flex; align-items: center; justify-content: center">
+    <image src="Eclair/Assets/icon.png" width="300" alt="Icon" style="margin-right: 20px;">
+    <div style="text-align: center; font-size: 80px;">
+        <b>Eclair</b>
+    </div>
+</div>
 <image src="res/screenshot.png"/>
 
 **Eclair** is an open-source audio player written in *C#*.
