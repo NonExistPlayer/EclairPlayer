@@ -141,7 +141,7 @@
 								Click="PlayButtonClicked"
 								HorizontalAlignment="Center">
 							<Image Name="PB_Image"
-								   Width="50"
+								   Width="70"
 								   Source="{StaticResource playbutton}"/>
 						</Button>
 						<Button Name="ForwardButton"
