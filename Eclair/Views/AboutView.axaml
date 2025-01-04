@@ -57,10 +57,10 @@
 							Link="https://icon-icons.com/icon/info/110992"/>
 						<local:RefTextButton
 							Text="{Binding Icons_Back}"
-							Link="https://icon-icons.com/icon/skip-back`/111044"/>
+							Link="https://icon-icons.com/icon/skip-back-rewind/206324"/>
 						<local:RefTextButton
 							Text="{Binding Icons_Forward}"
-							Link="https://icon-icons.com/icon/skip-forward/111111"/>
+							Link="https://icon-icons.com/icon/skip-forward-next/206320"/>
 						<local:RefTextButton
 							Text="{Binding Icons_Loop}"
 							Link="https://icon-icons.com/icon/loop-arrow-1/80807"/>
