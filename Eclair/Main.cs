@@ -8,6 +8,12 @@ namespace Eclair;
 
 public static class Main
 {
+    static Main()
+    {
+        Directory.CreateDirectory(SavePath);
+        Config = ConfigJson.Load();
+    }
+
     public const string Version = "0.2.1";
     #region Pathes
     public static string SavePath { get; } = OperatingSystem.IsWindows() ?
@@ -59,7 +65,7 @@ public static class Main
         WriteToDebug = true
     };
 
-    internal readonly static ConfigJson Config = ConfigJson.Load();
+    internal readonly static ConfigJson Config;
 
     internal static IPlatformManager PManager = IPlatformManager.Null;
     #endregion
