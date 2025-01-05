@@ -2,6 +2,7 @@
 using NonExistPlayer.Logging;
 using System;
 using System.IO;
+using System.Runtime.InteropServices;
 
 namespace Eclair;
 
@@ -26,6 +27,26 @@ public static class Main
     #endregion
 
     #region Fields / Properties
+
+    private static string? _osstr;
+    public static string OSString
+    {
+        get
+        {
+            if (_osstr is null)
+            {
+                string arch = RuntimeInformation.ProcessArchitecture.ToString().ToLower();
+                if (OperatingSystem.IsWindows())
+                    _osstr = $"win-{arch}";
+                if (OperatingSystem.IsLinux())
+                    _osstr = $"linux-{arch}";
+                if (OperatingSystem.IsAndroid())
+                    _osstr = $"android-{arch}";
+                _osstr = "none";
+            }
+            return _osstr;
+        }
+    }
 
     public readonly static string[] SupportedFormats = ["*.mp3", "*.wav", "*.aac", "*.asf", "*.wma", "*.ogg", "*.flac", "*.flv", "*.midi"];
 
