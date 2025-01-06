@@ -31,7 +31,9 @@ build() {
     if [ "$1" = "Eclair.Desktop" ]; then
         echo "[-----------Packaging------------]"
         if [ "$2" = "linux" ]; then
-            execute "7z a -ttar -so publish/$2-$3 | 7z a -si -tgzip publish/$2-$3.tar.gz"
+            execute "7z a -ttar publish/$2-$3.tar publish/$2-$3"
+            execute "7z a -tgzip publish/$2-$3.tar.gz publish/$2-$3.tar"
+            execute "rm publish/$2-$3.tar"
         else
             execute "7z a -tzip publish/$2-$3.zip publish/$2-$3"
         fi
