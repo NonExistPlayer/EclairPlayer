@@ -7,7 +7,7 @@
 //     повторной генерации кода.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
+#pragma warning disable CS8981
 namespace Eclair {
     using System;
     
