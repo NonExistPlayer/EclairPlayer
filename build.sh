@@ -1,5 +1,5 @@
 #!/bin/bash
-# This bat file is needed to compile for supported platforms for release in GitHub
+# This script is needed to compile for supported platforms for release in GitHub
 
 execute() {
     echo "$1"
