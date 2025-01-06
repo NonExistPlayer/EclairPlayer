@@ -68,7 +68,7 @@ sudo apt install vlc libvlc-dev libvlccore-dev
 ### Windows
 **Система**: **Microsoft Windows 11 Pro** *10.0.22621 сборка 22621*
 ### Linux
-**Система**: **Ubuntu 24.04**
+**Система**: **Manjaro Linux** *6.12.4-1-MANJARO*
 ### Android
 |Устройство|Система|Номер сборки|
 |:-:|:-:|:-:|

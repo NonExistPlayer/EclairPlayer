@@ -67,7 +67,7 @@ sudo apt install vlc libvlc-dev libvlccore-dev
 ### Windows
 **System**: **Microsoft Windows 11 Pro** *10.0.22621 build 22621*
 ### Linux
-**System**: **Ubuntu 24.04**
+**System**: **Manjaro Linux** *6.12.4-1-MANJARO*
 ### Android
 |Device|System|Build number|
 |:-:|:-:|:-:|
