@@ -329,7 +329,8 @@ public partial class MainView : UserControl
     }
     internal bool PlayNext()
     {
-        if (currenttrack + 1 > MusicPanel.Children.Count) return false;
+        if (MusicPanel.Children[0] is TextBlock) return false;
+        if (currenttrack > MusicPanel.Children.Count) return false;
         ++currenttrack;
         PlayTrack(currenttrack);
         PlayOrPause();
