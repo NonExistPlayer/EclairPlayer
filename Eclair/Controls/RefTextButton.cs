@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Input;
 using Avalonia.Media;
 
 namespace Eclair.Controls;
@@ -13,6 +14,7 @@ public sealed class RefTextButton : Button, INotifyPropertyChanged
     public RefTextButton()
     {
         Background = Brushes.Transparent;
+        Cursor = new(StandardCursorType.Hand);
     }
 
     public string Text
