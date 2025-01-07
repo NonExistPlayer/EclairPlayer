@@ -382,7 +382,7 @@ public partial class MainView : UserControl
         prevcontent = Content;
         App.ChangeView(new AboutView(), this);
     }
-    private void BackToList(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+    internal void BackToList(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
     {
         MainGrid.RowDefinitions[1] = new(GridLength.Star);
         MainGrid.RowDefinitions[2] = new(new(100));

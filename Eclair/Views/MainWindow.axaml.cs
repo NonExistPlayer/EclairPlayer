@@ -1,4 +1,5 @@
 ﻿using Avalonia.Controls;
+using Avalonia.Input;
 using Avalonia.Media;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ namespace Eclair.Views;
 public partial class MainWindow : Window
 {
     internal static List<MainWindow> OtherWindows = [];
+    bool isMainWindow;
     
     public MainWindow()
     {
@@ -17,6 +19,7 @@ public partial class MainWindow : Window
         MinWidth = 790;
         MinHeight = 670;
         View.Content = new MainView();
+        isMainWindow = true;
     }
 
     public MainWindow(UserControl view)
@@ -55,7 +58,7 @@ public partial class MainWindow : Window
 
     protected override void OnClosed(EventArgs e)
     {
-        if (Width != 600 /*other windows are always this width*/)
+        if (isMainWindow)
         {
             Logger.Log("Closing other windows...");
             for (int i = 0; i < OtherWindows.Count; i++)
@@ -67,6 +70,16 @@ public partial class MainWindow : Window
         }
         else
             OtherWindows.Remove(this);
+    }
+
+    protected override void OnKeyDown(KeyEventArgs e)
+    {
+        base.OnKeyDown(e);
+        
+        if (!isMainWindow) return;
+
+        if (e.Key == Key.Escape)
+            (View.Content as MainView)?.BackToList(null, new());
     }
 
     private void Button_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
