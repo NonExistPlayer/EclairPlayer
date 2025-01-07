@@ -3,20 +3,15 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 			 xmlns:vm="clr-namespace:Eclair.ViewModels;assembly=Eclair"
-             mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="450"
-			 x:DataType="vm:ViewModel"
+             mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="450"			 
              x:Class="Eclair.Views.SettingsView">
-	
-	<Grid Name="MainGrid">
-		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="200"/>
-			<ColumnDefinition Width="*"/>
-		</Grid.ColumnDefinitions>
-		
-		<Button HorizontalAlignment="Left"
+	<Grid>
+		<Button Name="BackButton"
+				HorizontalAlignment="Left"
 				VerticalAlignment="Top"
 				Width="64"
 				Height="64"
+				IsVisible="False"
 				Click="GotoBack">
 			<Image>
 				<Image.Source>
@@ -25,34 +20,34 @@
 			</Image>
 		</Button>
 
-		<StackPanel Name="Sections"
-					Grid.Column="0"
-					Background="Gray">
-			<Button Content="UI"
-					HorizontalAlignment="Center"
-					Width="190"
-					Background="Gray"
-					MaxHeight="30"/>
-		</StackPanel>
-
-		<StackPanel Grid.Column="1"
-					Margin="10">
-			<TextBlock Text="UI"
-					   HorizontalAlignment="Center"
-					   FontWeight="Bold"
-					   FontSize="30"/>
-			<UniformGrid Columns="2">
-					<TextBlock Text="UseCircleIconAnimation" VerticalAlignment="Center"/>
-					<CheckBox Name="CB_UseCircleIconAnimation" Click="CheckBoxClicked"/>
-					<TextBlock Text="DisableCustomBorder" VerticalAlignment="Center"/>
-					<CheckBox Name="CB_DisableCustomBorder" Click="CheckBoxClicked"/>
-					<TextBlock Text="DisableEffects" VerticalAlignment="Center"/>
-					<CheckBox Name="CB_DisableEffects" Click="CheckBoxClicked"/>
-					<TextBlock Text="AutoPlay" VerticalAlignment="Center"/>
-					<CheckBox Name="CB_AutoPlay" Click="CheckBoxClicked"/>
-			</UniformGrid>
-		</StackPanel>
-		
+		<ScrollViewer>
+			<StackPanel>
+				<StackPanel Margin="10">
+					<TextBlock Text="UI"
+							HorizontalAlignment="Center"
+							FontWeight="Bold"
+							FontSize="30"/>
+					<UniformGrid Columns="2">
+						<TextBlock Text="{Binding UseCircleIconAnimation}" VerticalAlignment="Center"/>
+						<CheckBox Name="CB_UseCircleIconAnimation" Click="CheckBoxClicked"/>
+						<TextBlock Text="{Binding DisableCustomBorder}" VerticalAlignment="Center"/>
+						<CheckBox Name="CB_DisableCustomBorder" Click="CheckBoxClicked"/>
+						<TextBlock Text="{Binding DisableEffects}" VerticalAlignment="Center"/>
+						<CheckBox Name="CB_DisableEffects" Click="CheckBoxClicked"/>
+					</UniformGrid>
+				</StackPanel>
+				<StackPanel Margin="10">
+					<TextBlock Text="{Binding Section_Player}"
+							   HorizontalAlignment="Center"
+							   FontWeight="Bold"
+							   FontSize="30"/>
+					<UniformGrid Columns="2">
+						<TextBlock Text="AutoPlay" VerticalAlignment="Center"/>
+						<CheckBox Name="CB_AutoPlay" Click="CheckBoxClicked"/>
+					</UniformGrid>
+				</StackPanel>
+			</StackPanel>
+		</ScrollViewer>
 	</Grid>
 	
 </UserControl>

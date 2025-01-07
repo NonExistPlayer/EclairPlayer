@@ -9,13 +9,11 @@ public partial class SettingsView : UserControl
 {
     public SettingsView()
     {
+        DataContext = new ViewModels.SettingsViewModel();
         InitializeComponent();
 
         if (OperatingSystem.IsAndroid())
-        {
-            Sections.IsVisible = false;
-            MainGrid.ColumnDefinitions.RemoveAt(0);
-        }
+            BackButton.IsVisible = false;
 
         CB_UseCircleIconAnimation.IsChecked = Config.UseCircleIconAnimation;
         CB_DisableCustomBorder.IsChecked = Config.DisableCustomBorder;

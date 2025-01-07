@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!-- 
-    Microsoft ResX Schema 
-    
+  <!--
+    Microsoft ResX Schema
+
     Version 2.0
-    
-    The primary goals of this format is to allow a simple XML format 
-    that is mostly human readable. The generation and parsing of the 
-    various data types are done through the TypeConverter classes 
+
+    The primary goals of this format is to allow a simple XML format
+    that is mostly human readable. The generation and parsing of the
+    various data types are done through the TypeConverter classes
     associated with the data types.
-    
+
     Example:
-    
+
     ... ado.net/XML headers & schema ...
     <resheader name="resmimetype">text/microsoft-resx</resheader>
     <resheader name="version">2.0</resheader>
@@ -26,79 +26,79 @@
         <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
         <comment>This is a comment</comment>
     </data>
-                
-    There are any number of "resheader" rows that contain simple 
+
+    There are any number of "resheader" rows that contain simple
     name/value pairs.
-    
-    Each data row contains a name, and value. The row also contains a 
-    type or mimetype. Type corresponds to a .NET class that support 
-    text/value conversion through the TypeConverter architecture. 
-    Classes that don't support this are serialized and stored with the 
+
+    Each data row contains a name, and value. The row also contains a
+    type or mimetype. Type corresponds to a .NET class that support
+    text/value conversion through the TypeConverter architecture.
+    Classes that don't support this are serialized and stored with the
     mimetype set.
-    
-    The mimetype is used for serialized objects, and tells the 
-    ResXResourceReader how to depersist the object. This is currently not 
+
+    The mimetype is used for serialized objects, and tells the
+    ResXResourceReader how to depersist the object. This is currently not
     extensible. For a given mimetype the value must be set accordingly:
-    
-    Note - application/x-microsoft.net.object.binary.base64 is the format 
-    that the ResXResourceWriter will generate, however the reader can 
+
+    Note - application/x-microsoft.net.object.binary.base64 is the format
+    that the ResXResourceWriter will generate, however the reader can
     read any of the formats listed below.
-    
+
     mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with 
+    value   : The object must be serialized with
             : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
-    
+
     mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with 
+    value   : The object must be serialized with
             : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
             : and then encoded with base64 encoding.
 
     mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array 
+    value   : The object must be serialized into a byte array
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
             <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -119,101 +119,146 @@
   </resheader>
   <data name="ui.ofd.audiofiles" xml:space="preserve">
     <value>All audio formats</value>
+    <comment/>
   </data>
   <data name="ui.ofd.title" xml:space="preserve">
     <value>Open Music File</value>
+    <comment/>
   </data>
   <data name="ui.settings" xml:space="preserve">
     <value>Settings</value>
+    <comment/>
   </data>
   <data name="ui.selectfile" xml:space="preserve">
     <value>Select File</value>
+    <comment/>
   </data>
   <data name="mplayer.play" xml:space="preserve">
     <value>Play</value>
+    <comment/>
   </data>
   <data name="mplayer.pause" xml:space="preserve">
     <value>Pause</value>
+    <comment/>
   </data>
   <data name="mplayer.nowplaying" xml:space="preserve">
     <value>Now Playing: </value>
+    <comment/>
   </data>
   <data name="android.notifications.mplayer" xml:space="preserve">
     <value>Mini-Audio Player</value>
+    <comment/>
   </data>
   <data name="mplayer.stop" xml:space="preserve">
     <value>Stop</value>
+    <comment/>
   </data>
   <data name="ui.about.createdby" xml:space="preserve">
     <value>created by</value>
+    <comment/>
   </data>
   <data name="ui.about.originalrepo" xml:space="preserve">
     <value>Official Eclair GitHub repository</value>
+    <comment/>
   </data>
   <data name="ui.about" xml:space="preserve">
     <value>About Eclair</value>
+    <comment/>
   </data>
   <data name="ui.about.license" xml:space="preserve">
     <value>Eclair's source code is licensed under the MIT license.</value>
+    <comment/>
   </data>
   <data name="ui.about.version" xml:space="preserve">
     <value>Version: </value>
+    <comment/>
   </data>
   <data name="ui.settings.usecircleiconanimation" xml:space="preserve">
     <value>Round music icon</value>
+    <comment/>
   </data>
   <data name="ui.player.back" xml:space="preserve">
     <value>Back</value>
+    <comment/>
   </data>
   <data name="ui.search" xml:space="preserve">
     <value>Search music...</value>
+    <comment/>
   </data>
   <data name="ui.nothingfound" xml:space="preserve">
     <value>Nothing found</value>
+    <comment/>
   </data>
   <data name="ui.search.newyear" xml:space="preserve">
     <value>Happy New Year!</value>
+    <comment/>
   </data>
   <data name="ui.search.birthday" xml:space="preserve">
     <value>Happy birthday Eclair!</value>
+    <comment/>
   </data>
   <data name="ui.search.nonex" xml:space="preserve">
     <value>Happy birthday, NonExistPlayer!</value>
+    <comment/>
   </data>
   <data name="ui.about.iconssource" xml:space="preserve">
     <value>Icons Source</value>
+    <comment/>
   </data>
   <data name="icons.play" xml:space="preserve">
     <value>Play button</value>
+    <comment/>
   </data>
   <data name="icons.about" xml:space="preserve">
     <value>About icon</value>
+    <comment/>
   </data>
   <data name="icons.back" xml:space="preserve">
     <value>Back button</value>
+    <comment/>
   </data>
   <data name="icons.forward" xml:space="preserve">
     <value>Forward button</value>
+    <comment/>
   </data>
   <data name="icons.loop" xml:space="preserve">
     <value>Loop button</value>
+    <comment/>
   </data>
   <data name="icons.pause" xml:space="preserve">
     <value>Pause button</value>
+    <comment/>
   </data>
   <data name="icons.selectfile" xml:space="preserve">
     <value>Select file button</value>
+    <comment/>
   </data>
   <data name="icons.settings" xml:space="preserve">
     <value>Settings button</value>
+    <comment/>
   </data>
   <data name="icons.stop" xml:space="preserve">
     <value>Stop button</value>
+    <comment/>
   </data>
   <data name="icons.selectdir" xml:space="preserve">
     <value>Select directory button</value>
+    <comment/>
   </data>
   <data name="ui.selectdir" xml:space="preserve">
     <value>Select Directory</value>
+    <comment/>
+  </data>
+  <data name="ui.settings.player" xml:space="preserve">
+    <value>Player</value>
+    <comment/>
+  </data>
+  <data name="ui.settings.disablecustomborder" xml:space="preserve">
+    <value>Disable custom border</value>
+    <comment/>
+  </data>
+  <data name="ui.settings.disableeffects" xml:space="preserve">
+    <value>Disable effects (such as snowfall)</value>
+    <comment/>
   </data>
 </root>

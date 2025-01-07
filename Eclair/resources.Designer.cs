@@ -9,9 +9,6 @@
 //------------------------------------------------------------------------------
 #pragma warning disable CS8981
 namespace Eclair {
-    using System;
-
-    
     /// <summary>
     ///   Класс ресурса со строгой типизацией для поиска локализованных строк и т.д.
     /// </summary>
@@ -356,5 +353,14 @@ namespace Eclair {
                 return ResourceManager.GetString("ui.settings.usecircleiconanimation", resourceCulture);
             }
         }
+
+        internal static string ui_settings_player =>
+            ResourceManager.GetString("ui.settings.player", resourceCulture);
+
+        internal static string ui_settings_disablecustomborder =>
+            ResourceManager.GetString("ui.settings.disablecustomborder", resourceCulture);
+
+        internal static string ui_settings_disableeffects =>
+            ResourceManager.GetString("ui.settings.disableeffects", resourceCulture);
     }
 }
