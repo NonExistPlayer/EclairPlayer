@@ -30,7 +30,7 @@ public partial class App : Application
 
         AppDomain.CurrentDomain.ProcessExit += delegate
         {
-            OnExit(0);
+            OnExit(Environment.ExitCode);
         };
         
         AppDomain.CurrentDomain.UnhandledException += UnhandledException;
@@ -53,7 +53,6 @@ public partial class App : Application
             Console.ReadKey();
         }
         catch { }
-        OnExit(1);
         Environment.Exit(1);
     }
 
