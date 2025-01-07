@@ -362,5 +362,8 @@ namespace Eclair {
 
         internal static string ui_settings_disableeffects =>
             ResourceManager.GetString("ui.settings.disableeffects", resourceCulture);
+
+        internal static string ui_settings_autoplay =>
+            ResourceManager.GetString("ui.settings.autoplay", resourceCulture);
     }
 }

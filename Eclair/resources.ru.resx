@@ -261,4 +261,8 @@
     <value>Отключить эффекты (такие как снегопад)</value>
     <comment/>
   </data>
+  <data name="ui.settings.autoplay" xml:space="preserve">
+    <value>Авто воспроизведение</value>
+    <comment/>
+  </data>
 </root>

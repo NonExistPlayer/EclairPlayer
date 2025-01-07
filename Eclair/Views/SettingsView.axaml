@@ -42,7 +42,7 @@
 							   FontWeight="Bold"
 							   FontSize="30"/>
 					<UniformGrid Columns="2">
-						<TextBlock Text="AutoPlay" VerticalAlignment="Center"/>
+						<TextBlock Text="{Binding AutoPlay}" VerticalAlignment="Center"/>
 						<CheckBox Name="CB_AutoPlay" Click="CheckBoxClicked"/>
 					</UniformGrid>
 				</StackPanel>

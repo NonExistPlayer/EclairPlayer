@@ -261,4 +261,8 @@
     <value>Disable effects (such as snowfall)</value>
     <comment/>
   </data>
+  <data name="ui.settings.autoplay" xml:space="preserve">
+    <value>Auto play</value>
+    <comment/>
+  </data>
 </root>
