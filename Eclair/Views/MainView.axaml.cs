@@ -362,7 +362,7 @@ public partial class MainView : UserControl
                 Title = resources.ui_selectdir
             }
         );
-        if (dirs.Count < 0) return;
+        if (dirs.Count <= 0) return;
 
         await foreach (var item in dirs[0].GetItemsAsync())
         {
