@@ -449,7 +449,8 @@ public partial class MainView : UserControl
         SearchBox.IsEnabled = false;
         BackButton.IsVisible = true;
         BackButton.IsEnabled = true;
-        (snowfall?.Effect as BlurEffect)!.Radius = 10;
+        if (!Config.DisableEffects)
+            (snowfall?.Effect as BlurEffect)!.Radius = 10;
     }
     #endregion
 
