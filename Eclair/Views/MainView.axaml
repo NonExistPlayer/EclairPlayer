@@ -36,6 +36,11 @@
 						  HotKey="CTRL + O"
 						  FontSize="16"
 						  Icon="{StaticResource selectfile}"/>
+				<MenuItem Header="{Binding SelectDir}"
+						  Click="SelectDir"
+						  HotKey="CTRL + SHIFT + O"
+						  FontSize="16"
+						  Icon="{StaticResource selectdir}"/>	  
 				<Separator/>
 				<MenuItem Header="{Binding About}"
 						  Click="GotoAbout"

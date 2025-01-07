@@ -14,6 +14,7 @@ using Avalonia.Styling;
 using Avalonia.Layout;
 using Avalonia.Media;
 using Avalonia.Media.Imaging;
+using Avalonia.Platform.Storage;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Svg.Skia;
 using Eclair.Controls;
@@ -149,13 +150,12 @@ public partial class MainView : UserControl
         }
     }
 
-    internal void AddMusicItem(string path)
+    internal void AddMusicItem(string path) => AddMusicItem(Path.GetFileName(path), File.OpenRead(path), path);
+    private void AddMusicItem(string name, Stream stream, string? path = null)
     {
-        string name = Path.GetFileName(path);
-        Stream stream = File.OpenRead(path);
         int num = MusicPanel.Children.Count;
 
-        Logger.Log($"AddMusicItem({path})");
+        Logger.Log($"AddMusicItem({(path == null ? name : path)})");
         if (MusicPanel.Children.Count == 1 &&
             MusicPanel.Children[0] is TextBlock)
             MusicPanel.Children.Clear();
@@ -251,7 +251,7 @@ public partial class MainView : UserControl
 
         MusicPanel.Children.Add(border);
     }
-
+    
     internal void LoadMusicFile(string name, Stream stream)
     {
         MusDurationLabel.Content = "00:00";
@@ -353,6 +353,25 @@ public partial class MainView : UserControl
 
     #region Events
     private async void SelectFile(object? sender, Avalonia.Interactivity.RoutedEventArgs e) => await GetMusicFile();
+    private async void SelectDir(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+    {
+        var toplevel = TopLevel.GetTopLevel(this); if (toplevel is null) return;
+        var dirs = await toplevel.StorageProvider.OpenFolderPickerAsync(
+            new FolderPickerOpenOptions
+            {
+                Title = resources.ui_selectdir
+            }
+        );
+        if (dirs.Count < 0) return;
+
+        await foreach (var item in dirs[0].GetItemsAsync())
+        {
+            if (item is not IStorageFile file) return;
+
+            if (HasSupportedFormat(file.Name))
+                AddMusicItem(file.Name, await file.OpenReadAsync());
+        }
+    }
     private void GotoSettings(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
     {
         prevcontent = Content;

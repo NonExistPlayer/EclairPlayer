@@ -74,6 +74,9 @@
 							Text="{Binding Icons_SelectFile}"
 							Link="https://icon-icons.com/icon/folder-add/111113"/>
 						<local:RefTextButton
+							Text="{Binding Icons_SelectDir}"
+							Link="https://icon-icons.com/icon/folder-search-outline/139522"/>
+						<local:RefTextButton
 							Text="{Binding Icons_Settings}"
 							Link="https://icon-icons.com/icon/settings/111137"/>
 						<local:RefTextButton

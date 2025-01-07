@@ -8,6 +8,9 @@
 	<Image x:Key="selectfile">
 		<SvgImage Source="/Assets/themes/default/light/selectfile.svg"/>
 	</Image>
+	<Image x:Key="selectdir">
+		<SvgImage Source="/Assets/themes/default/light/selectdir.svg"/>
+	</Image>
 	<Image x:Key="settings">
 		<SvgImage Source="/Assets/themes/default/light/settings.svg"/>
 	</Image>

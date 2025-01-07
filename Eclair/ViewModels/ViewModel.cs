@@ -6,6 +6,7 @@ public class ViewModel : ViewModelBase
 {
     public string Settings => resources.ui_settings;
     public string SelectFile => resources.ui_selectfile;
+    public string SelectDir => resources.ui_selectdir;
     public string Back => resources.ui_player_back;
     public string About => resources.ui_about;
     public string Search
@@ -42,6 +43,7 @@ public class ViewModel : ViewModelBase
     public string Icons_Pause => resources.icons_pause;
     public string Icons_Play => resources.icons_play;
     public string Icons_SelectFile => resources.icons_selectfile;
+    public string Icons_SelectDir => resources.icons_selectdir;
     public string Icons_Settings => resources.icons_settings;
     public string Icons_Stop => resources.icons_stop;
     #endregion

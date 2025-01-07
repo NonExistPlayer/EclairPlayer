@@ -53,6 +53,9 @@
 	<Image x:Key="selectfile">
 		<SvgImage Source="/Assets/themes/default/selectfile.svg"/>
 	</Image>
+	<Image x:Key="selectdir">
+		<SvgImage Source="/Assets/themes/default/selectdir.svg"/>
+	</Image>
 	<Image x:Key="settings">
 		<SvgImage Source="/Assets/themes/default/settings.svg"/>
 	</Image>

@@ -210,4 +210,10 @@
   <data name="icons.stop" xml:space="preserve">
     <value>Кнопка "Стоп"</value>
   </data>
+  <data name="icons.selectdir" xml:space="preserve">
+    <value>Кнопка "Выбрать каталог"</value>
+  </data>
+  <data name="ui.selectdir" xml:space="preserve">
+    <value>Выбрать каталог</value>
+  </data>
 </root>

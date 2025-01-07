@@ -7,6 +7,7 @@ using Avalonia.Controls;
 using Avalonia.Platform.Storage;
 using Avalonia.Svg.Skia;
 using Avalonia.Threading;
+using System.Linq;
 
 namespace Eclair.Views;
 
@@ -69,7 +70,7 @@ partial class MainView
         new FilePickerOpenOptions
         {
             Title = resources.ui_ofd_title,
-            AllowMultiple = false,
+            AllowMultiple = true,
             FileTypeFilter = [
                 new(resources.ui_ofd_audiofiles)
                     {
@@ -79,14 +80,21 @@ partial class MainView
             ]
         });
 
-        if (files == null || files.Count != 1)
+        if (files.Count < 1)
         {
             if (playing)
                 PlayOrPause();
             return;
         }
 
-        LoadMusicFile(files[0].Name, await files[0].OpenReadAsync());
+        foreach (var file in files)
+        {
+            var stream = await file.OpenReadAsync();
+            AddMusicItem(file.Name, stream);
+
+            if (files[0] == file)
+                LoadMusicFile(file.Name, stream);
+        }
     }
 
     private void PlayOrPause()

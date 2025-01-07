@@ -10,7 +10,7 @@
 #pragma warning disable CS8981
 namespace Eclair {
     using System;
-    
+
     
     /// <summary>
     ///   Класс ресурса со строгой типизацией для поиска локализованных строк и т.д.
@@ -120,6 +120,15 @@ namespace Eclair {
         internal static string icons_play {
             get {
                 return ResourceManager.GetString("icons.play", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Select directory button.
+        /// </summary>
+        internal static string icons_selectdir {
+            get {
+                return ResourceManager.GetString("icons.selectdir", resourceCulture);
             }
         }
         
@@ -309,6 +318,15 @@ namespace Eclair {
         internal static string ui_search_nonex {
             get {
                 return ResourceManager.GetString("ui.search.nonex", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Select Directory.
+        /// </summary>
+        internal static string ui_selectdir {
+            get {
+                return ResourceManager.GetString("ui.selectdir", resourceCulture);
             }
         }
         
