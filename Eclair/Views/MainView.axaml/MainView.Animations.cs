@@ -7,7 +7,7 @@ namespace Eclair.Views;
 partial class MainView
 {
                     // CIA = Circle Icon Animation
-    DispatcherTimer ciatimer = new()
+    internal DispatcherTimer ciatimer = new()
     {
         Interval = TimeSpan.FromMilliseconds(40),
     };

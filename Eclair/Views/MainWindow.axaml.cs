@@ -20,6 +20,21 @@ public partial class MainWindow : Window
         MinHeight = 670;
         View.Content = new MainView();
         isMainWindow = true;
+
+        Activated += (s, e) =>
+        {
+            if (View.Content is not MainView view) return;
+
+            if (view.player.IsPlaying && Config.UseCircleIconAnimation)
+                view.ciatimer.Start();
+        };
+        Deactivated += (s, e) =>
+        {
+            if (View.Content is not MainView view) return;
+
+            if (view.player.IsPlaying && view.ciatimer.IsEnabled)
+                view.ciatimer.Stop();
+        };
     }
 
     public MainWindow(UserControl view)
@@ -90,7 +105,6 @@ public partial class MainWindow : Window
         else
             Close();
     }
-
     //                   DisableCustomBorder
     internal void Update_DCB()
     {
