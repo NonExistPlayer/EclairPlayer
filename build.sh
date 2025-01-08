@@ -19,8 +19,8 @@ build() {
     # $1 = project
     # $2 = platform
     # $3 = arch
-    echo Starting building $1 for $2-$3...
     echo "[------------Building------------]"
+    echo Starting building $1 for $2-$3...
     if [ "$1" = "Eclair.Desktop" ]; then
         execute "dotnet build $1 -c Release --os $2 -a $3 -v m -o publish/$2-$3 --sc"
     else
