@@ -29,7 +29,6 @@ public partial class MainView : UserControl
 
     readonly LibVLC vlc;
     internal MediaPlayer player;
-    readonly CancellationTokenSource ctsource = new();
     bool calledByPlayer;
     Control[]? musicitems;
 
@@ -56,7 +55,7 @@ public partial class MainView : UserControl
                 if (loop)
                 {
                     PlayOrPause();
-                    ctsource.Cancel();
+                    ciatimer.Stop();
                 }
                 else if (Config.AutoPlay)
                 {
@@ -75,7 +74,7 @@ public partial class MainView : UserControl
             Dispatcher.UIThread.Invoke(delegate
             {
                 if (Config.UseCircleIconAnimation)
-                    Task.Run(AnimateIcon, ctsource.Token);
+                    ciatimer.Start();
 
                 MusDurationLabel.Content = TimeSpan.FromMilliseconds(player.Media!.Duration).ToString(@"mm\:ss");
             });
@@ -111,6 +110,8 @@ public partial class MainView : UserControl
             };
             MainGrid.Children.Insert(0, snowfall);
         }
+
+        ciatimer.Tick += CIATimer_Tick;
     }
     private void LibVlcOutput(object? sender, LogEventArgs e) => Logger.Log(e.Message, new((ushort)e.Level));
 
@@ -299,23 +300,6 @@ public partial class MainView : UserControl
         else SetImage(Application.Current?.FindResource("unknowntrack") as Bitmap);
 
         player.Media = new(vlc, new StreamMediaInput(stream));
-    }
-
-    private async void AnimateIcon()
-    {
-        while (player.IsPlaying)
-        {
-            try
-            {
-                await Dispatcher.UIThread.Invoke(async delegate
-                {
-                    if (rttransform != null)
-                        rttransform.Angle += OperatingSystem.IsAndroid() ? 1 : 0.001;
-                    if (OperatingSystem.IsAndroid()) await Task.Delay(20);
-                });
-            }
-            catch (TaskCanceledException) { }
-        }
     }
 
     #region "Playlist"
@@ -519,7 +503,7 @@ public partial class MainView : UserControl
                 RadiusY = 32
             };
             if (player.IsPlaying)
-                Task.Run(AnimateIcon, ctsource.Token);
+                ciatimer.Start();
         }
         else
         {
@@ -527,7 +511,7 @@ public partial class MainView : UserControl
             MusicPicture.Clip = null;
             MusicPicture2.Clip = null;
             rttransform = null;
-            if (player.IsPlaying) ctsource.Cancel();
+            if (player.IsPlaying) ciatimer.Stop();
         }
     }
     //                   DisableEffects

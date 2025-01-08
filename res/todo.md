@@ -9,8 +9,8 @@ You can also help the project by implementing these tasks.
 - [ ] Add the ability to record the microphone in the application.
 - Optimization
     - [ ] Optimization on Linux/Android.
-        - A critical error was noticed on Linux, due to which, when playing music, the application consumed an inappropriately large percentage of the CPU, and the disk with music was spinning very quickly.
-        - It is also planned to optimize snowflakes.
+        - [x] A critical error was noticed on Linux, due to which, when playing music, the application consumed an inappropriately large percentage of the CPU, and the disk with music was spinning very quickly.
+        - [ ] It is also planned to optimize snowflakes.
 - [ ] Add support for iOS and MacOS.*
 
 <details>
