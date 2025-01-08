@@ -391,7 +391,8 @@ public partial class MainView : UserControl
         SearchBox.IsEnabled = true;
         BackButton.IsVisible = false;
         BackButton.IsEnabled = false;
-        (snowfall?.Effect as BlurEffect)!.Radius = SnowfallBlurRadius;
+        if (snowfall != null)
+            (snowfall.Effect as BlurEffect)!.Radius = SnowfallBlurRadius;
     }
     private void ShowPlayer(object? sender, Avalonia.Input.PointerReleasedEventArgs e)
     {
