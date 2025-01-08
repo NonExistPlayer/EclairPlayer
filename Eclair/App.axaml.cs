@@ -37,6 +37,19 @@ public partial class App : Application
 
         Environment.CurrentDirectory = SavePath;
 
+        var files = Directory.GetFiles(LogPath);
+        if (files.Length > 15)
+        {
+            foreach (string file in files[15..])
+                File.Delete(file);
+        }
+
+        DateTime now = DateTime.Now;
+        string path = LogPath + $"{now.Month}-{now.Day}_{now.Hour}-{now.Minute}-{now.Second}.log";
+        Logger.FileStream = new StreamWriter(path);
+
+        Logger.Log($"Log Path: {path}");
+
         SetResources((AvaloniaXamlLoader.Load(new Uri("avares://Eclair/Assets/DefaultTheme.axaml")) as ResourceDictionary)!);
 
         Config.LoadResources();
