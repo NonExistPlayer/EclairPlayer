@@ -338,6 +338,7 @@ public partial class MainView : UserControl
     }
     internal void PlayPrevious()
     {
+        if (player.Media == null) return;
         if (TimeSpan.FromMilliseconds(
             (double)(player.Media!.Duration * player.Position)).TotalSeconds > 6 ||
             currenttrack == 0)
