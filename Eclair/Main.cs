@@ -14,7 +14,7 @@ public static class Main
         Config = ConfigJson.Load();
     }
 
-    public const string Version = "0.2.2-pre";
+    public const string Version = "0.2.2";
     #region Pathes
     public static string SavePath { get; } = OperatingSystem.IsWindows() ?
         $"{Environment.GetEnvironmentVariable("LOCALAPPDATA")}\\EclairPlayer\\" : (OperatingSystem.IsAndroid() ?
