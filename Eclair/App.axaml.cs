@@ -14,41 +14,15 @@ public partial class App : Application
 {
     public override void Initialize()
     {
-        if (!Directory.Exists(SavePath)) Directory.CreateDirectory(SavePath);
-        if (!Directory.Exists(TempPath)) Directory.CreateDirectory(TempPath);
-        try
-        {
-            if (!Directory.Exists(LogPath))
-                Directory.CreateDirectory(LogPath);
-        }
-        catch (UnauthorizedAccessException)
-        {
-            if (OperatingSystem.IsAndroid())
-                LogPath = SavePath + "cache/logs/";
-            else throw;
-        }
-
         AppDomain.CurrentDomain.ProcessExit += delegate
         {
             OnExit(Environment.ExitCode);
         };
-        
+
         AppDomain.CurrentDomain.UnhandledException += UnhandledException;
 
-        Environment.CurrentDirectory = SavePath;
-
-        var files = Directory.GetFiles(LogPath);
-        if (files.Length > 15)
-        {
-            foreach (string file in files[15..])
-                File.Delete(file);
-        }
-
-        DateTime now = DateTime.Now;
-        string path = LogPath + $"{now.Month}-{now.Day}_{now.Hour}-{now.Minute}-{now.Second}.log";
-        Logger.FileStream = new StreamWriter(path);
-
-        Logger.Log($"Log Path: {path}");
+        if (!OperatingSystem.IsAndroid())
+            LoggerInit();
 
         SetResources((AvaloniaXamlLoader.Load(new Uri("avares://Eclair/Assets/DefaultTheme.axaml")) as ResourceDictionary)!);
 

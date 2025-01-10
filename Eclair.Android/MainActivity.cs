@@ -1,4 +1,5 @@
-﻿using Android;
+﻿using static Eclair.Main;
+using Android;
 using Android.App;
 using Android.Content.PM;
 using Android.OS;
@@ -26,7 +27,7 @@ public class MainActivity : AvaloniaMainActivity<App>
 
     protected override AppBuilder CustomizeAppBuilder(AppBuilder builder)
     {
-        Main.PManager = new PlatformManager();
+        PManager = new PlatformManager();
 
         return base.CustomizeAppBuilder(builder)
             .WithInterFont()
@@ -35,9 +36,11 @@ public class MainActivity : AvaloniaMainActivity<App>
 
     protected override void OnCreate(Bundle? savedInstanceState)
     {
+        LoggerInit();
+
         if (ContextCompat.CheckSelfPermission(this, read_permission) != (int)Permission.Granted)
         {
-            Main.Logger.Log($"Requesting {read_permission}...");
+            Logger.Log($"Requesting {read_permission}...");
             ActivityCompat.RequestPermissions(this, [read_permission], 1);
         }
 
@@ -51,15 +54,15 @@ public class MainActivity : AvaloniaMainActivity<App>
         if (requestCode == 1)
         {
             if (grantResults.Length > 0 && grantResults[0] == Permission.Granted)
-                Main.Logger.Log($"{read_permission} granted!");
+                Logger.Log($"{read_permission} granted!");
             else
-                Main.Logger.Log($"{read_permission} not granted.");
+                Logger.Log($"{read_permission} not granted.");
         }
     }
 
     protected override void Dispose(bool disposing)
     {
-        Main.PManager.HidePlayerNotification();
+        PManager.HidePlayerNotification();
 
         base.Dispose(disposing);
     }

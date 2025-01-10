@@ -120,5 +120,37 @@ public static class Main
             if (fname.EndsWith(format[1..])) return true;
         return false;
     }
+
+    internal static void LoggerInit()
+    {
+        if (!Directory.Exists(SavePath)) Directory.CreateDirectory(SavePath);
+        if (!Directory.Exists(TempPath)) Directory.CreateDirectory(TempPath);
+        try
+        {
+            if (!Directory.Exists(LogPath))
+                Directory.CreateDirectory(LogPath);
+        }
+        catch (UnauthorizedAccessException) when (OperatingSystem.IsAndroid())
+        {
+            LogPath = SavePath + "cache/logs/";
+            if (!Directory.Exists(LogPath))
+                Directory.CreateDirectory(LogPath);
+        }
+
+        Environment.CurrentDirectory = SavePath;
+
+        var files = Directory.GetFiles(LogPath);
+        if (files.Length > 15)
+        {
+            foreach (string file in files[15..])
+                File.Delete(file);
+        }
+
+        DateTime now = DateTime.Now;
+        string path = LogPath + $"{now.Month}-{now.Day}_{now.Hour}-{now.Minute}-{now.Second}.log";
+        Logger.FileStream = new StreamWriter(path);
+
+        Logger.Log($"Log Path: {path}");
+    }
     #endregion
 }
