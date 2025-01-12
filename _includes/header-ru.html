@@ -21,11 +21,11 @@
             {%- for path in page_paths -%}
               {%- assign my_page = site.pages | where: "path", path | first -%}
               {%- if my_page.path contains 'ru/' and my_page.path != 'ru/index.md' -%}
-              <a class="page-link" href="{{ my_page.url | relative_url }}">{{ my_page.title | escape }}</a>
+              <a class="page-link" href="/EclairPlayer/{{ my_page.url | relative_url }}">{{ my_page.title | escape }}</a>
               {%- endif -%}
             {%- endfor -%}
             <hr style="border: none; background-color: #000; width: 1px; height: 20px; margin: 0 auto;" />
-            <a class="page-link" href="{{ site.url }}/{{ page.dir | remove: 'ru/'}}">
+            <a class="page-link" href="{{ site.url }}/EclairPlayer/{{ page.dir | remove: 'ru/'}}">
               English</a>
           </div>
         </nav>
