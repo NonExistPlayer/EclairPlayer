@@ -8,6 +8,8 @@ You can also help the project by implementing these tasks.
 - [ ] Add transparency to the Android application.
 - [ ] Add acrylic transparency effect for all supported platforms.*
 - [ ] Make a visualization of sound waves of the played melody.*
+## Site
+- [ ] Add blog / news.
 ## Other
 - [ ] Add the ability to record the microphone in the application.
 - *Optimization*
