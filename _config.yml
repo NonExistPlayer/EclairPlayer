@@ -20,8 +20,8 @@
 
 title: Eclair
 email: nonexistplayer@gmail.com
-baseurl: "/EclairPlayer" # the subpath of your site, e.g. /blog
-url: "nonexistplayer.github.io" # the base hostname & protocol for your site, e.g. http://example.com
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "nonexistplayer.github.io/EclairPlayer" # the base hostname & protocol for your site, e.g. http://example.com
 github_username: NonExistPlayer
 
 theme: "minima"
