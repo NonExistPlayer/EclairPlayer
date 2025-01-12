@@ -24,3 +24,18 @@ footer div {
     gap: 25px;
     margin-top: 15px;
 }
+
+.title-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-image: url('/EclairPlayer/assets/screenshot.png');
+    background-position: center;
+    border-radius: 10px;
+}
+@media (width < 826px) {
+    .title-div {
+        background-image: none;
+    }
+}
