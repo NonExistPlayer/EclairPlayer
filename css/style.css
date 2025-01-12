@@ -34,8 +34,13 @@ footer div {
     background-position: center;
     border-radius: 10px;
 }
-@media (width < 826px) {
-    .title-div {
-        background-image: none;
+@media (width < 1162px) {
+    .content {
+        padding: 15px;
+        position: relative;
+        width: 80%;
+        top: 25%;
+        left: 50%;
+        transform: translate(-50%, 0);
     }
 }
