@@ -3,7 +3,7 @@
     {%- assign default_paths = site.pages | map: "path" -%}
     {%- assign page_paths = site.header_pages | default: default_paths -%}
     <a class="site-title" rel="author" href="{{ "/" | relative_url }}">
-      <img src="/assets/icon.png" height="48">
+      <img src="/EclairPlayer/assets/icon.png" height="48">
       {{ site.title | escape }}</a>
 
     {%- if page_paths -%}
@@ -18,10 +18,10 @@
         </label>
 
         <div class="trigger">
-            <a class="page-link" href="/about/">
+            <a class="page-link" href="/EclairPlayer/about/">
               About</a>
             <hr style="border: none; background-color: #000; width: 1px; height: 20px; margin: 0 auto;" />
-            <a class="page-link" href="/ru/{{ page.dir }}">
+            <a class="page-link" href="/EclairPlayer/ru/{{ page.dir }}">
               Русский</a>
         </div>
       </nav>
