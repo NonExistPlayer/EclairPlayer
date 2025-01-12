@@ -2,9 +2,47 @@
 layout: home
 title: Eclair
 ---
-# Hello, World!
-## Hello, World!
-### Hello, World!
-Hello, World!
-*Hello, World!*
-**Hello, World!**
+<div class="title-div">
+    <img src="/EclairPlayer/assets/icon.png" width="180" alt="Icon">
+    <div style="font-size: 60px; color: #ddd">
+        <b>Eclair</b>
+    </div>
+    <b style="color: #ddd">Just. Open. Sweet.</b>
+    <p style="color: #ddd">An open-source
+    <a href="https://dotnet.microsoft.com/en-us/">.NET</a>
+    audio player.
+    </p>
+</div><br>
+# What is Eclair?
+**Eclair** is an [open source](https://github.com/NonExistPlayer/EclairPlayer) audio player written in C# using the [Avalonia](https://github.com/AvaloniaUI/Avalonia) framework and the [LibVLCSharp](https://github.com/videolan/libvlcsharp) library, which is gradually being developed.
+
+# Why Eclair?
+**Eclair** is an attempt to create an alternative to existing audio players, for those who value the appearance of the program and who care about it. This player is a new player.
+
+# Why Eclair open source?
+I, [NonExistPlayer](https://github.com/NonExistPlayer) support free software.<br>
+I don't think my hobby should be closed source.<br>
+I enjoy developing this project despite the difficulties and problems I encounter when developing with **Eclair**.
+
+# Other
+## Supported audio formats
+- `.mp3`
+- `.aac`
+- `.asf`
+- `.wma`
+- `.ogg`
+- `.flac`
+- `.midi`
+- `.wav`
+
+## Supported OS
+The minimum version for launching is written next to the OS name.
+- **Android** 8.0
+- ~~iOS~~
+- ~~MacOS~~
+
+The following information is taken [from here](https://github.com/AvaloniaUI/Avalonia/wiki/Runtime-Requirements).
+- **Windows** 8.0
+- **Debian** 9
+- **Ubuntu** 16.04
+- **Fedora** 30
