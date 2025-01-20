@@ -21,7 +21,7 @@ partial class MainView
     {
         int num = MusicPanel.Children.Count;
 
-        Logger.Log($"AddMusicItem({(path == null ? name : path)})");
+        Logger.Log($"AddMusicItem({(path ?? name)})");
         if (MusicPanel.Children.Count == 1 &&
             MusicPanel.Children[0] is TextBlock)
             MusicPanel.Children.Clear();
@@ -91,7 +91,7 @@ partial class MainView
             HorizontalAlignment = HorizontalAlignment.Right,
             Background = Brushes.Transparent
         };
-        
+
         button.Click += delegate
         {
             currenttrack = (ushort)num;
