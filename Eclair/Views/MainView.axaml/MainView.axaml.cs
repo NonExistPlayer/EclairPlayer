@@ -90,17 +90,17 @@ public partial class MainView : UserControl
         if (OperatingSystem.IsAndroid())
             TitleText.MaxWidth = 128;
 
-        if (DateTime.Now.Month is 12 or 1 or 2 && !Config.DisableEffects) // winter
-        {
-            snowfall = new()
-            {
-                Effect = new BlurEffect()
-                {
-                    Radius = SnowfallBlurRadius
-                }
-            };
-            MainGrid.Children.Insert(0, snowfall);
-        }
+        // if (DateTime.Now.Month is 12 or 1 or 2 && !Config.DisableEffects) // winter
+        // {
+        //     snowfall = new()
+        //     {
+        //         Effect = new BlurEffect()
+        //         {
+        //             Radius = SnowfallBlurRadius
+        //         }
+        //     };
+        //     MainGrid.Children.Insert(0, snowfall);
+        // }
 
         ciatimer.Tick += CIATimer_Tick;
     }

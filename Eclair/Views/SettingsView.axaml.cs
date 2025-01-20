@@ -19,6 +19,9 @@ public partial class SettingsView : UserControl
         CB_DisableCustomBorder.IsChecked = Config.DisableCustomBorder;
         CB_DisableCustomBorder.IsEnabled = OperatingSystem.IsWindows();
         CB_DisableEffects.IsChecked = Config.DisableEffects;
+
+        CB_DisableEffects.IsEnabled = false;
+
         CB_AutoPlay.IsChecked = Config.AutoPlay;
     }
 
