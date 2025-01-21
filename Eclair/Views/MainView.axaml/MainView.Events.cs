@@ -73,22 +73,22 @@ partial class MainView
             MusicPanel.Children.CopyTo(musicitems, 0);
         }
 
-        if (MusicPanel.Children.Count == 1 &&
-            MusicPanel.Children[0] is TextBlock)
-            MusicPanel.Children.Clear();
-
         MusicPanel.Children.Clear();
 
-        MusicPanel.Children.AddRange(
-            musicitems.Where(m =>
-                ((TextBlock)
-                    ((Grid)
-                        ((Border)m).Child!)
-                            .Children[1])
-                            .Text!
-                            .Contains(SearchBox.Text ?? "", StringComparison.CurrentCultureIgnoreCase)
-            )
-        );
+        if (MusicPanel.Children.Count > 0 &&
+            MusicPanel.Children[0] is not TextBlock)
+        {
+            MusicPanel.Children.AddRange(
+                musicitems.Where(m =>
+                    ((TextBlock)
+                        ((Grid)
+                            ((Border)m).Child!)
+                                .Children[1])
+                                .Text!
+                                .Contains(SearchBox.Text ?? "", StringComparison.CurrentCultureIgnoreCase)
+                )
+            );
+        }
     }
     internal void ShowPlayer()
     {
