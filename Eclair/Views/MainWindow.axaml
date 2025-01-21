@@ -7,8 +7,7 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="Eclair.Views.MainWindow"
 		WindowStartupLocation="CenterScreen"
-        Icon="/Assets/avalonia-logo.ico"
-		TransparencyLevelHint="AcrylicBlur">
+        Icon="/Assets/avalonia-logo.ico">
 	<Grid Name="MainGrid">
 		<Grid.RowDefinitions>
 			<RowDefinition Height="30"/>

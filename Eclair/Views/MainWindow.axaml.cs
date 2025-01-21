@@ -59,6 +59,7 @@ public partial class MainWindow : Window
     private void InitializeBackground()
     {
         Background = new SolidColorBrush(Config.BackgroundColor);
+        TransparencyLevelHint = [OperatingSystem.IsLinux() ? WindowTransparencyLevel.Blur : WindowTransparencyLevel.AcrylicBlur];
         if (OperatingSystem.IsWindows() && !Config.DisableCustomBorder)
         {
             ExtendClientAreaToDecorationsHint = true;
