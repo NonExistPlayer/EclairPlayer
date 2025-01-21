@@ -89,15 +89,6 @@ partial class MainView
                             .Contains(SearchBox.Text ?? "", StringComparison.CurrentCultureIgnoreCase)
             )
         );
-
-        if (MusicPanel.Children.Count == 0)
-            MusicPanel.Children.Add(new TextBlock
-            {
-                Text = resources.ui_nothingfound + "...",
-                HorizontalAlignment = HorizontalAlignment.Center,
-                FontWeight = FontWeight.Bold,
-                FontSize = 24
-            });
     }
     internal void ShowPlayer()
     {
