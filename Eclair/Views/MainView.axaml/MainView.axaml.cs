@@ -2,6 +2,7 @@
 using LibVLCSharp.Shared;
 using System;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls;
@@ -133,6 +134,12 @@ public partial class MainView : UserControl
                 $@"{Environment.GetEnvironmentVariable("HOME")}/Downloads",
             ];
         }
+
+        if (!OperatingSystem.IsAndroid())
+            pathes = [.. pathes, .. Environment.GetLogicalDrives()
+                .Where(c => c.StartsWith("/media/") || c.StartsWith("/run/media/")).ToArray()];
+
+        Logger.Log("pathes = " + string.Join(',', pathes));        
 
         foreach (string path in pathes)
         {
