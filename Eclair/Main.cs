@@ -79,9 +79,12 @@ public static class Main
     #endregion
 
     #region Methods
-    internal static void ScanDirectoryForMusic(string targetdir, Action<string> finded)
+    internal static void ScanDirectoryForMusic(string targetdir, Action<string> finded) =>
+        ScanDirectoryForMusic(targetdir, finded, 0);
+    private static bool ScanDirectoryForMusic(string targetdir, Action<string> finded, int depth)
     {
-        if (!Directory.Exists(targetdir)) return;
+        if (!Directory.Exists(targetdir)) return false;
+        if (depth > 10) return true;
 
         string[] files;
         try
@@ -90,12 +93,12 @@ public static class Main
         }
         catch (UnauthorizedAccessException)
         {
-            return;
+            return false;
         }
         catch (Exception ex)
         {
             Logger.Error(ex);
-            return;
+            return false;
         }
 
         foreach (string file in files)
@@ -111,7 +114,10 @@ public static class Main
 
         foreach (string dir in dirs)
             if (!Path.GetFileName(dir)!.StartsWith('.'))
-                ScanDirectoryForMusic(Path.GetFullPath(dir), finded);
+                if (ScanDirectoryForMusic(Path.GetFullPath(dir), finded, depth + 1))
+                    break;
+        
+        return false;
     }
 
     internal static bool HasSupportedFormat(string fname)
