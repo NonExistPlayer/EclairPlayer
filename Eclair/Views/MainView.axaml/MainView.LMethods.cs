@@ -11,6 +11,7 @@ using Avalonia.Layout;
 using Avalonia.Media;
 using Avalonia.Media.Imaging;
 using Avalonia.Controls.ApplicationLifetimes;
+using System.Linq;
 
 namespace Eclair.Views;
 
@@ -115,7 +116,10 @@ partial class MainView
 
         border.Child = grid;
 
-        MusicPanel.Children.Add(border);
+        if (SearchBox.Text == "")
+            MusicPanel.Children.Add(border);
+        else if (musicitems != null)
+            musicitems = [.. musicitems, border];
     }
     
     internal void LoadMusicFile(string name, Stream stream)
