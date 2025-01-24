@@ -83,8 +83,11 @@ public static class Main
         ScanDirectoryForMusic(targetdir, finded, 0);
     private static bool ScanDirectoryForMusic(string targetdir, Action<string> finded, int depth)
     {
-        if (!Directory.Exists(targetdir)) return false;
-        if (depth > 10) return true;
+        DirectoryInfo dirinfo = new(targetdir);
+
+        if (!dirinfo.Exists) return false;
+        if (depth > 10 ||
+            dirinfo.Attributes.HasFlag(FileAttributes.ReparsePoint)) return true;
 
         string[] files;
         try
@@ -110,11 +113,11 @@ public static class Main
         // It is assumed that if the previous request to get files
         // in the directory was successful.
         // (otherwise the method would return an empty array)
-        string[] dirs = Directory.GetDirectories(targetdir);
+        var dirs = dirinfo.GetDirectories();
 
-        foreach (string dir in dirs)
-            if (!Path.GetFileName(dir)!.StartsWith('.'))
-                if (ScanDirectoryForMusic(Path.GetFullPath(dir), finded, depth + 1))
+        foreach (DirectoryInfo dir in dirs)
+            if (!dir.Name.StartsWith('.'))
+                if (ScanDirectoryForMusic(dir.FullName, finded, depth + 1))
                     break;
         
         return false;
