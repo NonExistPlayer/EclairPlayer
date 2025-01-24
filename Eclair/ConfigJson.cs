@@ -11,6 +11,13 @@ namespace Eclair;
 // Representing config.json as a .NET object.
 internal sealed class ConfigJson
 {
+    public string Theme = "Default";
+    public bool UseCircleIconAnimation = true;
+    public bool DisableCustomBorder = !OperatingSystem.IsWindows();
+    public bool DisableEffects;
+    public bool AutoPlay = true;
+    public Color BackgroundColor = new(125, 0, 0, 0);
+
     #region Methods
     public static ConfigJson Load()
     {
@@ -83,11 +90,4 @@ internal sealed class ConfigJson
         }
     }
     #endregion
-
-    public string Theme = "Default";
-    public bool UseCircleIconAnimation = true;
-    public bool DisableCustomBorder = !OperatingSystem.IsWindows();
-    public bool DisableEffects;
-    public bool AutoPlay = true;
-    public Color BackgroundColor = new(125, 0, 0, 0);
 }
