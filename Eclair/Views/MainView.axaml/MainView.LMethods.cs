@@ -116,7 +116,7 @@ partial class MainView
 
         border.Child = grid;
 
-        if (SearchBox.Text == "")
+        if (string.IsNullOrEmpty(SearchBox.Text))
             MusicPanel.Children.Add(border);
         else if (musicitems != null)
             musicitems = [.. musicitems, border];
