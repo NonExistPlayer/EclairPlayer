@@ -11,6 +11,7 @@ You can also help the project by implementing these tasks.
 ## Site
 - [ ] Add blog / news.
 ## Other
+- [ ] Update notifications *or* auto-update.
 - [ ] Add the ability to record the microphone in the application.
 - *Optimization*
     - [ ] Optimization on Linux/Android.
