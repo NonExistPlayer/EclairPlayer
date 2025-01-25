@@ -104,6 +104,26 @@ public partial class MainView : UserControl
         // }
 
         ciatimer.Tick += CIATimer_Tick;
+
+        var args = Environment.GetCommandLineArgs();
+        if (args.Length == 2)
+        {
+            string name = Path.GetFileName(args[1]);
+            Stream stream;
+            try
+            {
+                stream = File.OpenRead(args[1]);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex);
+                return;
+            }
+            AddMusicItem(name, stream);
+            LoadMusicFile(name, stream);
+            PlayOrPause();
+            ShowPlayer();
+        }
     }
     private void LibVlcOutput(object? sender, LogEventArgs e) => Logger.Log(e.Message, new((ushort)e.Level));
 
