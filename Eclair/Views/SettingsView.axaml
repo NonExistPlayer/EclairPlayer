@@ -3,22 +3,12 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 			 xmlns:vm="clr-namespace:Eclair.ViewModels;assembly=Eclair"
+			 xmlns:local="clr-namespace:Eclair.Controls;assembly=Eclair"
              mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="450"			 
              x:Class="Eclair.Views.SettingsView">
-	<Grid>
-		<Button Name="BackButton"
-				HorizontalAlignment="Left"
-				VerticalAlignment="Top"
-				Width="64"
-				Height="64"
-				IsVisible="False"
-				Click="GotoBack">
-			<Image>
-				<Image.Source>
-					<SvgImage Source="/Assets/themes/backarrow.svg"/>
-				</Image.Source>
-			</Image>
-		</Button>
+	<StackPanel>
+		<local:HeaderPanel Name="Header"
+						   IsVisible="False"/>
 
 		<ScrollViewer>
 			<StackPanel>
@@ -48,6 +38,6 @@
 				</StackPanel>
 			</StackPanel>
 		</ScrollViewer>
-	</Grid>
+	</StackPanel>
 	
 </UserControl>

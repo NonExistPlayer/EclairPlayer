@@ -9,14 +9,15 @@ public partial class AboutView : UserControl
     {
         DataContext = new ViewModels.ViewModel(); // idk why, but the text is displayed correctly only this way
         InitializeComponent();
-        if (OperatingSystem.IsAndroid())
-        {
-            BackButton.Click += delegate
-            {
-                Content = MainView.prevcontent;
-            };
-        }
-        else BackButton.IsVisible = false;
+
+        // if (OperatingSystem.IsAndroid())
+        // {
+            Header.IsVisible = true;
+            Header.Title = resources.ui_about;
+            Header.GotoBack += (s, e) => Content = MainView.prevcontent;
+        // }
+        // else
+        //     MainGrid.RowDefinitions.RemoveAt(0);
     }
 
     private async void GotoGitHubRepo(object? sender, Avalonia.Interactivity.RoutedEventArgs e)

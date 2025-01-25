@@ -11,10 +11,7 @@ public partial class SettingsView : UserControl
     {
         DataContext = new ViewModels.SettingsViewModel();
         InitializeComponent();
-
-        if (OperatingSystem.IsAndroid())
-            BackButton.IsVisible = false;
-
+        
         CB_UseCircleIconAnimation.IsChecked = Config.UseCircleIconAnimation;
         CB_DisableCustomBorder.IsChecked = Config.DisableCustomBorder;
         CB_DisableCustomBorder.IsEnabled = OperatingSystem.IsWindows();
@@ -23,9 +20,18 @@ public partial class SettingsView : UserControl
         CB_DisableEffects.IsEnabled = false;
 
         CB_AutoPlay.IsChecked = Config.AutoPlay;
-    }
 
-    private void GotoBack(object? sender, Avalonia.Interactivity.RoutedEventArgs e) => Content = MainView.prevcontent;
+        if (OperatingSystem.IsAndroid())
+        {
+            Header.IsVisible = true;
+            Header.Title = resources.ui_settings;
+            Header.GotoBack += (s, e) =>
+            {
+                Content = MainView.prevcontent;
+                DataContext = new ViewModels.ViewModel();
+            };
+        }
+    }
 
     private void CheckBoxClicked(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
     {

@@ -5,28 +5,21 @@
 			 xmlns:local="clr-namespace:Eclair.Controls;assembly=Eclair"
              mc:Ignorable="d" d:DesignWidth="760" d:DesignHeight="450"
              x:Class="Eclair.Views.AboutView">
-	<Grid>
+	<Grid Name="MainGrid">
 		<Grid.RowDefinitions>
+			<RowDefinition Height="64" />
 			<RowDefinition Height="175" />
 			<RowDefinition Height="Auto" />
 			<RowDefinition Height="*" />
 		</Grid.RowDefinitions>
 
-		<Button Name="BackButton"
-				HorizontalAlignment="Left"
-				VerticalAlignment="Top"
-				Width="64"
-				Height="64">
-			<Image>
-				<Image.Source>
-					<SvgImage Source="/Assets/themes/backarrow.svg"/>
-				</Image.Source>
-			</Image>
-		</Button>
+		<local:HeaderPanel Name="Header"
+						   IsVisible="False"/>
 
 		<StackPanel VerticalAlignment="Center"
 					HorizontalAlignment="Center"
-					Orientation="Horizontal">
+					Orientation="Horizontal"
+					Grid.Row="1">
 			<Image Source="/Assets/icon.png"/>
 			<TextBlock Text="Eclair"
 					   FontSize="52"
@@ -34,9 +27,9 @@
 			
 		</StackPanel>
 
-		<Separator Grid.Row="1"/>
+		<Separator Grid.Row="2"/>
 
-		<ScrollViewer Grid.Row="2">
+		<ScrollViewer Grid.Row="3">
 			<StackPanel VerticalAlignment="Center">
 				<TextBlock Text="{Binding About_CreatedBy}"
 							HorizontalAlignment="Center"/>
