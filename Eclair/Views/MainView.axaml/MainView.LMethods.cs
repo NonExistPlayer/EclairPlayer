@@ -147,8 +147,8 @@ partial class MainView
         SetTitle(TitleLabel.Content?.ToString());
 
         if (!OperatingSystem.IsAndroid())
-            ((Application.Current!.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime)!
-                .MainWindow as MainWindow)!.SetTitle($"Eclair - {name}");
+            ((Application.Current?.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime)?
+                .MainWindow as MainWindow)?.SetTitle($"Eclair - {name}");
 
         IPicture? picture = tags.Pictures.Length > 0 ? tags.Pictures[0] : null;
 
