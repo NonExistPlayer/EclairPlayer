@@ -9,13 +9,25 @@ layout: default
 
   {{ content }}
 
-  {%- if site.posts.size > 0 -%}
-    <h2 class="post-list-heading">{{ page.list_title | default: "Posts" }}</h2>
+  {%- if page.lang == 'ru' -%}
+    {%- assign posts_list = site.posts-ru -%}
+  {%- else -%}
+    <p style="font-size: small">
+    <b>Important!</b><br>
+    Google Translate is used to translate posts into English, as well as for the entire site.<br>
+    If you see errors on the site, please report them to GitHub.<br><br>
+
+    It is recommended to read the posts in the original.
+    </p>
+    {%- assign posts_list = site.posts -%}
+  {%- endif -%}
+
+  {%- if posts_list.size > 0 -%}
     <ul class="post-list">
-      {%- for post in site.posts -%}
+      {%- for post in posts_list -%}
       <li>
         {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
-        <span class="post-meta">{{ post.date | date: date_format }}</span>
+        <span class="post-meta">{{ site.data.t[page.lang][post.category] }}, {{ post.date | date: date_format }}</span>
         <h3>
           <a class="post-link" href="{{ post.url | relative_url }}">
             {{ post.title | escape }}
@@ -28,5 +40,4 @@ layout: default
       {%- endfor -%}
     </ul>
   {%- endif -%}
-
 </div>

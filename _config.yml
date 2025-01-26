@@ -26,6 +26,10 @@ github_username: NonExistPlayer
 
 theme: "minima"
 
+collections:
+  posts-ru:
+    output: true
+
 plugins:
   - jekyll-feed
 

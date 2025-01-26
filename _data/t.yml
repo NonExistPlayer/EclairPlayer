@@ -5,6 +5,8 @@ en:
   eclair-source-code: "Eclair Source Code"
   source-code: "Site Source Code"
   license: "The source code of the site is protected by the GPL v3.0 license."
+  post: "Post"
+  news: "News"
 
 ru:
   slogan: "Просто. Открыто. Сладко."
@@ -13,3 +15,5 @@ ru:
   eclair-source-code: "Исходный код"
   source-code: "Исходный код сайта"
   license: "Исходный код сайта защищён лицензией GPL v3.0."
+  post: "Пост"
+  news: "Новости"
