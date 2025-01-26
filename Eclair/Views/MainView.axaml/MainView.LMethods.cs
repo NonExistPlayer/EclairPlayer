@@ -32,8 +32,7 @@ partial class MainView
         {
             CornerRadius = new CornerRadius(7),
             Margin = new Thickness(5),
-            Background = Application.Current?.ActualThemeVariant == ThemeVariant.Light ?
-                new SolidColorBrush(new Color(125, 199, 199, 199)) : new SolidColorBrush(new Color(125, 133, 133, 133))
+            Background = new SolidColorBrush(new Color(125, 199, 199, 199))
         };
 
         var grid = new Grid { Height = 64 };
