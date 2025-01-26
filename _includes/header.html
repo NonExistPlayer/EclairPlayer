@@ -20,6 +20,14 @@
         <div class="trigger">
             <a class="page-link" href="https://github.com/NonExistPlayer/EclairPlayer/tags">
               {{ site.data.t[page.lang].download }}</a>
+            {%- for path in page_paths -%}
+              {%- assign my_page = site.pages | where: "path", path | first -%}
+              {%- if my_page.lang == page.lang and my_page.title != 'Eclair' -%}
+                {%- if my_page.title -%}
+                <a class="page-link" href="{{ my_page.url | relative_url }}">{{ my_page.title | escape }}</a>
+                {%- endif -%}
+              {%- endif -%}
+            {%- endfor -%}
             {%- if page.lang == 'en' -%}
             <a class="page-link" href="/EclairPlayer/ru/{{ page.dir }}"
               style="font-weight: bold;">
