@@ -1,0 +1,15 @@
+en:
+  slogan: "Just. Open. Sweet."
+  desc: "An open-source audio player."
+  download: "Download"
+  eclair-source-code: "Eclair Source Code"
+  source-code: "Site Source Code"
+  license: "The source code of the site is protected by the GPL v3.0 license."
+
+ru:
+  slogan: "Просто. Открыто. Сладко."
+  desc: "Аудио плеер с открытым исходным кодом."
+  download: "Скачать"
+  eclair-source-code: "Исходный код"
+  source-code: "Исходный код сайта"
+  license: "Исходный код сайта защищён лицензией GPL v3.0."
