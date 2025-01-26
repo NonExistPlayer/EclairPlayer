@@ -9,7 +9,7 @@ You can also help the project by implementing these tasks.
 - [ ] Add acrylic transparency effect for all supported platforms.*
 - [ ] Make a visualization of sound waves of the played melody.*
 ## Site
-- [ ] Add blog / news.
+- [x] Add blog / news.
 ## Other
 - [ ] Update notifications *or* auto-update.
 - [ ] Add the ability to record the microphone in the application.
