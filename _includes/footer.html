@@ -4,12 +4,13 @@
 
 <footer>
     <div>
-        <a href="https://github.com/NonExistPlayer/EclairPlayer">Eclair Source Code</a>
-        <a href="https://github.com/NonExistPlayer/EclairPlayer/tree/gh-pages">Site Source Code</a>
+        <a href="https://github.com/NonExistPlayer/EclairPlayer">
+            {{ site.data.t[page.lang].eclair-source-code }}
+        </a>
+        <a href="https://github.com/NonExistPlayer/EclairPlayer/tree/gh-pages">
+            {{ site.data.t[page.lang].source-code }}
+        </a>
     </div>
-    <div style="gap: 3px">
-        The source code of this site is protected by the
-        <a href="https://choosealicense.com/licenses/gpl-3.0/">GPL v3.0</a> license.<br>
-    </div>
+    <div>{{ site.data.t[page.lang].license }}</div>
     <div>Copyright © 2025 Ilya Korobov</div>
 </footer>
