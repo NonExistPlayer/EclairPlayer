@@ -10,7 +10,7 @@ layout: default
   {{ content }}
 
   {%- if page.lang == 'ru' -%}
-    {%- assign posts_list = site.posts-ru -%}
+    {%- assign posts_list = site.posts-ru | reverse -%}
   {%- else -%}
     <p style="font-size: small">
     <b>Important!</b><br>
