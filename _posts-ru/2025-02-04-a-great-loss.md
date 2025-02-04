@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Большая потеря
-permalink: /ru/post/2025/01/26/a-great-loss
+permalink: /ru/post/2025/02/04/a-great-loss
 category: post
 
 lang: ru
