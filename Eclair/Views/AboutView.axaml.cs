@@ -1,4 +1,6 @@
 using Avalonia.Controls;
+using Avalonia.Media;
+using Avalonia.Layout;
 using System;
 
 namespace Eclair.Views;
@@ -18,6 +20,12 @@ public partial class AboutView : UserControl
         }
         else
             MainGrid.RowDefinitions[0].Height = new(0);
+        
+        #if DEBUG
+        TextPanel.Children.Insert(0,
+            new TextBlock() { Text = "DEBUG VERSION", FontWeight = FontWeight.Bold, HorizontalAlignment = HorizontalAlignment.Center }
+        );
+        #endif
     }
 
     private async void GotoGitHubRepo(object? sender, Avalonia.Interactivity.RoutedEventArgs e)

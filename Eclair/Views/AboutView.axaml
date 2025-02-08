@@ -30,7 +30,8 @@
 		<Separator Grid.Row="2"/>
 
 		<ScrollViewer Grid.Row="3">
-			<StackPanel VerticalAlignment="Center">
+			<StackPanel Name="TextPanel"
+						VerticalAlignment="Center">
 				<TextBlock Text="{Binding About_CreatedBy}"
 							HorizontalAlignment="Center"/>
 				<local:RefTextButton
