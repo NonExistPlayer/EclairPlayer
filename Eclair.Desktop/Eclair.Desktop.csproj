@@ -18,6 +18,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="runtimes/**/*.*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <ProjectReference Include="..\Eclair\Eclair.csproj" />
   </ItemGroup>
 </Project>
