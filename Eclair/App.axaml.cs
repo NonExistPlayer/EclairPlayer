@@ -29,6 +29,9 @@ public partial class App : Application
         Config.LoadResources();
 
         AvaloniaXamlLoader.Load(this);
+
+        if (!OperatingSystem.IsAndroid())
+            RequestedThemeVariant = Avalonia.Styling.ThemeVariant.Dark;
     }
 
     private void UnhandledException(object sender, UnhandledExceptionEventArgs e)
