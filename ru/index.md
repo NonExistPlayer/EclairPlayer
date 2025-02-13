@@ -30,9 +30,11 @@ lang: ru
 
 ## Поддерживаемые ОC
 Рядом с названием ОС написана минимальная версия для запуска.
+
 - **Android** 8.0
 
 Следующая информация взята [отсюда](https://github.com/AvaloniaUI/Avalonia/wiki/Runtime-Requirements).
+
 - **Windows** 8.0
 - **Debian** 9
 - **Ubuntu** 16.04

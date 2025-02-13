@@ -28,10 +28,12 @@ I enjoy developing this project despite the difficulties and problems I encounte
 - `.wav`
 
 ## Supported OS
-The minimum version for launching is written next to the OS name.  
+The minimum version for launching is written next to the OS name.
+
 - **Android** 8.0
 
 The following information is taken [from here](https://github.com/AvaloniaUI/Avalonia/wiki/Runtime-Requirements).
+
 - **Windows** 8.0
 - **Debian** 9
 - **Ubuntu** 16.04

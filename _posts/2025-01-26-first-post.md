@@ -18,6 +18,7 @@ So, at the moment the player looks... well... normal?.. I think that for a fifth
 
 ## Interesting facts
 Since I don’t know what to tell about this player, I will share a few interesting facts:
+
 - I started making this player two weeks before my birthday.
 - My mom loves eclairs.
 - At the time of writing this post I am 12 years old. And I started making **Eclair** when I was 11.
