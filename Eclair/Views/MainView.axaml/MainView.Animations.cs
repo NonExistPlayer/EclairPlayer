@@ -7,19 +7,26 @@ namespace Eclair.Views;
 partial class MainView
 {
                     // CIA = Circle Icon Animation
-    internal DispatcherTimer ciatimer = new()
+    internal DispatcherTimer timer = new()
     {
         Interval = TimeSpan.FromMilliseconds(40),
     };
 
-    void CIATimer_Tick(object? sender, EventArgs e)
+    void Timer_Tick(object? sender, EventArgs e)
     {
-        if (!player.IsPlaying)
+        if (!isplaying)
         {
-            ciatimer.Stop();
+            timer.Stop();
             return;
         }
 
-        rttransform!.Angle += 0.5;
+        if (rttransform != null)
+            rttransform.Angle += 0.5;
+        
+        Dispatcher.UIThread.InvokeAsync(delegate
+        {
+            calledByPlayer = true;
+            MusSlider.Value = CurrentPos;
+        });
     }
 }

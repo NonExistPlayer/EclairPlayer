@@ -25,15 +25,15 @@ public partial class MainWindow : Window
         {
             if (View.Content is not MainView view) return;
 
-            if (view.player.IsPlaying && Config.UseCircleIconAnimation)
-                view.ciatimer.Start();
+            if (view.isplaying && Config.UseCircleIconAnimation)
+                view.timer.Start();
         };
         Deactivated += (s, e) =>
         {
             if (View.Content is not MainView view) return;
 
-            if (view.player.IsPlaying && view.ciatimer.IsEnabled)
-                view.ciatimer.Stop();
+            if (view.isplaying && view.timer.IsEnabled)
+                view.timer.Stop();
         };
     }
 

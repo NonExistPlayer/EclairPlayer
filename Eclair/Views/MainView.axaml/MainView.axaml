@@ -170,8 +170,7 @@
 							   Margin="0,13"/>
 						<Slider Name="MusSlider"
 								IsEnabled="False"
-								ValueChanged="SliderValueChanged"
-								Maximum="100"/>
+								ValueChanged="SliderValueChanged"/>
 						<Label Name="MusDurationLabel"
 							   Content="00:00"
 							   Margin="0,13"/>

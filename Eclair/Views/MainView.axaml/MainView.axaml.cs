@@ -1,5 +1,5 @@
 ﻿using File = System.IO.File;
-using LibVLCSharp.Shared;
+using ManagedBass;
 using System;
 using System.IO;
 using System.Linq;
@@ -13,14 +13,12 @@ using Eclair.Controls;
 
 namespace Eclair.Views;
 
-public partial class MainView : UserControl
+public partial class MainView : UserControl, IDisposable
 {
     public const double SnowfallBlurRadius = 5;
 
     internal static object? prevcontent;
 
-    readonly LibVLC vlc;
-    internal MediaPlayer player;
     bool calledByPlayer;
     Control[]? musicitems;
 
@@ -34,43 +32,12 @@ public partial class MainView : UserControl
     {
         InitializeComponent();
         Task.Run(FindMusic);
-        vlc = new();
-        vlc.Log += LibVlcOutput;
-
-        player = new(vlc);
-
-        player.EndReached += delegate
+        
+        if (!Bass.Init())
         {
-            Dispatcher.UIThread.InvokeAsync(delegate
-            {
-                MusSlider.Value = 0;
-                if (loop)
-                {
-                    PlayOrPause();
-                    ciatimer.Stop();
-                }
-                else if (Config.AutoPlay)
-                {
-                    if (!PlayNext()) PlayButtonSetImage("play");
-                }
-                else PlayButtonSetImage("play");
-
-                if (PManager != null && !loop)
-                    PManager.ShowPlayerNotification(TitleLabel.Content?.ToString()!, false);
-            });
-        };
-        player.PositionChanged += Player_PositionChanged;
-
-        player.Playing += delegate
-        {
-            Dispatcher.UIThread.Invoke(delegate
-            {
-                if (Config.UseCircleIconAnimation)
-                    ciatimer.Start();
-
-                MusDurationLabel.Content = TimeSpan.FromMilliseconds(player.Media!.Duration).ToString(@"mm\:ss");
-            });
-        };
+            Logger.Log("Failed to initialize BASS!", Critical);
+            Environment.Exit(1);
+        }
 
         if (Config.UseCircleIconAnimation)
         {
@@ -103,7 +70,7 @@ public partial class MainView : UserControl
         //     MainGrid.Children.Insert(0, snowfall);
         // }
 
-        ciatimer.Tick += CIATimer_Tick;
+        timer.Tick += Timer_Tick;
 
         var args = Environment.GetCommandLineArgs();
         if (args.Length == 2)
@@ -125,7 +92,6 @@ public partial class MainView : UserControl
             ShowPlayer();
         }
     }
-    private void LibVlcOutput(object? sender, LogEventArgs e) => Logger.Log(e.Message, new((ushort)e.Level));
 
     private void FindMusic()
     {
@@ -189,12 +155,12 @@ public partial class MainView : UserControl
     }
     internal void PlayPrevious()
     {
-        if (player.Media == null) return;
-        if (TimeSpan.FromMilliseconds(
-            (double)(player.Media!.Duration * player.Position)).TotalSeconds > 6 ||
+        if (shnd == 0) return;
+        if (// TimeSpan.FromMilliseconds(
+            // (double)(player.Media!.Duration * player.Position)).TotalSeconds > 6 ||
             currenttrack == 0)
         {
-            player.Position = 0;
+            CurrentPos = 0;
             return;
         }
         --currenttrack;
@@ -265,8 +231,8 @@ public partial class MainView : UserControl
                 RadiusX = 32,
                 RadiusY = 32
             };
-            if (player.IsPlaying)
-                ciatimer.Start();
+            if (isplaying)
+                timer.Start();
         }
         else
         {
@@ -274,7 +240,7 @@ public partial class MainView : UserControl
             MusicPicture.Clip = null;
             MusicPicture2.Clip = null;
             rttransform = null;
-            if (player.IsPlaying) ciatimer.Stop();
+            if (isplaying) timer.Stop();
         }
     }
     //                   DisableEffects

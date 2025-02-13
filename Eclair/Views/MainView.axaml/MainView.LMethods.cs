@@ -1,17 +1,12 @@
 using File = System.IO.File;
 using TagFile = TagLib.File;
 using TagLib;
-using LibVLCSharp.Shared;
-using System;
 using System.IO;
 using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Styling;
 using Avalonia.Layout;
 using Avalonia.Media;
 using Avalonia.Media.Imaging;
-using Avalonia.Controls.ApplicationLifetimes;
-using System.Linq;
 
 namespace Eclair.Views;
 
@@ -119,54 +114,5 @@ partial class MainView
             MusicPanel.Children.Add(border);
         else if (musicitems != null)
             musicitems = [.. musicitems, border];
-    }
-    
-    internal void LoadMusicFile(string name, Stream stream)
-    {
-        MusDurationLabel.Content = "00:00";
-
-        if (player.Media == null)
-        {
-            MusSlider.IsEnabled = true;
-        }
-        else
-        {
-            Stop();
-            player.Media.Dispose();
-        }
-
-        var file = TagFile.Create(new ReadOnlyFileImplementation(name, stream));
-        var tags = file.Tag;
-
-        SetTitle($"{string.Join(", ", tags.Performers)} - {tags.Title}");
-
-        if (TitleLabel.Content?.ToString() == " - ")
-            SetTitle(name);
-
-        SetTitle(TitleLabel.Content?.ToString());
-
-        if (!OperatingSystem.IsAndroid())
-            ((Application.Current?.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime)?
-                .MainWindow as MainWindow)?.SetTitle($"Eclair - {name}");
-
-        IPicture? picture = tags.Pictures.Length > 0 ? tags.Pictures[0] : null;
-
-        if (picture != null)
-        {
-            string fpath = TempPath + $"{tags.Title}-picture0";
-
-            if (File.Exists(fpath))
-                goto display;
-
-            var outputstream = File.OpenWrite(fpath);
-            outputstream.Write(picture.Data.Data, 0, picture.Data.Count);
-            outputstream.Close();
-
-        display:
-            SetImage(new Bitmap(fpath));
-        }
-        else SetImage(Application.Current?.FindResource("unknowntrack") as Bitmap);
-
-        player.Media = new(vlc, new StreamMediaInput(stream));
     }
 }
