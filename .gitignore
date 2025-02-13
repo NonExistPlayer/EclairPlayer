@@ -456,3 +456,5 @@ $RECYCLE.BIN/
 *.keystore
 # This file stores information about the keystore data.
 keystoreinfo.props
+
+.sync*
