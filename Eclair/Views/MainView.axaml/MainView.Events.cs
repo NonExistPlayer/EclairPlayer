@@ -99,7 +99,7 @@ partial class MainView
         SearchBox.IsEnabled = false;
         BackButton.IsVisible = true;
         BackButton.IsEnabled = true;
-        if (!Config.DisableEffects)
+        if (!Config.DisableEffects && snowfall != null)
             (snowfall?.Effect as BlurEffect)!.Radius = 10;
     }
 }
