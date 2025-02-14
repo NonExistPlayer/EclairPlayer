@@ -110,10 +110,9 @@ partial class MainView
         
         Dispatcher.UIThread.Invoke(delegate
         {
-            //if (Config.UseCircleIconAnimation)
-                timer.Start();
+            timer.Start();
 
-            MusDurationLabel.Content = TimeSpan.FromMilliseconds(tracklength).ToString(@"mm\:ss");            
+            MusDurationLabel.Content = TimeSpan.FromSeconds(tracklength).ToString(@"mm\:ss");            
         });
 
         return true;

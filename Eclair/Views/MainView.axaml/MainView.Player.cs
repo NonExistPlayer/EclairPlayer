@@ -1,4 +1,5 @@
 ﻿// This file is responsible for the fullscreen player in MainView.
+using System;
 using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls;
@@ -29,7 +30,7 @@ partial class MainView
     private void StopButtonClicked(object? sender, Avalonia.Interactivity.RoutedEventArgs e) => Stop();
     private void SliderValueChanged(object? sender, Avalonia.Controls.Primitives.RangeBaseValueChangedEventArgs e)
     {
-        //MusPositionLabel.Content = TimeSpan.FromMilliseconds((double)(player.Media!.Duration * player.Position)).ToString(@"mm\:ss");
+        MusPositionLabel.Content = TimeSpan.FromSeconds(CurrentPos).ToString(@"mm\:ss");
         if (calledByPlayer)
         {
             calledByPlayer = false;
