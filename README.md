@@ -7,7 +7,7 @@ This player is gradually developing and is aimed not only at listening to music,
 I will be glad to any help in developing the project!
 
 ## BASS
-**Eclair** использует аудио библиотеку BASS для воспроизведенияя аудио.
+**Eclair** uses the BASS audio library for audio playback.
 > BASS Audio Library (https://www.un4seen.com)<br>
 > Copyright (c) 1999-2023 Un4seen Developments Ltd.
 

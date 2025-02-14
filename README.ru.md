@@ -7,7 +7,7 @@
 Я буду рад любой помощи в развитии проекта!
 
 ## BASS
-**Eclair** uses the BASS audio library for audio playback.
+**Eclair** использует аудио библиотеку BASS для воспроизведения аудио.
 > BASS Audio Library (https://www.un4seen.com)<br>
 > Copyright (c) 1999-2023 Un4seen Developments Ltd.
 
