@@ -1,5 +1,6 @@
 // This file handles animations in MainView.
 using System;
+using Avalonia.Controls;
 using Avalonia.Threading;
 
 namespace Eclair.Views;
@@ -23,10 +24,13 @@ partial class MainView
         if (rttransform != null)
             rttransform.Angle += 0.5;
         
-        Dispatcher.UIThread.InvokeAsync(delegate
+        if (MainGrid.RowDefinitions[3].Height == GridLength.Star /*if fullscreen player*/)
         {
-            calledByPlayer = true;
-            MusSlider.Value = CurrentPos;
-        });
+            Dispatcher.UIThread.InvokeAsync(delegate
+            {
+                calledByPlayer = true;
+                MusSlider.Value = CurrentPos;
+            });
+        }
     }
 }
