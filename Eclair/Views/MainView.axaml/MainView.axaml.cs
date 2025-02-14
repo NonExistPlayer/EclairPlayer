@@ -91,6 +91,9 @@ public partial class MainView : UserControl, IDisposable
             PlayOrPause();
             ShowPlayer();
         }
+        MusSlider.PointerReleased += SliderPointerReleased;
+
+        MusSlider.AddHandler(PointerReleasedEvent, SliderPointerReleased, Avalonia.Interactivity.RoutingStrategies.Tunnel);
     }
 
     private void FindMusic()

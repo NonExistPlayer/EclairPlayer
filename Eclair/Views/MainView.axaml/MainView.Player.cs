@@ -28,15 +28,22 @@ partial class MainView
     private void PreviousClicked(object? sender, Avalonia.Interactivity.RoutedEventArgs e) => PlayPrevious();
     private void SkipForwardClicked(object? sender, Avalonia.Interactivity.RoutedEventArgs e) => PlayNext();
     private void StopButtonClicked(object? sender, Avalonia.Interactivity.RoutedEventArgs e) => Stop();
+    
+    bool sliderPressed;
     private void SliderValueChanged(object? sender, Avalonia.Controls.Primitives.RangeBaseValueChangedEventArgs e)
     {
-        MusPositionLabel.Content = TimeSpan.FromSeconds(CurrentPos).ToString(@"mm\:ss");
+        MusPositionLabel.Content = TimeSpan.FromSeconds(!sliderPressed ? CurrentPos : MusSlider.Value).ToString(@"mm\:ss");
         if (calledByPlayer)
         {
             calledByPlayer = false;
             return;
         }
-        //player.Position = (float)(e.NewValue / 100);
+        sliderPressed = true;
+    }
+    private void SliderPointerReleased(object? sender, Avalonia.Input.PointerReleasedEventArgs e) 
+    {
+        CurrentPos = MusSlider.Value;
+        sliderPressed = false;
     }
     private void LB_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
     {

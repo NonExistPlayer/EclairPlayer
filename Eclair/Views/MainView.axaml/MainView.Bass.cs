@@ -134,6 +134,7 @@ partial class MainView
             if (PManager != null && !loop)
                 PManager.ShowPlayerNotification(TitleLabel.Content?.ToString()!, false);
         });
+        sliderPressed = false;
     }
     #endregion
 

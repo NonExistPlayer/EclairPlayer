@@ -24,7 +24,8 @@ partial class MainView
         if (rttransform != null)
             rttransform.Angle += 0.5;
         
-        if (MainGrid.RowDefinitions[3].Height == GridLength.Star /*if fullscreen player*/)
+        if (MainGrid.RowDefinitions[3].Height == GridLength.Star /*if fullscreen player*/ &&
+            !sliderPressed)
         {
             Dispatcher.UIThread.InvokeAsync(delegate
             {
