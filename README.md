@@ -6,6 +6,14 @@
 This player is gradually developing and is aimed not only at listening to music, but also at beauty and ease of use.<br>
 I will be glad to any help in developing the project!
 
+## BASS
+**Eclair** использует аудио библиотеку BASS для воспроизведенияя аудио.
+> BASS Audio Library (https://www.un4seen.com)<br>
+> Copyright (c) 1999-2023 Un4seen Developments Ltd.
+
+> BASS is used under the license granted by Un4seen Developments.<br>
+> For more information, visit https://www.un4seen.com.
+
 ## Why is Eclair open-source?
 **Eclair** is my hobby, as is programming in general.
 I support free software, and that is why **Eclair** is open-source.

@@ -6,6 +6,14 @@
 Этот плеер постепенно развивается и нацелен не только на прослушивания музыки, но и на красоту и удобство использования.<br>
 Я буду рад любой помощи в развитии проекта!
 
+## BASS
+**Eclair** uses the BASS audio library for audio playback.
+> BASS Audio Library (https://www.un4seen.com)<br>
+> Copyright (c) 1999-2023 Un4seen Developments Ltd.
+
+> BASS используется по лицензии, предоставленной Un4seen Developments.<br>
+> Для получения дополнительной информации посетите https://www.un4seen.com.
+
 ## Почему Eclair open-source?
 **Eclair** это моё хобби, как и программирование в целом.
 Я поддерживаю свободное ПО, и именно поэтому **Eclair** open-source.
@@ -56,7 +64,8 @@ sudo apt install vlc libvlc-dev libvlccore-dev
 * [Avalonia](https://github.com/AvaloniaUI/Avalonia)
     - [Avalonia.Svg.Skia](https://github.com/wieslawsoltes/Svg.Skia) (11.0.0)
     - [MessageBox.Avalonia](https://github.com/AvaloniaCommunity/MessageBox.Avalonia) (3.1.0)
-* [LibVLCSharp](https://github.com/videolan/libvlcsharp)
+* [использовалось ранее] ~~LibVLCSharp~~
+* [ManagedBass](https://github.com/ManagedBass/ManagedBass) и [BASS](https://un4seen.com)
 * [Newtonsoft.Json](https://github.com/JamesNK/Newtonsoft.Json/)
 * [TagLibSharp](https://github.com/mono/taglib-sharp)
 * [NonExistPlayer/Logging](https://github.com/NonExistPlayer/Logging)
