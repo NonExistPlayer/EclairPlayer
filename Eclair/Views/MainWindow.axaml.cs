@@ -25,7 +25,7 @@ public partial class MainWindow : Window
         {
             if (View.Content is not MainView view) return;
 
-            if (view.isplaying && Config.UseCircleIconAnimation)
+            if (view.isplaying)
                 view.timer.Start();
         };
         Deactivated += (s, e) =>
