@@ -95,13 +95,14 @@ partial class MainView
         }
         else
         {
-            if (CurrentPos == 0) Stop();
-
             Play();
 
             PManager.ShowPlayerNotification(TitleLabel.Content?.ToString()!, true);
+
+            if (!timer.IsEnabled)
+                timer.Start();
         }
 
-        PlayButtonSetImage(isplaying ? "play" : "pause");
+        PlayButtonSetImage(isplaying ? "pause" : "play");
     }
 }
