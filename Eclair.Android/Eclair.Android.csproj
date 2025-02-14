@@ -10,7 +10,7 @@
     <AndroidPackageFormat>apk</AndroidPackageFormat>
     <AndroidEnableProfiledAot>False</AndroidEnableProfiledAot>
     <AssemblyName></AssemblyName>
-    <AndroidSigningKeyStore>eclairplayer.keystore</AndroidSigningKeyStore>
+    <AndroidSigningKeyStore>../eclairplayer.keystore</AndroidSigningKeyStore>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <AndroidKeyStore>True</AndroidKeyStore>
@@ -46,6 +46,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="runtimes/**/*.*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    
     <ProjectReference Include="..\Eclair\Eclair.csproj" />
   </ItemGroup>
 </Project>
