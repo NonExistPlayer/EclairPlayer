@@ -3,6 +3,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:Eclair.ViewModels"
+			 xmlns:local="clr-namespace:Eclair.Controls;assembly=Eclair"
              mc:Ignorable="d" d:DesignWidth="760" d:DesignHeight="450"
              x:Class="Eclair.Views.MainView"
              x:DataType="vm:ViewModel">
@@ -114,6 +115,10 @@
 			<StackPanel HorizontalAlignment="Center"
 						VerticalAlignment="Center"
 						Width="1000">
+				<local:AudioVisualizer Name="Visualizer"
+									   Width="800"
+								       Height="250"
+									   HorizontalAlignment="Center"/>
 				<Image Name="MusicPicture"
 						MaxWidth="250"
 						MaxHeight="250"

@@ -109,6 +109,8 @@ partial class MainView
 
             if (!timer.IsEnabled)
                 timer.Start();
+
+            Visualizer.InvalidateVisual();
         }
 
         PlayButtonSetImage(isplaying ? "pause" : "play");

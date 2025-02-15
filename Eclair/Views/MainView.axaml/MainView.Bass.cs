@@ -115,6 +115,8 @@ partial class MainView
             MusDurationLabel.Content = TimeSpan.FromSeconds(tracklength).ToString(@"mm\:ss");            
         });
 
+        Visualizer.StreamHandle = shnd;
+
         return true;
     }
 
