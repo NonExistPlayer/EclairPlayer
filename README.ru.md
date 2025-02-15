@@ -75,13 +75,14 @@ sudo apt install vlc libvlc-dev libvlccore-dev
 ## Устройства
 
 ### Windows
-**Система**: **Microsoft Windows 11 Pro** *10.0.22621 сборка 22621*
+**Система**: **Microsoft Windows 10 Enterprise LTSC** *(x86 VirtualBox Machine)*
 ### Linux
 **Система**: **Manjaro Linux** *6.12.4-1-MANJARO*
 ### Android
 |Устройство|Система|Номер сборки|
 |:-:|:-:|:-:|
-|[Google Pixel 3 XL](https://www.google.com/search?q=Google+Pixel+3+xl)|Android **12** (**API 31**)|*SP1A.210812.016.C1*|
+|Google Pixel 6 Pro|Android **15** (**API 35**)|*AP4A.250105.002*|
+|Google Pixel 3 XL|Android **12** (**API 31**)|*SP1A.210812.016.C1*|
 
 # [Список задач](res/todo.ru.md)
 Список задач проекта вы можете просмотреть нажав на ссылку выше.
