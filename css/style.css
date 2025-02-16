@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap');
+@import "https://www.nerdfonts.com/assets/css/webfont.css";
+
 footer div {
     display: flex;
     max-width: fit-content;
@@ -25,6 +28,31 @@ footer div {
     margin-top: 15px;
 }
 
+.nf-icons {
+    font-size: 100px;
+}
+
+.divided {
+    animation: appearance 1s;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+    gap: 50px;
+    margin-bottom: 50px;
+
+    img {
+        margin: auto;
+        border-radius: 5px;
+    }
+    
+    div {
+        font-family: "Montserrat", serif;
+
+        h1 {
+            font-size: 25px;
+        }
+    }
+}
+
 .title-div {
     display: flex;
     flex-direction: column;
@@ -33,7 +61,79 @@ footer div {
     background-image: url('/EclairPlayer/assets/screenshot.png');
     background-position: center;
     border-radius: 10px;
+    animation: appearance 1.5s;
+    font-family: "Nunito", serif;
 }
+
+.site-title, .title-div div {
+    font-family: "Sour Gummy", serif;
+}
+
+.img-left {
+    animation: left-appearance 1s;
+}
+
+.img-right {
+    animation: right-appearance 1s;
+}
+
+.assets {
+    display: flex;
+    justify-content: space-between;
+}
+
+.asset i {
+    font-size: clamp(16px, 20vw, 160px);
+    animation: appearance 1s;
+}
+
+.arch {
+    margin-top: 20px;
+    background-color: lightgray;
+    text-align: center;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+
+    a {
+        color: black;
+        text-decoration: underline;
+    }
+}
+
+@keyframes left-appearance {
+    0% {
+        transform: translateX(-50px);
+        opacity: 0;
+    }
+    100% {
+        transform: 0;
+        opacity: 100;
+    }
+}
+
+@keyframes right-appearance {
+    0% {
+        transform: translateX(50px);
+        opacity: 0;
+    }
+    100% {
+        transform: 0;
+        opacity: 100;
+    }
+}
+
+@keyframes appearance {
+    0% {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    100% {
+        transform: 0;
+        opacity: 100;
+    }
+}
+
 @media (width < 1162px) {
     .content {
         padding: 15px;
@@ -42,5 +142,20 @@ footer div {
         top: 25%;
         left: 50%;
         transform: translate(-50%, 0);
+    }
+}
+@media (width <= 700px) {
+    .divided {
+        grid-template-columns: 1fr;
+        gap: 0;
+
+        img {
+            order: -1;
+        }
+    }
+}
+@media (width < 443px) {
+    .nf-icons {
+        font-size: 60px;
     }
 }

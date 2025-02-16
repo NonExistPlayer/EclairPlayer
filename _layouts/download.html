@@ -1,0 +1,18 @@
+---
+layout: version
+---
+
+{%- if page.lang == 'ru' -%}
+    {% assign list = site.download-ru | reverse %}
+{%- else -%}
+    {% assign list = site.download | reverse %}
+{%- endif -%}
+
+<br>
+
+<h2>{{ site.data.t[page.lang].all-versions }}</h2>
+<ul>
+{%- for version in list -%}
+    <li><a href="{{ version.url | relative_url }}">{{ version.ver }}</a></li>
+{%- endfor -%}
+</ul>

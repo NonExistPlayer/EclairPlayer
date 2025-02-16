@@ -7,6 +7,23 @@ en:
   license: "The source code of the site is protected by the GPL v3.0 license."
   post: "Post"
   news: "News"
+  all-versions: All versions
+  main:
+    beauty:
+      h1: Beauty
+      span: |
+        <b>Eclair</b> tries to be beautiful. Its main feature and difference from other audio players is its beauty and modernity.
+    open-source:
+      h1: Open source
+      span: |
+        <b>Eclair</b> is open source. The openness of my project means that
+        you and any other person can study how this player works, make edits
+        to <b>Eclair</b> and help the project! <i class="nf nf-md-heart"></i>.
+    cross-platform:
+      h1: Cross-platform
+      span: |
+        <b>Eclair</b> supports almost all platforms, which allows you to use our
+        player on almost all platforms!
 
 ru:
   slogan: "Просто. Открыто. Сладко."
@@ -17,3 +34,21 @@ ru:
   license: "Исходный код сайта защищён лицензией GPL v3.0."
   post: "Пост"
   news: "Новости"
+  all-versions: Все версии
+  main:
+    beauty:
+      h1: Красота
+      span: |
+        <b>Eclair</b> старается быть красивым. Его главная особенность и отличие
+        от других аудио плееров, это красота и современность.
+    open-source:
+      h1: Открытый исходный код
+      span: |
+       <b>Eclair</b> имеет открытый исходный код. Открытость моего проекта означает, то
+       что вы и любой другой человек можете изучить как работает этот плеер, внести правки
+       в <b>Eclair</b> и помочь проекту! <i class="nf nf-md-heart"></i>.
+    cross-platform:
+      h1: Кросс-платформенность
+      span: |
+        <b>Eclair</b> поддерживает почти все платформы, что позволяет вам пользоваться нашим
+        плеером почти на всех платформах!

@@ -1,0 +1,40 @@
+---
+layout: default
+---
+
+<h1>{{ page.title }}</h1>
+
+<div class="assets">
+    <div class="asset">
+        <i class="nf nf-custom-windows"></i>
+        <div class="arch">
+            <a href="https://github.com/NonExistPlayer/EclairPlayer/releases/download/v{{ page.ver }}/win-x64.apk">
+                x64
+            </a>
+            <a href="https://github.com/NonExistPlayer/EclairPlayer/releases/download/v{{ page.ver }}/win-x86.apk">
+                x86
+            </a>
+        </div>
+    </div>
+    <div class="asset">
+        <i class="nf nf-fa-linux"></i>
+        <div class="arch">
+            <a href="https://github.com/NonExistPlayer/EclairPlayer/releases/download/v{{ page.ver }}/linux-x64.apk">
+                x64
+            </a>
+            <a href="https://github.com/NonExistPlayer/EclairPlayer/releases/download/v{{ page.ver }}/linux-arm64.apk">
+                arm64
+            </a>
+        </div>
+    </div>
+    <div class="asset">
+        <i class="nf nf-dev-android"></i>
+        <div class="arch">
+            <a href="https://github.com/NonExistPlayer/EclairPlayer/releases/download/v{{ page.ver }}/android-x64.apk">
+                x64
+            </a>
+        </div>
+    </div>
+</div>
+
+{{ content }}

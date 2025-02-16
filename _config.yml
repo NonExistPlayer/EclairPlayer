@@ -29,6 +29,10 @@ markdown: rdiscount
 theme: "minima"
 
 collections:
+  download:
+    output: true
+  download-ru:
+    output: true
   posts-ru:
     output: true
 

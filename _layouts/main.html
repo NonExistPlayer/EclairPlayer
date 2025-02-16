@@ -2,6 +2,8 @@
 layout: home
 ---
 
+<link rel="stylesheet" href="/EclairPlayer/css/style.css">
+
 <div class="title-div">
     <img src="/EclairPlayer/assets/icon.png" width="180" alt="Icon">
     <div style="font-size: 60px; color: #ddd">
@@ -10,5 +12,35 @@ layout: home
     <b style="color: #ddd">{{ site.data.t[page.lang].slogan }}</b>
     <p style="color: #ddd">{{ site.data.t[page.lang].desc }}</p>
 </div><br>
+
+{% assign main = site.data.t[page.lang].main %}
+
+<div class="divided">
+    <img src="/EclairPlayer/assets/screenshot.png" class="img-left">
+    <div>
+        <h1>{{ main.beauty.h1 }}</h1>
+        <span>{{ main.beauty.span }}</span>
+    </div>
+</div>
+
+<div class="divided">
+    <div>
+        <h1>{{ main.open-source.h1 }}</h1>
+        <span>{{ main.open-source.span }}</span>
+    </div>
+    <a href="https://github.com" style="margin: auto"><img class="img-right" src="/EclairPlayer/assets/github.svg"></a>
+</div>
+
+<div class="divided">
+    <div class="nf-icons img-left">
+        <i class="nf nf-custom-windows"></i>
+        <i class="nf nf-fa-linux"></i>
+        <i class="nf nf-dev-android"></i>
+    </div>
+    <div>
+        <h1>{{ main.cross-platform.h1 }}</h1>
+        <span>{{ main.cross-platform.span }}</span>
+    </div>
+</div>
 
 {{ content }}
