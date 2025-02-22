@@ -15,6 +15,13 @@ You can also help the project by implementing these tasks.
 - [ ] Add the ability to record the microphone in the application.
 - [ ] Make adaptive volume. (so that quiet music sounds louder and loud music sounds quieter)
 - [ ] Add support for iOS and MacOS.*
+- [ ] Create project branches. (Stable, Preview, Dev)
+- [ ] Create packages for Linux
+    - [ ] .deb
+    - [ ] .rpm
+    - [ ] PKGBUILD (AUR)
+    - [ ] .AppImage
+- [ ] Create installer for Windows.
 ### Optimization
 - [ ] Optimization on Linux/Android.
     - [x] A critical error was noticed on Linux, due to which, when playing music, the application consumed an inappropriately large percentage of the CPU, and the disk with music was spinning very quickly.
