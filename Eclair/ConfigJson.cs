@@ -18,6 +18,7 @@ internal sealed class ConfigJson
     public bool AutoPlay = true;
     public Color BackgroundColor = new(125, 0, 0, 0);
     public bool EnableVisualizer = true;
+    public Color VisualizerColor = Colors.LightBlue;
 
     #region Methods
     public static ConfigJson Load()

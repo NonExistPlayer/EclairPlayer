@@ -43,7 +43,7 @@ public sealed class AudioVisualizer : Control
         //     }
         // }
 
-        var pen = new Pen(Brushes.LightBlue, 1);
+        var pen = new Pen(new SolidColorBrush(Config.VisualizerColor), 1);
         var height = Bounds.Height / 2;
 
         for (int i = 0; i < fftData.Length; i++)
