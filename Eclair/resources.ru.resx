@@ -265,4 +265,8 @@
     <value>Авто воспроизведение</value>
     <comment/>
   </data>
+  <data name="ui.settings.enablevisualizer" xml:space="preserve">
+    <value>Визуализация аудио</value>
+    <comment/>
+  </data>
 </root>

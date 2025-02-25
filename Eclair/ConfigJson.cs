@@ -17,6 +17,7 @@ internal sealed class ConfigJson
     public bool DisableEffects;
     public bool AutoPlay = true;
     public Color BackgroundColor = new(125, 0, 0, 0);
+    public bool EnableVisualizer = true;
 
     #region Methods
     public static ConfigJson Load()

@@ -16,6 +16,7 @@ public partial class SettingsView : UserControl
         CB_DisableCustomBorder.IsChecked = Config.DisableCustomBorder;
         CB_DisableCustomBorder.IsEnabled = OperatingSystem.IsWindows();
         CB_DisableEffects.IsChecked = Config.DisableEffects;
+        CB_EnableVisualizer.IsChecked = Config.EnableVisualizer;
 
         CB_DisableEffects.IsEnabled = false;
 
@@ -70,6 +71,7 @@ public partial class SettingsView : UserControl
                     win.Update_DCB();
                 break;
             case "DisableEffects": view.Update_DEff(); break;
+            case "EnableVisualizer": view.Update_Visualizer(); break;
         }
     }
 }
