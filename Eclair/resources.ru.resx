@@ -269,4 +269,8 @@
     <value>Визуализация аудио</value>
     <comment/>
   </data>
+  <data name="ui.about.site" xml:space="preserve">
+    <value>Сайт Eclair</value>
+    <comment/>
+  </data>
 </root>

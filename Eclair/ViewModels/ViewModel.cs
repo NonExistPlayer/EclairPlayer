@@ -33,6 +33,7 @@ public class ViewModel : ViewModelBase
     public string About_OriginalRepo => resources.ui_about_originalrepo;
     public string About_License => resources.ui_about_license;
     public string About_IconsSource => resources.ui_about_iconssource;
+    public string About_Site => resources.ui_about_site;
     #endregion
 
     #region Icons

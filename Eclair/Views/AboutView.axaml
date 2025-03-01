@@ -35,6 +35,10 @@
 				<TextBlock Text="{Binding About_CreatedBy}"
 							HorizontalAlignment="Center"/>
 				<local:RefTextButton
+					Text="{Binding About_Site}"
+					Link="https://nonexistplayer.github.io/EclairPlayer/"
+					HorizontalAlignment="Center"/>
+				<local:RefTextButton
 					Text="{Binding About_OriginalRepo}"
 					Link="https://github.com/NonExistPlayer/EclairPlayer"
 					HorizontalAlignment="Center"/>
