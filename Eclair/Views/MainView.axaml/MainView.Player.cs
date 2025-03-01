@@ -86,11 +86,10 @@ partial class MainView
 
         foreach (var file in files)
         {
-            var stream = await file.OpenReadAsync();
-            AddMusicItem(file.Name, stream);
+            var id = AddMusicItem(new(file));
 
             if (files[0] == file)
-                LoadMusicFile(file.Name, stream);
+                LoadTrack(id);
         }
     }
 

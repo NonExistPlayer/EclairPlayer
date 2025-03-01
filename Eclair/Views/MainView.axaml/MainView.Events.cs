@@ -27,7 +27,7 @@ partial class MainView
             if (item is not IStorageFile file) return;
 
             if (HasSupportedFormat(file.Name))
-                AddMusicItem(file.Name, await file.OpenReadAsync());
+                AddMusicItem(new(file));
         }
     }
     private void GotoSettings(object? sender, Avalonia.Interactivity.RoutedEventArgs e)

@@ -39,7 +39,7 @@ partial class MainView
 
     double tracklength;
 
-    internal bool LoadMusicFile(string name, Stream stream)
+    internal bool LoadMusicFile(Media media)
     {
         MusDurationLabel.Content = "00:00";
 
@@ -54,48 +54,23 @@ partial class MainView
             shnd = 0;
         }
 
-        var file = TagFile.Create(new ReadOnlyFileImplementation(name, stream));
-        var tags = file.Tag;
+        var tags = media.Tags;
 
         SetTitle($"{string.Join(", ", tags.Performers)} - {tags.Title}");
 
         if (TitleLabel.Content?.ToString() == " - ")
-            SetTitle(name);
+            SetTitle(media.FileName);
 
         SetTitle(TitleLabel.Content?.ToString());
 
         if (!OperatingSystem.IsAndroid())
             ((Application.Current?.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime)?
-                .MainWindow as MainWindow)?.SetTitle($"Eclair - {name}");
+                .MainWindow as MainWindow)?.SetTitle($"Eclair - {media.FileName}");
 
-        IPicture? picture = tags.Pictures.Length > 0 ? tags.Pictures[0] : null;
-
-        if (picture != null)
-        {
-            string fpath = TempPath + $"{tags.Title}-picture0";
-
-            if (File.Exists(fpath))
-                goto display;
-
-            var outputstream = File.OpenWrite(fpath);
-            outputstream.Write(picture.Data.Data, 0, picture.Data.Count);
-            outputstream.Close();
-
-        display:
-            SetImage(new Bitmap(fpath));
-        }
-        else SetImage(Application.Current?.FindResource("unknowntrack") as Bitmap);
-
-        byte[] aData;
-
-        stream.Position = 0;
-
-        BinaryReader reader = new(stream);
-
-        aData = reader.ReadBytes((int)stream.Length);
+        SetImage(media.Image ?? Application.Current?.FindResource("unknowntrack") as Bitmap);
 
         if ((
-            shnd = Bass.CreateStream(aData, 0, aData.Length, BassFlags.Default
+            shnd = Bass.CreateStream(media.AudioData, 0, media.AudioData.Length, BassFlags.Default
             )) == 0)
         {
             Logger.Error("Failed to load audio! " + Bass.LastError);

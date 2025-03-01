@@ -10,6 +10,7 @@ using Avalonia.Threading;
 using Avalonia.Media;
 using Avalonia.Svg.Skia;
 using Eclair.Controls;
+using System.Collections.Generic;
 
 namespace Eclair.Views;
 
@@ -75,19 +76,7 @@ public partial class MainView : UserControl, IDisposable
         var args = Environment.GetCommandLineArgs();
         if (args.Length == 2)
         {
-            string name = Path.GetFileName(args[1]);
-            Stream stream;
-            try
-            {
-                stream = File.OpenRead(args[1]);
-            }
-            catch (Exception ex)
-            {
-                Logger.Error(ex);
-                return;
-            }
-            AddMusicItem(name, stream);
-            LoadMusicFile(name, stream);
+            PlayTrack(AddMusicItem(new(args[1])));
             PlayOrPause();
             ShowPlayer();
         }
@@ -137,35 +126,37 @@ public partial class MainView : UserControl, IDisposable
 
         foreach (string path in pathes)
         {
-            ScanDirectoryForMusic(path, (mus) =>
-                Dispatcher.UIThread.Invoke(() => AddMusicItem(mus))
+            ScanDirectoryForMusic(path, (path) =>
+                Dispatcher.UIThread.Invoke(() => AddMusicItem(new(path)))
             );
         }
     }
 
     #region "Playlist"
+    List<Media> playlist = [];
     ushort currenttrack = 0;
+    internal void LoadTrack(ushort track)
+    {
+        LoadMusicFile(playlist[track]);
+    }
     internal void PlayTrack(ushort track)
     {
-        if (MusicPanel.Children[track] is not Border border) return;
-        if (border.Child is not Grid grid) return;
-        if (ToolTip.GetTip(grid) is string path)
-            LoadMusicFile(Path.GetFileName(path), File.OpenRead(path));
+        LoadTrack(track);
+        PlayOrPause();
     }
     internal bool PlayNext()
     {
         if (MusicPanel.Children[0] is TextBlock) return false;
-        if (currenttrack > MusicPanel.Children.Count) return false;
+        if (currenttrack + 1 == playlist.Count) return false;
         ++currenttrack;
         PlayTrack(currenttrack);
-        PlayOrPause();
         return true;
     }
     internal void PlayPrevious()
     {
         if (shnd == 0) return;
-        if (// TimeSpan.FromMilliseconds(
-            // (double)(player.Media!.Duration * player.Position)).TotalSeconds > 6 ||
+        if (TimeSpan.FromSeconds(
+            CurrentPos).TotalSeconds > 6 ||
             currenttrack == 0)
         {
             CurrentPos = 0;
@@ -173,7 +164,6 @@ public partial class MainView : UserControl, IDisposable
         }
         --currenttrack;
         PlayTrack(currenttrack);
-        PlayOrPause();
     }
     #endregion
 
@@ -184,7 +174,7 @@ public partial class MainView : UserControl, IDisposable
         {
             MusSlider.Width = Math.Min(e.NewSize.Width / 1.5, 902);
             SearchBox.Width = (double)(e.NewSize.Width / 1.5);
-            Visualizer.Width = e.NewSize.Width / (OperatingSystem.IsAndroid() ? 1.1 : 1.25);
+            Visualizer.Width = e.NewSize.Width / (OperatingSystem.IsAndroid() ? 1.1 : 2);
             snowfall?.WidthChanged((int)e.NewSize.Width);
         }
         else if (e.HeightChanged)
