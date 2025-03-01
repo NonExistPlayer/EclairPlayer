@@ -112,13 +112,11 @@
 		</Grid>
 
 		<Grid Grid.Row="3">
+			<local:AudioVisualizer Name="Visualizer"
+				Height="300"/>								   
 			<StackPanel HorizontalAlignment="Center"
 						VerticalAlignment="Center"
 						Width="1000">
-				<local:AudioVisualizer Name="Visualizer"
-									   Width="800"
-								       Height="250"
-									   HorizontalAlignment="Center"/>
 				<Image Name="MusicPicture"
 						MaxWidth="250"
 						MaxHeight="250"

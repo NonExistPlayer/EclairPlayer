@@ -43,15 +43,23 @@ public sealed class AudioVisualizer : Control
         //     }
         // }
 
+        double step = Bounds.Width / fftData.Length;
         var pen = new Pen(new SolidColorBrush(Config.VisualizerColor), 1);
         var height = Bounds.Height / 2;
+        
+        var totalWidth = fftData.Length * step;
+        var centerX = Bounds.Width / 2;
+        var startX = centerX - totalWidth / 2;
 
         for (int i = 0; i < fftData.Length; i++)
         {
-            var x = i * 4;
-            var y = height * (1 - fftData[i]);
-            context.DrawLine(pen, new(x, height), new(x, y));
-            context.DrawLine(pen, new(x, height), new(x, Bounds.Height * fftData[i] + height));
+            var x = startX + i * step;
+
+            var yTop = height * (1 - fftData[i]);
+            var yBottom = height * (1 + fftData[i]);
+
+            context.DrawLine(pen, new(x, height), new(x, yTop));
+            context.DrawLine(pen, new(x, height), new(x, yBottom));
         }
 
         DispatcherTimer.RunOnce(InvalidateVisual, TimeSpan.FromMilliseconds(25));

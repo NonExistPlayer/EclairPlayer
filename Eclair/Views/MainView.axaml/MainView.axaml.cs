@@ -94,6 +94,11 @@ public partial class MainView : UserControl, IDisposable
         MusSlider.PointerReleased += SliderPointerReleased;
 
         MusSlider.AddHandler(PointerReleasedEvent, SliderPointerReleased, Avalonia.Interactivity.RoutingStrategies.Tunnel);
+
+        if (Config.EnableVisualizer)
+            Visualizer.Effect = new BlurEffect();
+        else
+            Visualizer.IsVisible = false;
     }
 
     private void FindMusic()
@@ -179,13 +184,15 @@ public partial class MainView : UserControl, IDisposable
         {
             MusSlider.Width = Math.Min(e.NewSize.Width / 1.5, 902);
             SearchBox.Width = (double)(e.NewSize.Width / 1.5);
+            Visualizer.Width = e.NewSize.Width / (OperatingSystem.IsAndroid() ? 1.1 : 1.25);
             snowfall?.WidthChanged((int)e.NewSize.Width);
         }
-        else if
-            (e.HeightChanged &&
-            !OperatingSystem.IsAndroid() &&
-            snowfall != null)
-            snowfall.Height = (int)e.NewSize.Height;
+        else if (e.HeightChanged)
+        {
+            if (!OperatingSystem.IsAndroid() && snowfall != null)
+                snowfall.Height = (int)e.NewSize.Height;
+        }
+
         Logger.Log($"Size changed: {e.NewSize}");
 
         base.OnSizeChanged(e);
@@ -268,5 +275,7 @@ public partial class MainView : UserControl, IDisposable
             MainGrid.Children.Insert(0, snowfall);
         }
     }
+    internal void Update_Visualizer() =>
+        Visualizer.IsVisible = Config.EnableVisualizer;
     #endregion
 }
