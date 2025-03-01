@@ -143,6 +143,7 @@ partial class MainView
     #region Music Control
     public void Play()
     {
+        sliderPressed = false;
         if (shnd == 0) return;
 
         if (Bass.ChannelPlay(shnd))
