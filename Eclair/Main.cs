@@ -44,11 +44,12 @@ public static class Main
                 string arch = RuntimeInformation.ProcessArchitecture.ToString().ToLower();
                 if (OperatingSystem.IsWindows())
                     _osstr = $"win-{arch}";
-                if (OperatingSystem.IsLinux())
+                else if (OperatingSystem.IsLinux())
                     _osstr = $"linux-{arch}";
-                if (OperatingSystem.IsAndroid())
+                else if (OperatingSystem.IsAndroid())
                     _osstr = $"android-{arch}";
-                _osstr = "none";
+                else
+                    _osstr = "none";
             }
             return _osstr;
         }
