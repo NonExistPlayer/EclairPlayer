@@ -39,7 +39,7 @@ build() {
         fi
         echo "[-----------Packaging------------]"
     else
-        move publish/android-$3/net.nonexistplayer.eclair-Signed.apk publish/android-$3.apk
+        mv publish/android-$3/net.nonexistplayer.eclair-Signed.apk publish/android-$3.apk
     fi
     echo "[------------Cleaning------------]"
     execute "rm -r publish/$2-$3"
