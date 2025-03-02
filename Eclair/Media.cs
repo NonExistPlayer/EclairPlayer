@@ -100,8 +100,8 @@ public class Media
         }
     }
 
-    public string Title => Tags.Title;
-    public string Performers => string.Join(", ", Tags.Performers);
+    public string Title => Tags.Title ?? "";
+    public string Performers => string.Join(", ", Tags.Performers ?? []);
 
     public Tag Tags { get; }
 

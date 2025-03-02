@@ -55,7 +55,8 @@ public static class Main
         }
     }
 
-    public readonly static string[] SupportedFormats = ["*.mp3", "*.wav", "*.aac", "*.asf", "*.wma", "*.ogg", "*.flac", "*.flv", "*.midi"];
+    public readonly static string[] SupportedFormats = ["*.mp3", "*.mp2", "*.ogg", "*.aiff",
+        "*.flac", "*.midi", "*.wv", "*.wvc", "*.opus", "*.dsd", "*.alac", "*.webm", "*.aac"];
 
     public static Logger<EclairLogLevel> Logger { get; } = new(Default)
     {

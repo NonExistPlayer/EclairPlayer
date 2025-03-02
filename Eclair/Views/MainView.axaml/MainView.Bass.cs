@@ -11,11 +11,14 @@ using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Media.Imaging;
 using Avalonia.Threading;
+using System.Collections.Generic;
+using System.Runtime.InteropServices;
 
 namespace Eclair.Views;
 
 partial class MainView
 {
+    List<int> phnds = []; // plugins handles
     int shnd; // stream handle
 
     internal bool isplaying;
@@ -93,6 +96,24 @@ partial class MainView
         Visualizer.StreamHandle = shnd;
 
         return true;
+    }
+
+    void BassPluginLoad(string name)
+    {
+        if (OperatingSystem.IsWindows())
+            name = $"bass{name}.dll";
+        else // linux / android
+            name = $"libbass{name}.so";
+
+        int hnd = Bass.PluginLoad(name);
+
+        if (hnd == 0)
+        {
+            Logger.Warn($"Failed to load plugin '{name}' : " + Bass.LastError);
+            return;
+        }
+
+        phnds.Add(hnd);
     }
 
     #region Events
@@ -182,6 +203,8 @@ partial class MainView
                 shnd = 0;
             }
             Bass.Free();
+            foreach (int hnd in phnds)
+                Bass.PluginFree(hnd);
             disposed = true;
         }
     }

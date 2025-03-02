@@ -40,6 +40,17 @@ public partial class MainView : UserControl, IDisposable
             Environment.Exit(1);
         }
 
+        #region Plugin Load
+        BassPluginLoad("flac");
+        BassPluginLoad("midi");
+        BassPluginLoad("wv");
+        BassPluginLoad("opus");
+        BassPluginLoad("dsd");
+        BassPluginLoad("alac");
+        BassPluginLoad("webm");
+        BassPluginLoad("aac");
+        #endregion
+
         if (Config.UseCircleIconAnimation)
         {
             rttransform = MusicPicture.RenderTransform as RotateTransform;
