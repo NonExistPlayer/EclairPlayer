@@ -22,14 +22,18 @@ I enjoy developing this project despite the difficulties and problems I encounte
 # Other
 ## Supported audio formats
 - `.mp3`
-- `.aac`
-- `.asf`
-- `.wma`
+- `.mp2`
 - `.ogg`
+- `.aiff`
 - `.flac`
 - `.midi`
-- `.wav`
-
+- `.wv`
+- `.wvc`
+- `.opus`
+- `.dsd`
+- `.alac`
+- `.webm`
+- `.aac`
 ## Supported OS
 The minimum version for launching is written next to the OS name.
 
