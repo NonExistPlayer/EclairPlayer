@@ -56,7 +56,7 @@ partial class MainView
 
         var tags = media.Tags;
 
-        SetTitle($"{string.Join(", ", tags.Performers)} - {tags.Title}");
+        SetTitle(media.FullTitle);
 
         if (TitleLabel.Content?.ToString() == " - ")
             SetTitle(media.FileName);
