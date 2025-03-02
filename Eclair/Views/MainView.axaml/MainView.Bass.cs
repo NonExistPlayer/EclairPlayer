@@ -103,11 +103,17 @@ partial class MainView
             MusSlider.Value = 0;
             if (loop)
             {
+                Stop();
                 PlayOrPause();
-                timer.Stop();
             }
             else if (Config.AutoPlay)
-                if (!PlayNext()) PlayButtonSetImage("play");
+            {
+                if (!PlayNext())
+                {
+                    Stop();
+                    timer.Stop();
+                }
+            }
             if (PManager != null && !loop)
                 PManager.ShowPlayerNotification(TitleLabel.Content?.ToString()!, false);
         });
@@ -147,6 +153,8 @@ partial class MainView
         Dispatcher.UIThread.Invoke(delegate
         {
             MusDurationLabel.Content = "00:00";
+            MusPositionLabel.Content = "00:00";
+            calledByPlayer = true;
             MusSlider.Value = 0;
             if (rttransform != null) rttransform.Angle = 0;
         });
