@@ -17,10 +17,10 @@
 - [ ] Добавить поддержку iOS и MacOS.*
 - [ ] Создать ветки проекта. (Stable, Preview, Dev)
 - [ ] Создать пакеты для Linux
-    - [ ] .deb
+    - [x] .deb
     - [ ] .rpm
     - [ ] PKGBUILD (AUR)
-    - [ ] .AppImage
+    - [x] .AppImage
 - [ ] Создать устновщик для Windows.
 
 ### Оптимизации

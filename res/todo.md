@@ -17,10 +17,10 @@ You can also help the project by implementing these tasks.
 - [ ] Add support for iOS and MacOS.*
 - [ ] Create project branches. (Stable, Preview, Dev)
 - [ ] Create packages for Linux
-    - [ ] .deb
+    - [x] .deb
     - [ ] .rpm
     - [ ] PKGBUILD (AUR)
-    - [ ] .AppImage
+    - [x] .AppImage
 - [ ] Create installer for Windows.
 ### Optimization
 - [ ] Optimization on Linux/Android.
