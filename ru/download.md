@@ -3,6 +3,6 @@ layout: download
 title: Скачать
 permalink: /ru/download/
 
-ver: 0.2.1
+ver: 0.3.0
 lang: ru
 ---
