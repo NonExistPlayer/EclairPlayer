@@ -135,7 +135,9 @@ build() {
     fi
     echo "[------------Cleaning------------]"
     execute "rm -r publish/$2-$3"
-    execute "rm -r publish/AppDir"
+    if [ "$2" = "linux" ]; then
+        execute "rm -r publish/AppDir"
+    fi
     echo $1 $2-$3 done!
     clear
 }
