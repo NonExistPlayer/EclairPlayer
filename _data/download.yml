@@ -41,5 +41,9 @@
   linux:
     x64: linux-x64.tar.gz
     arm64: linux-arm64.tar.gz
+    x64 (deb): linux-x64.deb
+    arm64 (deb): linux-arm64.deb
+    x64 (AppImage): linux-x64.AppImage
+    arm64 (AppImage): linux-arm64.AppImage
   android:
     x64: android-x64.apk
