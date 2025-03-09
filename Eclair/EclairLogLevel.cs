@@ -12,11 +12,12 @@ public class EclairLogLevel : ILogLevel
         Value = value;
     }
 
-    public static ushort Max => 5;
+    public static ushort Max => 6;
     public static ushort Min => 0;
 
     public static EclairLogLevel Default { get; } = new(0);
     public static EclairLogLevel Notice { get; } = new(2);
+    public static EclairLogLevel Critical { get; } = new(5);
 
     public ushort Value { get; }
 
@@ -29,6 +30,7 @@ public class EclairLogLevel : ILogLevel
             2 => "Notice",
             3 => "Warning",
             4 => "Error",
+            5 => "Critical",
             _ => ""
         };
     }
@@ -41,9 +43,10 @@ public class EclairLogLevel : ILogLevel
             2 => ConsoleColor.Blue,
             3 => ConsoleColor.Yellow,
             4 => ConsoleColor.Red,
+            5 => ConsoleColor.DarkRed,
             _ => ConsoleColor.Gray
         };
     }
 
-    public bool IsError() => Value == 4;
+    public bool IsError() => Value is 4 or 5;
 }

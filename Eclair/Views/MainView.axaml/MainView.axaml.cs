@@ -1,5 +1,5 @@
 ﻿using File = System.IO.File;
-using LibVLCSharp.Shared;
+using ManagedBass;
 using System;
 using System.IO;
 using System.Linq;
@@ -10,17 +10,16 @@ using Avalonia.Threading;
 using Avalonia.Media;
 using Avalonia.Svg.Skia;
 using Eclair.Controls;
+using System.Collections.Generic;
 
 namespace Eclair.Views;
 
-public partial class MainView : UserControl
+public partial class MainView : UserControl, IDisposable
 {
     public const double SnowfallBlurRadius = 5;
 
     internal static object? prevcontent;
 
-    readonly LibVLC vlc;
-    internal MediaPlayer player;
     bool calledByPlayer;
     Control[]? musicitems;
 
@@ -34,43 +33,23 @@ public partial class MainView : UserControl
     {
         InitializeComponent();
         Task.Run(FindMusic);
-        vlc = new();
-        vlc.Log += LibVlcOutput;
-
-        player = new(vlc);
-
-        player.EndReached += delegate
+        
+        if (!Bass.Init())
         {
-            Dispatcher.UIThread.InvokeAsync(delegate
-            {
-                MusSlider.Value = 0;
-                if (loop)
-                {
-                    PlayOrPause();
-                    ciatimer.Stop();
-                }
-                else if (Config.AutoPlay)
-                {
-                    if (!PlayNext()) PlayButtonSetImage("play");
-                }
-                else PlayButtonSetImage("play");
+            Logger.Log("Failed to initialize BASS!", Critical);
+            Environment.Exit(1);
+        }
 
-                if (PManager != null && !loop)
-                    PManager.ShowPlayerNotification(TitleLabel.Content?.ToString()!, false);
-            });
-        };
-        player.PositionChanged += Player_PositionChanged;
-
-        player.Playing += delegate
-        {
-            Dispatcher.UIThread.Invoke(delegate
-            {
-                if (Config.UseCircleIconAnimation)
-                    ciatimer.Start();
-
-                MusDurationLabel.Content = TimeSpan.FromMilliseconds(player.Media!.Duration).ToString(@"mm\:ss");
-            });
-        };
+        #region Plugin Load
+        BassPluginLoad("flac");
+        BassPluginLoad("midi");
+        BassPluginLoad("wv");
+        BassPluginLoad("opus");
+        BassPluginLoad("dsd");
+        BassPluginLoad("alac");
+        BassPluginLoad("webm");
+        BassPluginLoad("aac");
+        #endregion
 
         if (Config.UseCircleIconAnimation)
         {
@@ -103,29 +82,24 @@ public partial class MainView : UserControl
         //     MainGrid.Children.Insert(0, snowfall);
         // }
 
-        ciatimer.Tick += CIATimer_Tick;
+        timer.Tick += Timer_Tick;
 
         var args = Environment.GetCommandLineArgs();
         if (args.Length == 2)
         {
-            string name = Path.GetFileName(args[1]);
-            Stream stream;
-            try
-            {
-                stream = File.OpenRead(args[1]);
-            }
-            catch (Exception ex)
-            {
-                Logger.Error(ex);
-                return;
-            }
-            AddMusicItem(name, stream);
-            LoadMusicFile(name, stream);
+            PlayTrack(AddMusicItem(new(args[1])));
             PlayOrPause();
             ShowPlayer();
         }
+        MusSlider.PointerReleased += SliderPointerReleased;
+
+        MusSlider.AddHandler(PointerReleasedEvent, SliderPointerReleased, Avalonia.Interactivity.RoutingStrategies.Tunnel);
+
+        if (Config.EnableVisualizer)
+            Visualizer.Effect = new BlurEffect();
+        else
+            Visualizer.IsVisible = false;
     }
-    private void LibVlcOutput(object? sender, LogEventArgs e) => Logger.Log(e.Message, new((ushort)e.Level));
 
     private void FindMusic()
     {
@@ -163,43 +137,44 @@ public partial class MainView : UserControl
 
         foreach (string path in pathes)
         {
-            ScanDirectoryForMusic(path, (mus) =>
-                Dispatcher.UIThread.Invoke(() => AddMusicItem(mus))
+            ScanDirectoryForMusic(path, (path) =>
+                Dispatcher.UIThread.Invoke(() => AddMusicItem(new(path)))
             );
         }
     }
 
     #region "Playlist"
+    List<Media> playlist = [];
     ushort currenttrack = 0;
+    internal void LoadTrack(ushort track)
+    {
+        LoadMusicFile(playlist[track]);
+    }
     internal void PlayTrack(ushort track)
     {
-        if (MusicPanel.Children[track] is not Border border) return;
-        if (border.Child is not Grid grid) return;
-        if (ToolTip.GetTip(grid) is string path)
-            LoadMusicFile(Path.GetFileName(path), File.OpenRead(path));
+        LoadTrack(track);
+        PlayOrPause();
     }
     internal bool PlayNext()
     {
         if (MusicPanel.Children[0] is TextBlock) return false;
-        if (currenttrack > MusicPanel.Children.Count) return false;
+        if (currenttrack + 1 == playlist.Count) return false;
         ++currenttrack;
         PlayTrack(currenttrack);
-        PlayOrPause();
         return true;
     }
     internal void PlayPrevious()
     {
-        if (player.Media == null) return;
-        if (TimeSpan.FromMilliseconds(
-            (double)(player.Media!.Duration * player.Position)).TotalSeconds > 6 ||
+        if (shnd == 0) return;
+        if (TimeSpan.FromSeconds(
+            CurrentPos).TotalSeconds > 6 ||
             currenttrack == 0)
         {
-            player.Position = 0;
+            CurrentPos = 0;
             return;
         }
         --currenttrack;
         PlayTrack(currenttrack);
-        PlayOrPause();
     }
     #endregion
 
@@ -210,13 +185,15 @@ public partial class MainView : UserControl
         {
             MusSlider.Width = Math.Min(e.NewSize.Width / 1.5, 902);
             SearchBox.Width = (double)(e.NewSize.Width / 1.5);
+            Visualizer.Width = e.NewSize.Width / (OperatingSystem.IsAndroid() ? 1.1 : 2);
             snowfall?.WidthChanged((int)e.NewSize.Width);
         }
-        else if
-            (e.HeightChanged &&
-            !OperatingSystem.IsAndroid() &&
-            snowfall != null)
-            snowfall.Height = (int)e.NewSize.Height;
+        else if (e.HeightChanged)
+        {
+            if (!OperatingSystem.IsAndroid() && snowfall != null)
+                snowfall.Height = (int)e.NewSize.Height;
+        }
+
         Logger.Log($"Size changed: {e.NewSize}");
 
         base.OnSizeChanged(e);
@@ -265,8 +242,8 @@ public partial class MainView : UserControl
                 RadiusX = 32,
                 RadiusY = 32
             };
-            if (player.IsPlaying)
-                ciatimer.Start();
+            if (isplaying)
+                timer.Start();
         }
         else
         {
@@ -274,7 +251,7 @@ public partial class MainView : UserControl
             MusicPicture.Clip = null;
             MusicPicture2.Clip = null;
             rttransform = null;
-            if (player.IsPlaying) ciatimer.Stop();
+            if (isplaying) timer.Stop();
         }
     }
     //                   DisableEffects
@@ -299,5 +276,7 @@ public partial class MainView : UserControl
             MainGrid.Children.Insert(0, snowfall);
         }
     }
+    internal void Update_Visualizer() =>
+        Visualizer.IsVisible = Config.EnableVisualizer;
     #endregion
 }

@@ -1,32 +1,24 @@
 using File = System.IO.File;
 using TagFile = TagLib.File;
 using TagLib;
-using LibVLCSharp.Shared;
-using System;
 using System.IO;
 using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Styling;
 using Avalonia.Layout;
 using Avalonia.Media;
 using Avalonia.Media.Imaging;
-using Avalonia.Controls.ApplicationLifetimes;
-using System.Linq;
 
 namespace Eclair.Views;
 
 partial class MainView
 {
-    internal void AddMusicItem(string path) => AddMusicItem(Path.GetFileName(path), File.OpenRead(path), path);
-    private void AddMusicItem(string name, Stream stream, string? path = null)
+    private ushort AddMusicItem(Media media)
     {
         int num = MusicPanel.Children.Count;
 
-        Logger.Log($"AddMusicItem({(path ?? name)})");
         if (MusicPanel.Children.Count == 1 &&
             MusicPanel.Children[0] is TextBlock)
             MusicPanel.Children.Clear();
-        var tag = TagFile.Create(new ReadOnlyFileImplementation(name, stream)).Tag;
 
         var border = new Border
         {
@@ -36,7 +28,7 @@ partial class MainView
         };
 
         var grid = new Grid { Height = 64 };
-        ToolTip.SetTip(grid, path);
+        ToolTip.SetTip(grid, media.LocalPath);
 
         grid.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
         grid.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Star });
@@ -50,11 +42,11 @@ partial class MainView
             VerticalAlignment = VerticalAlignment.Center
         };
 
-        IPicture? picture = tag.Pictures.Length > 0 ? tag.Pictures[0] : null;
+        IPicture? picture = media.Tags.Pictures.Length > 0 ? media.Tags.Pictures[0] : null;
 
         if (picture != null)
         {
-            string fpath = TempPath + $"{tag.Title}-picture0";
+            string fpath = TempPath + $"{media.Tags.Title}-picture0";
 
             if (File.Exists(fpath))
                 goto display;
@@ -70,14 +62,11 @@ partial class MainView
 
         var textBlock = new TextBlock
         {
-            Text = $"{string.Join(", ", tag.Performers)} - {tag.Title}",
+            Text = media.FullTitle,
             FontWeight = FontWeight.Bold,
             VerticalAlignment = VerticalAlignment.Center,
             Margin = new Thickness(10, 0, 0, 0)
         };
-
-        if (textBlock.Text == " - ")
-            textBlock.Text = name;
 
         var playButtonImage = new Image
         {
@@ -92,11 +81,12 @@ partial class MainView
             Background = Brushes.Transparent
         };
 
+        ushort id = (ushort)playlist.Count;
+
         button.Click += delegate
         {
             currenttrack = (ushort)num;
-            LoadMusicFile(name, stream);
-            PlayOrPause();
+            PlayTrack(id);
         };
 
         Grid.SetColumn(textBlock, 1);
@@ -110,7 +100,7 @@ partial class MainView
         {
             if (e.InitialPressMouseButton == Avalonia.Input.MouseButton.Right /* <-- i have no idea why it works like this*/) return;
             currenttrack = (ushort)num;
-            LoadMusicFile(name, stream);
+            LoadTrack(id);
         };
 
         border.Child = grid;
@@ -119,54 +109,9 @@ partial class MainView
             MusicPanel.Children.Add(border);
         else if (musicitems != null)
             musicitems = [.. musicitems, border];
-    }
-    
-    internal void LoadMusicFile(string name, Stream stream)
-    {
-        MusDurationLabel.Content = "00:00";
 
-        if (player.Media == null)
-        {
-            MusSlider.IsEnabled = true;
-        }
-        else
-        {
-            Stop();
-            player.Media.Dispose();
-        }
+        playlist.Add(media);
 
-        var file = TagFile.Create(new ReadOnlyFileImplementation(name, stream));
-        var tags = file.Tag;
-
-        SetTitle($"{string.Join(", ", tags.Performers)} - {tags.Title}");
-
-        if (TitleLabel.Content?.ToString() == " - ")
-            SetTitle(name);
-
-        SetTitle(TitleLabel.Content?.ToString());
-
-        if (!OperatingSystem.IsAndroid())
-            ((Application.Current?.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime)?
-                .MainWindow as MainWindow)?.SetTitle($"Eclair - {name}");
-
-        IPicture? picture = tags.Pictures.Length > 0 ? tags.Pictures[0] : null;
-
-        if (picture != null)
-        {
-            string fpath = TempPath + $"{tags.Title}-picture0";
-
-            if (File.Exists(fpath))
-                goto display;
-
-            var outputstream = File.OpenWrite(fpath);
-            outputstream.Write(picture.Data.Data, 0, picture.Data.Count);
-            outputstream.Close();
-
-        display:
-            SetImage(new Bitmap(fpath));
-        }
-        else SetImage(Application.Current?.FindResource("unknowntrack") as Bitmap);
-
-        player.Media = new(vlc, new StreamMediaInput(stream));
+        return id;
     }
 }

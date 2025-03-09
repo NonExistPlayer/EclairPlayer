@@ -1,0 +1,4 @@
+#!/usr/bin/bash
+# (for AppImage)
+
+$APPDIR/usr/share/eclairplayer/eclairplayer

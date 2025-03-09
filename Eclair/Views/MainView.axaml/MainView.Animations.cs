@@ -1,5 +1,6 @@
 // This file handles animations in MainView.
 using System;
+using Avalonia.Controls;
 using Avalonia.Threading;
 
 namespace Eclair.Views;
@@ -7,19 +8,30 @@ namespace Eclair.Views;
 partial class MainView
 {
                     // CIA = Circle Icon Animation
-    internal DispatcherTimer ciatimer = new()
+    internal DispatcherTimer timer = new()
     {
         Interval = TimeSpan.FromMilliseconds(40),
     };
 
-    void CIATimer_Tick(object? sender, EventArgs e)
+    void Timer_Tick(object? sender, EventArgs e)
     {
-        if (!player.IsPlaying)
+        if (!isplaying)
         {
-            ciatimer.Stop();
+            timer.Stop();
             return;
         }
 
-        rttransform!.Angle += 0.5;
+        if (rttransform != null)
+            rttransform.Angle += 0.5;
+        
+        if (MainGrid.RowDefinitions[3].Height == GridLength.Star /*if fullscreen player*/ &&
+            !sliderPressed)
+        {
+            Dispatcher.UIThread.InvokeAsync(delegate
+            {
+                calledByPlayer = true;
+                MusSlider.Value = CurrentPos;
+            });
+        }
     }
 }

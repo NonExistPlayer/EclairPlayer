@@ -6,6 +6,14 @@
 This player is gradually developing and is aimed not only at listening to music, but also at beauty and ease of use.<br>
 I will be glad to any help in developing the project!
 
+## BASS
+**Eclair** uses the BASS audio library for audio playback.
+> BASS Audio Library (https://www.un4seen.com)<br>
+> Copyright (c) 1999-2023 Un4seen Developments Ltd.
+
+> BASS is used under the license granted by Un4seen Developments.<br>
+> For more information, visit https://www.un4seen.com.
+
 ## Why is Eclair open-source?
 **Eclair** is my hobby, as is programming in general.
 I support free software, and that is why **Eclair** is open-source.
@@ -65,13 +73,14 @@ sudo apt install vlc libvlc-dev libvlccore-dev
 [AI](https://blackbox.ai)
 ## Devices
 ### Windows
-**System**: **Microsoft Windows 11 Pro** *10.0.22621 build 22621*
+**System**: **Microsoft Windows 10 Enterprise LTSC** *(x86 VirtualBox Machine)*
 ### Linux
 **System**: **Manjaro Linux** *6.12.4-1-MANJARO*
 ### Android
 |Device|System|Build number|
 |:-:|:-:|:-:|
-|[Google Pixel 3 XL](https://www.google.com/search?q=Google+Pixel+3+xl)|Android **12** (**API 31**)|*SP1A.210812.016.C1*|
+|Google Pixel 6 Pro|Android **15** (**API 35**)|*AP4A.250105.002*|
+|Google Pixel 3 XL|Android **12** (**API 31**)|*SP1A.210812.016.C1*|
 
 # [List of tasks](res/todo.md)
 You can view the list of project tasks by clicking on the link above.

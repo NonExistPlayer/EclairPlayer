@@ -14,7 +14,7 @@ public static class Main
         Config = ConfigJson.Load();
     }
 
-    public const string Version = "0.2.2";
+    public const string Version = "0.3.0";
     #region Pathes
     public static string SavePath { get; } = OperatingSystem.IsWindows() ?
         $"{Environment.GetEnvironmentVariable("LOCALAPPDATA")}\\EclairPlayer\\" : (OperatingSystem.IsAndroid() ?
@@ -44,17 +44,19 @@ public static class Main
                 string arch = RuntimeInformation.ProcessArchitecture.ToString().ToLower();
                 if (OperatingSystem.IsWindows())
                     _osstr = $"win-{arch}";
-                if (OperatingSystem.IsLinux())
+                else if (OperatingSystem.IsLinux())
                     _osstr = $"linux-{arch}";
-                if (OperatingSystem.IsAndroid())
+                else if (OperatingSystem.IsAndroid())
                     _osstr = $"android-{arch}";
-                _osstr = "none";
+                else
+                    _osstr = "none";
             }
             return _osstr;
         }
     }
 
-    public readonly static string[] SupportedFormats = ["*.mp3", "*.wav", "*.aac", "*.asf", "*.wma", "*.ogg", "*.flac", "*.flv", "*.midi"];
+    public readonly static string[] SupportedFormats = ["*.mp3", "*.mp2", "*.ogg", "*.aiff",
+        "*.flac", "*.midi", "*.wv", "*.wvc", "*.opus", "*.dsd", "*.alac", "*.webm", "*.aac"];
 
     public static Logger<EclairLogLevel> Logger { get; } = new(Default)
     {

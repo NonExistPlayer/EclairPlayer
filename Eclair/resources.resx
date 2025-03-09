@@ -265,4 +265,12 @@
     <value>Auto play</value>
     <comment/>
   </data>
+  <data name="ui.settings.enablevisualizer" xml:space="preserve">
+    <value>Audio visualizer</value>
+    <comment/>
+  </data>
+  <data name="ui.about.site" xml:space="preserve">
+    <value>Eclair website</value>
+    <comment/>
+  </data>
 </root>

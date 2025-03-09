@@ -1,5 +1,4 @@
 ﻿// This file is responsible for the fullscreen player in MainView.
-using LibVLCSharp.Shared;
 using System;
 using System.Threading.Tasks;
 using Avalonia;
@@ -7,7 +6,6 @@ using Avalonia.Controls;
 using Avalonia.Platform.Storage;
 using Avalonia.Svg.Skia;
 using Avalonia.Threading;
-using System.Linq;
 
 namespace Eclair.Views;
 
@@ -16,7 +14,7 @@ partial class MainView
     #region Events
     private async void PlayButtonClicked(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
     {
-        if (player.Media == null)
+        if (shnd == 0)
         {
             if (MusicPanel.Children.Count == 1 &&
                 MusicPanel.Children[0] is TextBlock)
@@ -24,29 +22,28 @@ partial class MainView
 
             PlayTrack(0);
         }
-        if (player.Media != null)
+        if (shnd != 0)
             PlayOrPause();
     }
     private void PreviousClicked(object? sender, Avalonia.Interactivity.RoutedEventArgs e) => PlayPrevious();
     private void SkipForwardClicked(object? sender, Avalonia.Interactivity.RoutedEventArgs e) => PlayNext();
-    private void Player_PositionChanged(object? sender, MediaPlayerPositionChangedEventArgs e)
-    {
-        Dispatcher.UIThread.InvokeAsync(delegate
-        {
-            calledByPlayer = true;
-            MusSlider.Value = e.Position * 100;
-        });
-    }
     private void StopButtonClicked(object? sender, Avalonia.Interactivity.RoutedEventArgs e) => Stop();
+    
+    bool sliderPressed;
     private void SliderValueChanged(object? sender, Avalonia.Controls.Primitives.RangeBaseValueChangedEventArgs e)
     {
-        MusPositionLabel.Content = TimeSpan.FromMilliseconds((double)(player.Media!.Duration * player.Position)).ToString(@"mm\:ss");
+        MusPositionLabel.Content = TimeSpan.FromSeconds(!sliderPressed ? CurrentPos : MusSlider.Value).ToString(@"mm\:ss");
         if (calledByPlayer)
         {
             calledByPlayer = false;
             return;
         }
-        player.Position = (float)(e.NewValue / 100);
+        sliderPressed = true;
+    }
+    private void SliderPointerReleased(object? sender, Avalonia.Input.PointerReleasedEventArgs e) 
+    {
+        CurrentPos = MusSlider.Value;
+        sliderPressed = false;
     }
     private void LB_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
     {
@@ -61,7 +58,7 @@ partial class MainView
 
     private async Task GetMusicFile()
     {
-        bool playing = player.IsPlaying;
+        bool playing = isplaying;
         if (playing)
             PlayOrPause();
 
@@ -89,43 +86,32 @@ partial class MainView
 
         foreach (var file in files)
         {
-            var stream = await file.OpenReadAsync();
-            AddMusicItem(file.Name, stream);
+            var id = AddMusicItem(new(file));
 
             if (files[0] == file)
-                LoadMusicFile(file.Name, stream);
+                LoadTrack(id);
         }
     }
 
     private void PlayOrPause()
     {
-        PlayButtonSetImage(player.IsPlaying ? "play" : "pause");
-
-        if (player.IsPlaying)
+        if (isplaying)
         {
-            player.Pause();
+            Pause();
             PManager.ShowPlayerNotification(TitleLabel.Content?.ToString()!, false);
         }
         else
         {
-            if (player.Position == 0) player.Stop();
-
-            player.Play();
+            Play();
 
             PManager.ShowPlayerNotification(TitleLabel.Content?.ToString()!, true);
-        }
-    }
-    private void Stop()
-    {
-        PlayButtonSetImage("play");
-        Dispatcher.UIThread.Invoke(delegate
-        {
-            MusDurationLabel.Content = "00:00";
-            MusSlider.Value = 0;
-            if (rttransform != null) rttransform.Angle = 0;
-        });
-        PManager.HidePlayerNotification();
 
-        player.Stop();
+            if (!timer.IsEnabled)
+                timer.Start();
+
+            Visualizer.InvalidateVisual();
+        }
+
+        PlayButtonSetImage(isplaying ? "pause" : "play");
     }
 }

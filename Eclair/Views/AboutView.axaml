@@ -35,14 +35,34 @@
 				<TextBlock Text="{Binding About_CreatedBy}"
 							HorizontalAlignment="Center"/>
 				<local:RefTextButton
+					Text="{Binding About_Site}"
+					Link="https://nonexistplayer.github.io/EclairPlayer/"
+					HorizontalAlignment="Center"/>
+				<local:RefTextButton
 					Text="{Binding About_OriginalRepo}"
 					Link="https://github.com/NonExistPlayer/EclairPlayer"
 					HorizontalAlignment="Center"/>
 			
 				<TextBlock Text="{Binding About_Version}"
 							HorizontalAlignment="Center"/>
+				<Separator/>
+
 				<TextBlock Text="{Binding About_License}"
 							HorizontalAlignment="Center"/>
+				
+				<Label/>
+
+				<TextBlock Text="BASS is used under the license granted by Un4seen Developments."
+						   HorizontalAlignment="Center"/>
+				<StackPanel HorizontalAlignment="Center"
+							Orientation="Horizontal">
+					<TextBlock Text="For more information, visit "/>
+					<local:RefTextButton
+						Text="https://un4seen.com"
+						Link="https://www.un4seen.com"/>
+				</StackPanel>
+
+				<Separator/>
 
 				<TreeView HorizontalAlignment="Center">
 					<TreeViewItem Header="{Binding About_IconsSource}">

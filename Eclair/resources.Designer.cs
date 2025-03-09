@@ -365,5 +365,11 @@ namespace Eclair {
 
         internal static string ui_settings_autoplay =>
             ResourceManager.GetString("ui.settings.autoplay", resourceCulture);
+
+        internal static string ui_settings_enablevisualizer =>
+            ResourceManager.GetString("ui.settings.enablevisualizer", resourceCulture);
+
+        internal static string ui_about_site =>
+            ResourceManager.GetString("ui.about.site", resourceCulture);
     }
 }

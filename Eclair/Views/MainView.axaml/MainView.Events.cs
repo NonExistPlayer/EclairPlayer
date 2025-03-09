@@ -27,7 +27,7 @@ partial class MainView
             if (item is not IStorageFile file) return;
 
             if (HasSupportedFormat(file.Name))
-                AddMusicItem(file.Name, await file.OpenReadAsync());
+                AddMusicItem(new(file));
         }
     }
     private void GotoSettings(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
@@ -99,7 +99,7 @@ partial class MainView
         SearchBox.IsEnabled = false;
         BackButton.IsVisible = true;
         BackButton.IsEnabled = true;
-        if (!Config.DisableEffects)
+        if (!Config.DisableEffects && snowfall != null)
             (snowfall?.Effect as BlurEffect)!.Radius = 10;
     }
 }

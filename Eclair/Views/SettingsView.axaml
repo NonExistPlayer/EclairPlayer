@@ -24,6 +24,8 @@
 						<CheckBox Name="CB_DisableCustomBorder" Click="CheckBoxClicked"/>
 						<TextBlock Text="{Binding DisableEffects}" VerticalAlignment="Center"/>
 						<CheckBox Name="CB_DisableEffects" Click="CheckBoxClicked"/>
+						<TextBlock Text="{Binding EnableVisualizer}" VerticalAlignment="Center"/>
+						<CheckBox Name="CB_EnableVisualizer" Click="CheckBoxClicked"/>
 					</UniformGrid>
 				</StackPanel>
 				<StackPanel Margin="10">
