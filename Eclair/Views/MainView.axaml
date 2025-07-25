@@ -12,5 +12,43 @@
     <vm:MainViewModel />
   </Design.DataContext>
 
-  <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="33"/>
+			<RowDefinition Height="*"/>
+			<RowDefinition Height="100"/>
+    </Grid.RowDefinitions>
+
+    <Grid>
+      <TextBox Text="yep, this is placeholder"/>
+    </Grid>
+
+    <Border Grid.Row="1"
+     BorderBrush="Gray"
+     BorderThickness="1">
+      <TextBlock Text="tracks placeholder"
+      HorizontalAlignment="Center"
+      VerticalAlignment="Center"/>
+    </Border>
+
+    <DockPanel Grid.Row="2"
+     Background="Gray">
+     <StackPanel VerticalAlignment="Center"
+      Orientation="Horizontal"
+      Margin="5 0"
+      Spacing="10">
+      <TextBlock Text="img"/>
+      <TextBlock Text="Author - Track"/>
+     </StackPanel>
+
+     <StackPanel
+      Orientation="Horizontal"
+      HorizontalAlignment="Right"
+      Margin="5 0"
+      Spacing="10">
+        <Button Content="Play"/>
+        <Button Content="Next"/>
+     </StackPanel>
+    </DockPanel>
+  </Grid>
 </UserControl>
