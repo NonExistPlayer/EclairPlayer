@@ -3,90 +3,22 @@
     <TargetFramework>net9.0</TargetFramework>
     <Nullable>enable</Nullable>
     <LangVersion>latest</LangVersion>
-	<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
   </PropertyGroup>
-
   
   <ItemGroup>
     <AvaloniaResource Include="Assets\**" />
   </ItemGroup>
 
-  
   <ItemGroup>
-    <AvaloniaResource Remove="Assets\avalonia-logo.ico" />
-  </ItemGroup>
-
-  
-  <ItemGroup>
-    <AvaloniaXaml Remove="Assets\DefaultTheme.axaml" />
-    <AvaloniaXaml Remove="assets\themes\DefaultLightTheme.axaml" />
-    <AvaloniaXaml Remove="assets\themes\DefaultStyle.axaml" />
-  </ItemGroup>
-
-  
-  <ItemGroup>
-    <None Remove="Assets\icon.png" />
-    <None Remove="Assets\themes\default\looparrow.svg" />
-    <None Remove="Assets\themes\default\pausebutton.svg" />
-    <None Remove="Assets\themes\default\playbutton.svg" />
-    <None Remove="Assets\themes\default\stopbutton.svg" />
-  </ItemGroup>
-
-  
-  <ItemGroup>
-    <AvaloniaXaml Include="Assets\avalonia-logo.ico" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Avalonia" Version="$(AvaloniaVersion)" />
-    <PackageReference Include="Avalonia.Svg.Skia" Version="11.0.0" />
-    <PackageReference Include="Avalonia.Themes.Fluent" Version="$(AvaloniaVersion)" />
-    <PackageReference Include="Avalonia.Fonts.Inter" Version="$(AvaloniaVersion)" />
-    <PackageReference Include="Avalonia.ReactiveUI" Version="$(AvaloniaVersion)" />
+    <PackageReference Include="Avalonia" />
+    <PackageReference Include="Avalonia.Themes.Fluent" />
+    <PackageReference Include="Avalonia.Fonts.Inter" />
     <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
-    <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="$(AvaloniaVersion)" />
-    <PackageReference Include="ManagedBass" Version="3.1.1" />
-    <PackageReference Include="MessageBox.Avalonia" Version="3.1" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-    <PackageReference Include="NonExistPlayer.Logging" Version="1.0.1" />
-    <PackageReference Include="SkiaSharp" Version="2.88.6" />
-    <PackageReference Include="System.Private.Uri" Version="4.3.2" />
-    <PackageReference Include="TagLibSharp" Version="2.3.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="NonExistPlayer.Logging">
-      <HintPath>..\libs\NonExistPlayer.Logging.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Update="resources.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>resources.resx</DependentUpon>
-    </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Update="resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-  </ItemGroup>
-
-  <ItemGroup>
-    <AvaloniaResource Update="Assets\DefaultTheme.axaml">
-      <SubType>Designer</SubType>
-    </AvaloniaResource>
-  </ItemGroup>
-
-  <ItemGroup>
-    <AvaloniaResource Update="Assets\icon.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </AvaloniaResource>
-    <AvaloniaResource Update="Assets\DefaultLightTheme.axaml">
-      <SubType>Designer</SubType>
-    </AvaloniaResource>
+    <PackageReference Include="Avalonia.Diagnostics">
+      <IncludeAssets Condition="'$(Configuration)' != 'Debug'">None</IncludeAssets>
+      <PrivateAssets Condition="'$(Configuration)' != 'Debug'">All</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="CommunityToolkit.Mvvm" />
   </ItemGroup>
 </Project>

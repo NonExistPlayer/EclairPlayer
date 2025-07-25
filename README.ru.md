@@ -1,7 +1,7 @@
-# Введение
-<image src="Eclair/Assets/icon.png" width="300" alt="Icon" style="margin-right: 20px;"/>
-<image src="res/screenshot.png"/>
+# ВАЖНО
+Это ветка `scratch`. В этой ветке Eclair переписывается **с нуля**.
 
+# Введение
 **Eclair** - это open-source аудиоплеер написанный на *C#*.
 Этот плеер постепенно развивается и нацелен не только на прослушивания музыки, но и на красоту и удобство использования.<br>
 Я буду рад любой помощи в развитии проекта!
@@ -31,61 +31,6 @@
 | `.ogg` | *Ogg*                                                   |
 | `.flac`| *Free Lossless Audio Codec*                             |
 | `.midi`| *MIDI*                                                  |
-
-## Поддерживаемые ОС
-| Система  | Минимальная версия |
-| :------- | :----------------: |
-| Windows  | 8.0                |
-| Debian   | 9                  |
-| Ubuntu   | 16.04              |
-| Fedora   | 30                 |
-| Android  | 8.0                |
-| ~~iOS~~  | -                  |
-| ~~MacOS~~| -                  |
-
-Почему `iOS` и `MacOS` не поддерживаются? Прочитайте [этот документ](res/apple.ru.md).
-
-<!--
-# Установка
-## Установка на Windows
-## Установка на Linux
-Перед установкой архива программы, установите следующие пакеты командой:
-```bash
-sudo apt install vlc libvlc-dev libvlccore-dev
-```
-## Установка на Android
-> [!CAUTION]
-> При удалении данных приложения скорее всего приложение больше не запустится!
-> Нужно будет переустановить приложение чтобы, оно продолжило работать.
--->
-
-# Использованые...
-## Библиотеки
-* [Avalonia](https://github.com/AvaloniaUI/Avalonia)
-    - [Avalonia.Svg.Skia](https://github.com/wieslawsoltes/Svg.Skia) (11.0.0)
-    - [MessageBox.Avalonia](https://github.com/AvaloniaCommunity/MessageBox.Avalonia) (3.1.0)
-* [использовалось ранее] ~~LibVLCSharp~~
-* [ManagedBass](https://github.com/ManagedBass/ManagedBass) и [BASS](https://un4seen.com)
-* [Newtonsoft.Json](https://github.com/JamesNK/Newtonsoft.Json/)
-* [TagLibSharp](https://github.com/mono/taglib-sharp)
-* [NonExistPlayer/Logging](https://github.com/NonExistPlayer/Logging)
-## Сайты
-[Иконки](https://icon-icons.com)<br>
-[Нейросеть](https://blackbox.ai)
-## Устройства
-
-### Windows
-**Система**: **Microsoft Windows 10 Enterprise LTSC** *(x86 VirtualBox Machine)*
-### Linux
-**Система**: **Manjaro Linux** *6.12.4-1-MANJARO*
-### Android
-|Устройство|Система|Номер сборки|
-|:-:|:-:|:-:|
-|Google Pixel 6 Pro|Android **15** (**API 35**)|*AP4A.250105.002*|
-|Google Pixel 3 XL|Android **12** (**API 31**)|*SP1A.210812.016.C1*|
-
-# [Список задач](res/todo.ru.md)
-Список задач проекта вы можете просмотреть нажав на ссылку выше.
 
 # [Лицензия](LICENSE)
 **Eclair** защищён лицензией [MIT](https://choosealicense.com/licenses/mit). Просмотрите файл [LICENSE](LICENSE).

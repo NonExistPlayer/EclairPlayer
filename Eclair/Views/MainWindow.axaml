@@ -6,16 +6,7 @@
         xmlns:views="clr-namespace:Eclair.Views"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="Eclair.Views.MainWindow"
-		WindowStartupLocation="CenterScreen"
-        Icon="/Assets/avalonia-logo.ico">
-	<Grid Name="MainGrid">
-		<Grid.RowDefinitions>
-			<RowDefinition Height="30"/>
-			<RowDefinition Height="*"/>
-		</Grid.RowDefinitions>
-		<TextBlock Name="WinTitle"
-				   HorizontalAlignment="Center"
-				   Margin="10,7"/>
-        <UserControl Name="View" Grid.Row="1"/>
-	</Grid>
+        Icon="/Assets/avalonia-logo.ico"
+        Title="Eclair">
+        <views:MainView />
 </Window>

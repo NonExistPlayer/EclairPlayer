@@ -1,35 +1,14 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net9.0-android</TargetFramework>
-    <SupportedOSPlatformVersion>26.0</SupportedOSPlatformVersion>
+    <SupportedOSPlatformVersion>21</SupportedOSPlatformVersion>
     <Nullable>enable</Nullable>
-    <ApplicationId>net.nonexistplayer.eclair</ApplicationId>
+    <ApplicationId>com.CompanyName.Eclair</ApplicationId>
     <ApplicationVersion>1</ApplicationVersion>
-    <ApplicationDisplayVersion>$(Version)</ApplicationDisplayVersion>
+    <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
     <AndroidPackageFormat>apk</AndroidPackageFormat>
-    <AndroidEnableProfiledAot>False</AndroidEnableProfiledAot>
-    <AssemblyName></AssemblyName>
-    <AndroidSigningKeyStore>../eclairplayer.keystore</AndroidSigningKeyStore>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <AndroidKeyStore>True</AndroidKeyStore>
-    <AndroidSigningKeyPass>$(KeyStorePass)</AndroidSigningKeyPass>
-    <AndroidSigningStorePass>$(KeyStorePass)</AndroidSigningStorePass>
-    <AndroidSigningKeyAlias>$(KeyStoreAlias)</AndroidSigningKeyAlias>
-    <AndroidUseAapt2>True</AndroidUseAapt2>
-    <AndroidCreatePackagePerAbi>False</AndroidCreatePackagePerAbi>
-    <AndroidPackageFormat>aab</AndroidPackageFormat>
-    <EmbedAssembliesIntoApk>False</EmbedAssembliesIntoApk>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <AndroidKeyStore>True</AndroidKeyStore>
-    <AndroidSigningKeyPass>$(KeyStorePass)</AndroidSigningKeyPass>
-    <AndroidSigningStorePass>$(KeyStorePass)</AndroidSigningStorePass>
-    <AndroidSigningKeyAlias>$(KeyStoreAlias)</AndroidSigningKeyAlias>
-    <AndroidUseAapt2>True</AndroidUseAapt2>
-    <AndroidCreatePackagePerAbi>False</AndroidCreatePackagePerAbi>
-    <AndroidPackageFormat>aab</AndroidPackageFormat>
+    <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
   </PropertyGroup>
 
   <ItemGroup>
@@ -39,17 +18,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Avalonia.Android" Version="$(AvaloniaVersion)" />
-    <PackageReference Include="System.Private.Uri" Version="4.3.2" />
-    <PackageReference Include="Xamarin.AndroidX.Core.SplashScreen" Version="1.0.1.1" />
-	<PackageReference Include="VideoLAN.LibVLC.Android" Version="3.5.3" />
+    <PackageReference Include="Avalonia.Android" />
+    <PackageReference Include="Xamarin.AndroidX.Core.SplashScreen" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="runtimes/**/*.*">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    
     <ProjectReference Include="..\Eclair\Eclair.csproj" />
   </ItemGroup>
 </Project>

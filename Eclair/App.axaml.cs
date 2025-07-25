@@ -1,12 +1,11 @@
-﻿using Avalonia;
-using Avalonia.Controls;
+using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
+using Avalonia.Data.Core;
+using Avalonia.Data.Core.Plugins;
+using System.Linq;
 using Avalonia.Markup.Xaml;
-
 using Eclair.ViewModels;
 using Eclair.Views;
-using System;
-using System.IO;
 
 namespace Eclair;
 
@@ -14,106 +13,42 @@ public partial class App : Application
 {
     public override void Initialize()
     {
-        AppDomain.CurrentDomain.ProcessExit += delegate
-        {
-            OnExit(Environment.ExitCode);
-        };
-
-        AppDomain.CurrentDomain.UnhandledException += UnhandledException;
-
-        if (!OperatingSystem.IsAndroid())
-            LoggerInit();
-
-        SetResources((AvaloniaXamlLoader.Load(new Uri("avares://Eclair/Assets/DefaultTheme.axaml")) as ResourceDictionary)!);
-
-        Config.LoadResources();
-
         AvaloniaXamlLoader.Load(this);
-
-        if (!OperatingSystem.IsAndroid())
-            RequestedThemeVariant = Avalonia.Styling.ThemeVariant.Dark;
-    }
-
-    private void UnhandledException(object sender, UnhandledExceptionEventArgs e)
-    {
-        Logger.Error(e.ExceptionObject.ToString() ?? "<failed to get exception>");
-        try
-        {
-            Console.WriteLine("Press any key to exit...");
-            Console.ReadKey();
-        }
-        catch { }
-        Environment.Exit(1);
     }
 
     public override void OnFrameworkInitializationCompleted()
     {
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
+            // Avoid duplicate validations from both Avalonia and the CommunityToolkit. 
+            // More info: https://docs.avaloniaui.net/docs/guides/development-guides/data-validation#manage-validationplugins
+            DisableAvaloniaDataAnnotationValidation();
             desktop.MainWindow = new MainWindow
             {
-                DataContext = new ViewModel()
+                DataContext = new MainViewModel()
             };
         }
         else if (ApplicationLifetime is ISingleViewApplicationLifetime singleViewPlatform)
         {
             singleViewPlatform.MainView = new MainView
             {
-                DataContext = new ViewModel()
+                DataContext = new MainViewModel()
             };
         }
 
         base.OnFrameworkInitializationCompleted();
     }
 
-    internal static void OnExit(int exitcode)
+    private void DisableAvaloniaDataAnnotationValidation()
     {
-        try
-        {
-            ClearTemp();
-            Logger.Log("All temporary files have been deleted.");
-        }
-        catch (Exception ex)
-        {
-            Logger.Error("ClearTemp() threw an exception:\n" + ex.ToString());
-        }
-        try
-        {
-            Logger.Log($"Application exited with code: {exitcode}\n---END-OF-LOG---");
-#if DEBUG
-            Logger.FileStream?.Close();
-            if (OperatingSystem.IsWindows())
-                WinApi.FreeConsole();
-#endif
-        }
-        catch { }
-    }
+        // Get an array of plugins to remove
+        var dataValidationPluginsToRemove =
+            BindingPlugins.DataValidators.OfType<DataAnnotationsValidationPlugin>().ToArray();
 
-    internal void SetResources(ResourceDictionary resources)
-    {
-        foreach (var res in resources)
+        // remove each entry found
+        foreach (var plugin in dataValidationPluginsToRemove)
         {
-            Resources.Remove(res.Key);
-            Resources.Add(res);
+            BindingPlugins.DataValidators.Remove(plugin);
         }
-    }
-
-    private static void ClearTemp()
-    {
-        string[] files = Directory.GetFiles(TempPath);
-
-        foreach (string file in files)
-            File.Delete(file);
-    }
-
-    internal static void ChangeView(UserControl view, UserControl sender)
-    {
-        if (!OperatingSystem.IsAndroid())
-        {
-            MainWindow win = new(view);
-            win.Show();
-        }
-        else
-            sender.Content = view;
     }
 }
