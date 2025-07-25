@@ -5,6 +5,12 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eclair.Core", "Eclair.Core\Eclair.Core.csproj", "{D41E4EB4-F6D9-11ED-5CB6-050C4B256469}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eclair", "Eclair\Eclair.csproj", "{9B05D371-FB78-B9A7-7585-1ADEDE81642A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eclair.Android", "Eclair.Android\Eclair.Android.csproj", "{869A3B17-45E9-FEC0-F12E-B10A767182B9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eclair.Desktop", "Eclair.Desktop\Eclair.Desktop.csproj", "{C4322976-DA76-CBD7-1583-623D9D8E28B2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +21,18 @@ Global
 		{D41E4EB4-F6D9-11ED-5CB6-050C4B256469}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D41E4EB4-F6D9-11ED-5CB6-050C4B256469}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D41E4EB4-F6D9-11ED-5CB6-050C4B256469}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B05D371-FB78-B9A7-7585-1ADEDE81642A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B05D371-FB78-B9A7-7585-1ADEDE81642A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B05D371-FB78-B9A7-7585-1ADEDE81642A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B05D371-FB78-B9A7-7585-1ADEDE81642A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{869A3B17-45E9-FEC0-F12E-B10A767182B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{869A3B17-45E9-FEC0-F12E-B10A767182B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{869A3B17-45E9-FEC0-F12E-B10A767182B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{869A3B17-45E9-FEC0-F12E-B10A767182B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4322976-DA76-CBD7-1583-623D9D8E28B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4322976-DA76-CBD7-1583-623D9D8E28B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4322976-DA76-CBD7-1583-623D9D8E28B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4322976-DA76-CBD7-1583-623D9D8E28B2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
