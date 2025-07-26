@@ -20,5 +20,10 @@
       <PrivateAssets Condition="'$(Configuration)' != 'Debug'">All</PrivateAssets>
     </PackageReference>
     <PackageReference Include="CommunityToolkit.Mvvm" />
+    <PackageReference Include="NonExistPlayer.Logging" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Eclair.Core\Eclair.Core.csproj" />
   </ItemGroup>
 </Project>
