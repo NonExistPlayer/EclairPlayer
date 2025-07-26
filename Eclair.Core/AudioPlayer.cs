@@ -58,6 +58,11 @@ public class AudioPlayer : IDisposable
     /// May return -1 on failure. Check for error via <see cref="Bass.LastError"/>
     /// </summary>
     public double TrackLengthInSeconds => Bass.ChannelBytes2Seconds(StreamHandle, TrackLength);
+    /// <summary>
+    /// The current audio that is loaded.
+    /// May be null if audio is not loaded.
+    /// </summary>
+    public IAudio? CurrentAudio { get; protected set; }
     public int StreamHandle { get; private set; }
     #endregion
 
@@ -124,6 +129,8 @@ public class AudioPlayer : IDisposable
         {
             throw new BassException();
         }
+
+        CurrentAudio = audio;
 
         AudioLoaded?.Invoke(this, audio);
     }
