@@ -63,7 +63,7 @@ public class AudioPlayer : IDisposable
     /// May be null if audio is not loaded.
     /// </summary>
     public IAudio? CurrentAudio { get; protected set; }
-    public int StreamHandle { get; private set; }
+    public int StreamHandle { get; protected set; }
     #endregion
 
     #region Private Properties and Fields
@@ -116,12 +116,9 @@ public class AudioPlayer : IDisposable
     public void LoadAudio(IAudio audio)
     {
         AudioLoading?.Invoke(this, audio);
+
         if (StreamHandle != 0)
-        {
-            Stop();
-            Bass.StreamFree(StreamHandle);
-            StreamHandle = 0;
-        }
+            UnloadAudio();
 
         if ((
             StreamHandle = Bass.CreateStream(audio.AudioData, 0, audio.AudioData.Length, BassFlags.Default
@@ -133,6 +130,17 @@ public class AudioPlayer : IDisposable
         CurrentAudio = audio;
 
         AudioLoaded?.Invoke(this, audio);
+    }
+
+    public void UnloadAudio()
+    {
+        if (StreamHandle == 0)
+            throw new InvalidOperationException("Audio not loaded.");
+
+        Stop();
+        Bass.StreamFree(StreamHandle);
+        StreamHandle = 0;
+        CurrentAudio = null;
     }
 
     public void PluginLoad(string lib)
