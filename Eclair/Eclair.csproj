@@ -21,6 +21,8 @@
     </PackageReference>
     <PackageReference Include="CommunityToolkit.Mvvm" />
     <PackageReference Include="NonExistPlayer.Logging" />
+    <PackageReference Include="Projektanker.Icons.Avalonia" />
+    <PackageReference Include="Projektanker.Icons.Avalonia.FontAwesome" />
   </ItemGroup>
 
   <ItemGroup>

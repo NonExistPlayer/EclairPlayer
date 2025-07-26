@@ -9,6 +9,10 @@
         <local:ViewLocator/>
     </Application.DataTemplates>
 
+    <Application.Resources>
+        <FontFamily x:Key="FontAwesome">avares://Eclair/Assets/Font Awesome 7 Free-Regular-400.otf#Font Awesome</FontFamily>
+    </Application.Resources>
+
     <Application.Styles>
         <FluentTheme />
     </Application.Styles>

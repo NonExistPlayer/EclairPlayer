@@ -1,6 +1,7 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:i="https://github.com/projektanker/icons.avalonia"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:Eclair.ViewModels"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
@@ -13,6 +14,17 @@
   </Design.DataContext>
 
   <Grid>
+    <Grid.Styles>
+        <Style Selector="Button">
+            <Setter Property="Background" Value="Transparent" />
+        </Style>
+        <Style Selector="Button:pointerover /template/ ContentPresenter">
+            <Setter Property="Background" Value="Transparent" />
+        </Style>
+        <Style Selector="Button:pressed /template/ ContentPresenter">
+            <Setter Property="Background" Value="Transparent" />
+        </Style>
+    </Grid.Styles>
     <Grid.RowDefinitions>
       <RowDefinition Height="33"/>
 			<RowDefinition Height="*"/>
@@ -46,8 +58,8 @@
       HorizontalAlignment="Right"
       Margin="5 0"
       Spacing="10">
-        <Button Content="Play"/>
-        <Button Content="Next"/>
+        <Button Name="PlayButton" Content="{Binding PlayIcon}"/>
+        <Button Name="NextButton" Content="{Binding NextIcon}"/>
      </StackPanel>
     </DockPanel>
   </Grid>

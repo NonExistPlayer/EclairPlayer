@@ -1,16 +1,27 @@
 using Eclair.Core;
 using Avalonia.Controls;
+using Eclair.ViewModels;
 
 namespace Eclair.Views;
 
 public partial class MainView : UserControl
 {
+    MainViewModel ViewModel => (MainViewModel)DataContext!;
     public AudioPlayer Player { get; }
+
     public MainView()
     {
         InitializeComponent();
         Player = new(true);
         Logger.Log("Player initialized.");
+
+        Player.AudioPlay +=
+            (sender, e) =>
+                PlayButton.Content = ViewModel.PauseIcon;
+
+        Player.AudioPaused +=
+            (sender, e) =>
+                PlayButton.Content = ViewModel.PlayIcon;
 
         Player.PluginLoaded +=
             (sender, e) =>
