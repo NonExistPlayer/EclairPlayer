@@ -86,6 +86,14 @@ public class AudioPlayer : IDisposable
     /// Occurs when <see cref="Stop()"/>  is called.
     /// </summary>
     public event EventHandler? AudioStop;
+    /// <summary>
+    /// Occurs when plugin successfully loaded.
+    /// </summary>
+    public event EventHandler<PluginLoadEventArgs>? PluginLoaded;
+    /// <summary>
+    /// Occurs when plugin failed to load.
+    /// </summary>
+    public event EventHandler<PluginLoadExceptionEventArgs>? PluginLoadFailed;
     #endregion
 
     public AudioPlayer(bool initialize = false)
@@ -120,7 +128,7 @@ public class AudioPlayer : IDisposable
         AudioLoaded?.Invoke(this, audio);
     }
 
-    public void BPluginLoad(string lib)
+    public void PluginLoad(string lib)
     {
         if (OperatingSystem.IsWindows())
             lib = $"bass{lib}.dll";
@@ -130,7 +138,15 @@ public class AudioPlayer : IDisposable
         int hnd = Bass.PluginLoad(lib);
 
         if (hnd == 0)
-            throw new BassException();
+        {
+            var exception = new BassException();
+            if (PluginLoadFailed != null)
+                PluginLoadFailed(this, new PluginLoadExceptionEventArgs(lib, exception));
+            else
+                throw exception;
+        }
+        else
+            PluginLoaded?.Invoke(this, new PluginLoadEventArgs(lib, hnd));
 
         phnds.Add(hnd);
     }
