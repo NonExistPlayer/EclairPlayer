@@ -26,41 +26,54 @@
         </Style>
     </Grid.Styles>
     <Grid.RowDefinitions>
-      <RowDefinition Height="33"/>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="Auto"/>
 			<RowDefinition Height="*"/>
-			<RowDefinition Height="100"/>
     </Grid.RowDefinitions>
 
-    <Grid>
-      <TextBox Text="yep, this is placeholder"/>
-    </Grid>
+    <Menu>
+      <MenuItem Header="_File">
+        <MenuItem Header="_Open" Click="Open_Click"/>
+      </MenuItem>
+    </Menu>
 
-    <Border Grid.Row="1"
-     BorderBrush="Gray"
-     BorderThickness="1">
-      <TextBlock Text="tracks placeholder"
-      HorizontalAlignment="Center"
-      VerticalAlignment="Center"/>
+    <TextBox Grid.Row="1"
+             Text="yep, this is placeholder"
+             Margin="5"/>
+
+    <ScrollViewer Grid.Row="2"
+                  VerticalScrollBarVisibility="Auto"
+                  HorizontalScrollBarVisibility="Disabled">
+        <StackPanel Name="TracksPanel"
+                    Spacing="10"
+                    VerticalAlignment="Center">
+          <i:Icon Value="fa-plane-up" Animation="Spin"/>
+        </StackPanel>
+    </ScrollViewer>
+
+    <Border Grid.Row="2"
+            Background="Gray"
+            CornerRadius="15"
+            Margin="15"
+            VerticalAlignment="Bottom"
+            HorizontalAlignment="Stretch">
+      <DockPanel>
+        <StackPanel VerticalAlignment="Center"
+                    Orientation="Horizontal"
+                    Margin="5 0"
+                    Spacing="10">
+        <TextBlock Text="img"/>
+        <TextBlock Text="Author - Track"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Right"
+                    Margin="5 0"
+                    Spacing="10">
+          <Button Name="PlayButton" Content="{Binding PlayIcon}"/>
+          <Button Name="NextButton" Content="{Binding NextIcon}"/>
+        </StackPanel>
+      </DockPanel>
     </Border>
-
-    <DockPanel Grid.Row="2"
-     Background="Gray">
-     <StackPanel VerticalAlignment="Center"
-      Orientation="Horizontal"
-      Margin="5 0"
-      Spacing="10">
-      <TextBlock Text="img"/>
-      <TextBlock Text="Author - Track"/>
-     </StackPanel>
-
-     <StackPanel
-      Orientation="Horizontal"
-      HorizontalAlignment="Right"
-      Margin="5 0"
-      Spacing="10">
-        <Button Name="PlayButton" Content="{Binding PlayIcon}"/>
-        <Button Name="NextButton" Content="{Binding NextIcon}"/>
-     </StackPanel>
-    </DockPanel>
   </Grid>
 </UserControl>

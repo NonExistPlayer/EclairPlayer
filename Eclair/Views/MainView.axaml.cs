@@ -1,6 +1,8 @@
+using System;
 using Eclair.Core;
-using Avalonia.Controls;
 using Eclair.ViewModels;
+using Avalonia.Controls;
+using Avalonia.Interactivity;
 
 namespace Eclair.Views;
 
@@ -39,5 +41,10 @@ public partial class MainView : UserControl
         Player.PluginLoad("opus");
         Player.PluginLoad("webm");
         Player.PluginLoad("wv"  );
+    }
+
+    void Open_Click(object? sender, RoutedEventArgs e)
+    {
+        throw new NotImplementedException();
     }
 }
