@@ -26,6 +26,13 @@ public partial class MainView : UserControl
             (sender, e) =>
                 PlayButton.Content = ViewModel.PlayIcon;
 
+        Player.AudioLoaded +=
+            (sender, audio) =>
+            {
+                Logger.Instance.Log($"Audio loaded: '{audio.LocalPath ?? audio.FileName}'.");
+                ViewModel.Title = audio.FullTitle;
+            };
+
         Player.PluginLoaded +=
             (sender, e) =>
                 Logger.Instance.Log($"Successfully loaded bass lib: {e.Library}, hnd: {e.Handle}.");

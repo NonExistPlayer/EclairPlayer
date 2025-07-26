@@ -19,10 +19,15 @@ public class Audio : Core.IAudio
 
         FileName = file.Name;
         Tags = TagFile.Create(new StorageFileAbstraction(file.Name, stream)).Tag;
-
+        
         Title = Tags.Title;
+        if (string.IsNullOrEmpty(Title))
+            Title = FileName;
         Performers = string.Join(", ", Tags.Performers);
-        FullTitle = $"{Performers} - {Title}";
+        FullTitle = !string.IsNullOrWhiteSpace(Performers) ?
+                    $"{Performers} - " :
+                    "";
+        FullTitle += Title;
     }
 
     public Audio(string path)

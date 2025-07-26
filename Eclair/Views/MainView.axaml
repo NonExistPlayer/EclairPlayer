@@ -63,7 +63,7 @@
                     Margin="5 0"
                     Spacing="10">
         <TextBlock Text="img"/>
-        <TextBlock Text="Author - Track"/>
+        <TextBlock Text="{Binding Title}"/>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal"
