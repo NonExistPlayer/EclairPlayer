@@ -3,6 +3,7 @@ using Eclair.Core;
 using Eclair.ViewModels;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
+using Avalonia.Platform.Storage;
 
 namespace Eclair.Views;
 
@@ -43,8 +44,34 @@ public partial class MainView : UserControl
         Player.PluginLoad("wv"  );
     }
 
-    void Open_Click(object? sender, RoutedEventArgs e)
+    void Play_Click(object? sender, RoutedEventArgs e)
     {
-        throw new NotImplementedException();
+        if (Player.IsPlaying) Player.Pause();
+        else                  Player.Play();
+    }
+
+    async void Open_Click(object? sender, RoutedEventArgs e)
+    {
+        var toplevel = TopLevel.GetTopLevel(this);
+
+        var files = await toplevel!.StorageProvider.OpenFilePickerAsync(
+            new FilePickerOpenOptions
+            {
+                FileTypeFilter = [
+                    new("MPEG-1 Audio Layer III")
+                    {
+                        Patterns = ["*.mp3"],
+                        MimeTypes = ["audio/mpeg"]
+                    }
+                ],
+                AllowMultiple = false
+            }
+        );
+
+        if (files.Count == 1)
+        {
+            var file = files[0];
+            Player.LoadAudio(new Audio(file, await file.OpenReadAsync()));
+        }
     }
 }

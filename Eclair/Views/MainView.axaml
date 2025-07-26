@@ -70,7 +70,7 @@
                     HorizontalAlignment="Right"
                     Margin="5 0"
                     Spacing="10">
-          <Button Name="PlayButton" Content="{Binding PlayIcon}"/>
+          <Button Name="PlayButton" Content="{Binding PlayIcon}" Click="Play_Click"/>
           <Button Name="NextButton" Content="{Binding NextIcon}"/>
         </StackPanel>
       </DockPanel>
