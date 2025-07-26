@@ -16,7 +16,7 @@ public partial class MainView : UserControl
     {
         InitializeComponent();
         Player = new(true);
-        Logger.Log("Player initialized.");
+        Logger.Instance.Log("Player initialized.");
 
         Player.AudioPlay +=
             (sender, e) =>
@@ -28,11 +28,11 @@ public partial class MainView : UserControl
 
         Player.PluginLoaded +=
             (sender, e) =>
-                Logger.Log($"Successfully loaded bass lib: {e.Library}, hnd: {e.Handle}.");
+                Logger.Instance.Log($"Successfully loaded bass lib: {e.Library}, hnd: {e.Handle}.");
 
         Player.PluginLoadFailed +=
             (sender, e) =>
-                Logger.Error($"Failed to load bass lib: {e.Library}.");
+                Logger.Instance.Error($"Failed to load bass lib: {e.Library}.");
 
         Player.PluginLoad("aac" );
         Player.PluginLoad("alac");
