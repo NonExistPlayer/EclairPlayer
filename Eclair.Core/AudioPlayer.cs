@@ -101,6 +101,11 @@ public class AudioPlayer : IDisposable
     public event EventHandler<PluginLoadExceptionEventArgs>? PluginLoadFailed;
     #endregion
 
+    /// <summary>
+    /// yep, it's just a constructor.
+    /// </summary>
+    /// <param name="initialize">Should be constructor initialize bass.</param>
+    /// <exception cref="BassException"/>
     public AudioPlayer(bool initialize = false)
     {
         if (initialize)
@@ -113,6 +118,14 @@ public class AudioPlayer : IDisposable
         }
     }
 
+    /// <summary>
+    /// Loads audio.<br/>
+    /// Unloads current one if it was loaded.<br/>
+    /// Invokes <see cref="AudioLoading"/> at the start and <see cref="AudioLoaded"/> at the end.<br/>
+    /// Sets <see cref="StreamHandle"/> and <see cref="CurrentAudio"/>.
+    /// </summary>
+    /// <param name="audio">The audio for load.</param>
+    /// <exception cref="BassException"/>
     public void LoadAudio(IAudio audio)
     {
         AudioLoading?.Invoke(this, audio);
@@ -132,6 +145,11 @@ public class AudioPlayer : IDisposable
         AudioLoaded?.Invoke(this, audio);
     }
 
+    /// <summary>
+    /// Unloads audio.<br/>
+    /// Throws <see cref="InvalidOperationException"/> if the audio was not loaded.
+    /// </summary>
+    /// <exception cref="InvalidOperationException"></exception>
     public void UnloadAudio()
     {
         if (StreamHandle == 0)
@@ -143,6 +161,13 @@ public class AudioPlayer : IDisposable
         CurrentAudio = null;
     }
 
+    /// <summary>
+    /// Loads the bass plugin.<br/>
+    /// Invokes <see cref="PluginLoaded"/> if it successfully loaded<br/>
+    /// otherwises invokes <see cref="PluginLoadFailed"/> but if its null, throws <see cref="BassException"/>.
+    /// </summary>
+    /// <param name="lib"></param>
+    /// <exception cref="BassException"/>
     public void PluginLoad(string lib)
     {
         if (OperatingSystem.IsWindows())
@@ -167,6 +192,12 @@ public class AudioPlayer : IDisposable
     }
 
     #region Audio Control
+    /// <summary>
+    /// Plays the audio.<br/>
+    /// Invokes <see cref="AudioPlay"/>.<br/>
+    /// Does nothing if there is no audio.
+    /// </summary>
+    /// <exception cref="BassException"/>
     public void Play()
     {
         if (StreamHandle == 0) return;
@@ -176,7 +207,12 @@ public class AudioPlayer : IDisposable
 
         AudioPlay?.Invoke(this, EventArgs.Empty);
     }
-
+    /// <summary>
+    /// Pauses the audio.<br/>
+    /// Invokes <see cref="AudioPaused"/>.<br/>
+    /// Does nothing if there is no audio.
+    /// </summary>
+    /// <exception cref="BassException"/>
     public void Pause()
     {
         if (StreamHandle == 0) return;
@@ -186,7 +222,12 @@ public class AudioPlayer : IDisposable
 
         AudioPaused?.Invoke(this, EventArgs.Empty);
     }
-
+    /// <summary>
+    /// Stops the audio.<br/>
+    /// Invokes <see cref="AudioStop"/>.<br/>
+    /// yeah. it still does nothing if there is no audio.
+    /// </summary>
+    /// <exception cref="BassException"/>
     public void Stop()
     {
         if (StreamHandle == 0) return;
@@ -219,6 +260,9 @@ public class AudioPlayer : IDisposable
         }
     }
 
+    /// <summary>
+    /// wow. it's just disposing. amazing.
+    /// </summary>
     public void Dispose()
     {
         Dispose(true);
