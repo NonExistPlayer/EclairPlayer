@@ -2,6 +2,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:i="https://github.com/projektanker/icons.avalonia"
+			       xmlns:l="clr-namespace:Eclair"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:Eclair.ViewModels"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
@@ -32,38 +33,39 @@
     </Grid.RowDefinitions>
 
     <Menu>
-      <MenuItem Header="_File">
-        <MenuItem Header="_Open" Click="Open_Click"/>
+      <MenuItem Header="{l:Localize MenuFile}">
+        <MenuItem Header="{l:Localize MenuFileOpen}" Click="Open_Click"/>
       </MenuItem>
     </Menu>
+    
+    <i:Icon Grid.Row="0" Value="fa-plane-up" Animation="Spin"/>
 
     <TextBox Grid.Row="1"
              Text="yep, this is placeholder"
              Margin="5"/>
-
+    
     <ScrollViewer Grid.Row="2"
                   VerticalScrollBarVisibility="Auto"
                   HorizontalScrollBarVisibility="Disabled">
         <StackPanel Name="TracksPanel"
-                    Spacing="10"
-                    VerticalAlignment="Center">
-          <i:Icon Value="fa-plane-up" Animation="Spin"/>
+                    Spacing="10">
         </StackPanel>
     </ScrollViewer>
 
     <Border Grid.Row="2"
             Background="Gray"
             CornerRadius="15"
-            Margin="15"
+            Margin="10"
             VerticalAlignment="Bottom"
-            HorizontalAlignment="Stretch">
+            Height="60">
       <DockPanel>
         <StackPanel VerticalAlignment="Center"
                     Orientation="Horizontal"
                     Margin="5 0"
                     Spacing="10">
-        <TextBlock Text="img"/>
-        <TextBlock Text="{Binding Title}"/>
+          <Image Source="{Binding ImageSource}"
+                 MaxWidth="48"/>
+          <TextBlock Text="{Binding Title}"/>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal"

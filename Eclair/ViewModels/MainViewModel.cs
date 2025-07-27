@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using Avalonia.Media;
+using CommunityToolkit.Mvvm.ComponentModel;
 using Projektanker.Icons.Avalonia;
 
 // ReSharper disable MemberCanBeMadeStatic.Global
@@ -16,4 +17,6 @@ public partial class MainViewModel : ViewModelBase
 
     [ObservableProperty]
     string title = "-";
+    [ObservableProperty]
+    IImage? imageSource;
 }
