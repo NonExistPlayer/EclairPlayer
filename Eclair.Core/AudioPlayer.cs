@@ -83,7 +83,7 @@ public class AudioPlayer : IDisposable
     /// Occurs when <see cref="Play()"/>  is called.
     /// </summary>
     public event EventHandler? AudioPlay;
-    //// <summary>
+    /// <summary>
     /// Occurs when <see cref="Pause()"/>  is called.
     /// </summary>
     public event EventHandler? AudioPaused;
@@ -108,14 +108,10 @@ public class AudioPlayer : IDisposable
     /// <exception cref="BassException"/>
     public AudioPlayer(bool initialize = false)
     {
-        if (initialize)
-        {
-            if (!Bass.Init())
-            {
-                if (Bass.LastError != Errors.Already)
-                    throw new BassException();
-            }
-        }
+        if (!initialize) return;
+        if (Bass.Init()) return;
+        if (Bass.LastError != Errors.Already)
+            throw new BassException();
     }
 
     /// <summary>
@@ -170,10 +166,7 @@ public class AudioPlayer : IDisposable
     /// <exception cref="BassException"/>
     public void PluginLoad(string lib)
     {
-        if (OperatingSystem.IsWindows())
-            lib = $"bass{lib}.dll";
-        else // linux / android
-            lib = $"libbass{lib}.so";
+        lib = OperatingSystem.IsWindows() ? $"bass{lib}.dll" :  $"libbass{lib}.so";
 
         int hnd = Bass.PluginLoad(lib);
 
@@ -249,10 +242,7 @@ public class AudioPlayer : IDisposable
         if (disposing)
         {
             if (StreamHandle != 0)
-            {
-                Bass.StreamFree(StreamHandle);
-                StreamHandle = 0;
-            }
+                UnloadAudio();
             Bass.Free();
             foreach (int hnd in phnds)
                 Bass.PluginFree(hnd);
