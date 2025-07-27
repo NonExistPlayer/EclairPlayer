@@ -1,5 +1,7 @@
+using System;
 using TagLib;
 using System.IO;
+using System.Security.Cryptography;
 using Avalonia.Controls;
 using Avalonia.Media.Imaging;
 using Avalonia.Platform.Storage;
@@ -16,8 +18,7 @@ public class Audio : Core.IAudio
         LocalPath = file.TryGetLocalPath();
 
         var reader = new BinaryReader(stream);
-        AudioData = new byte[stream.Length];
-        reader.Read(AudioData, 0, AudioData.Length);
+        AudioData = reader.ReadBytes((int)stream.Length);
 
         FileName = file.Name;
         Tags = TagFile.Create(new StorageFileAbstraction(file.Name, stream)).Tag;
@@ -58,6 +59,8 @@ public class Audio : Core.IAudio
         FullTitle = $"{Performers} - {Title}";
     }
 
+    public string GetHash() => Convert.ToHexStringLower( SHA256.HashData(AudioData));
+
     public string? LocalPath { get; }
     public byte[] AudioData { get; }
     public string FileName { get; }
@@ -67,4 +70,19 @@ public class Audio : Core.IAudio
     public string FullTitle { get; }
     public string Title { get; }
     public string Performers { get; }
+    
+    public static bool operator ==(Audio? left, Audio? right)
+    {
+        if (ReferenceEquals(left, right))
+            return true;
+        if (left is null || right is null)
+            return false;
+        return left.GetHash() == right.GetHash();
+    }
+    
+    public static bool operator !=(Audio? left, Audio? right) => !(left == right);
+    
+    public override bool Equals(object? obj) => obj is Audio audio && this == audio;
+    
+    public override int GetHashCode() => GetHash().GetHashCode();
 }
