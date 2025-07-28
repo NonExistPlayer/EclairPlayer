@@ -9,5 +9,6 @@ public class StorageFileAbstraction(string name, Stream read) : TagLib.File.IFil
     public Stream ReadStream { get; } = read;
     public Stream WriteStream => throw new NotImplementedException();
 
-    public void CloseStream(Stream stream) => stream.Close();
+    // гарантирует что не будет закрыт Stream, который используются в Audio. 
+    public void CloseStream(Stream stream) {}
 }

@@ -11,7 +11,7 @@ using TagFile = TagLib.File;
 
 namespace Eclair;
 
-public class Audio : Core.IAudio
+public class Audio : Core.IAudio, IDisposable
 {
     void InitializeMetadata()
     {
@@ -36,9 +36,8 @@ public class Audio : Core.IAudio
     public Audio(IStorageFile file, Stream stream)
     {
         LocalPath = file.TryGetLocalPath();
-    
-        var reader = new BinaryReader(stream);
-        AudioData = reader.ReadBytes((int)stream.Length);
+
+        _stream = stream;
     
         FileName = file.Name;
         Tags = TagFile.Create(new StorageFileAbstraction(file.Name, stream)).Tag;
@@ -49,7 +48,6 @@ public class Audio : Core.IAudio
     public Audio(string path)
     {
         LocalPath = path;
-        AudioData = File.ReadAllBytes(path);
         FileName = Path.GetFileName(path);
         Tags = TagFile.Create(path).Tag;
     
@@ -57,10 +55,32 @@ public class Audio : Core.IAudio
     }
 #pragma warning restore CS8618
 
-    public string GetHash() => Convert.ToHexStringLower( SHA256.HashData(AudioData));
-
+    readonly Stream? _stream;
+    byte[]? _cachedData;
     public string? LocalPath { get; }
-    public byte[] AudioData { get; }
+
+    public byte[] AudioData
+    {
+        get
+        {
+            if (_cachedData != null)
+                return _cachedData;
+            
+            if (_stream != null)
+            {
+                _stream.Position = 0;
+                using var ms = new MemoryStream();
+                _stream.CopyTo(ms);
+                _cachedData = ms.ToArray();
+            }
+            else
+            {
+                _cachedData = File.ReadAllBytes(LocalPath!);
+            }
+            
+            return _cachedData;
+        }
+    }
     public string FileName { get; }
     public Tag Tags { get; }
 
@@ -70,17 +90,10 @@ public class Audio : Core.IAudio
     public string Performers { get; private set; }
     
     public static bool operator ==(Audio? left, Audio? right)
+
+    public void Dispose()
     {
-        if (ReferenceEquals(left, right))
-            return true;
-        if (left is null || right is null)
-            return false;
-        return left.GetHash() == right.GetHash();
+        _stream?.Dispose();
+        GC.SuppressFinalize(this);
     }
-    
-    public static bool operator !=(Audio? left, Audio? right) => !(left == right);
-    
-    public override bool Equals(object? obj) => obj is Audio audio && this == audio;
-    
-    public override int GetHashCode() => GetHash().GetHashCode();
 }
