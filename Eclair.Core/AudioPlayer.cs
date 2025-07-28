@@ -80,6 +80,10 @@ public class AudioPlayer : IDisposable
     /// </summary>
     public event EventHandler<IAudio>? AudioLoaded;
     /// <summary>
+    /// Occurs when audio is unloading.
+    /// </summary>
+    public event EventHandler? AudioUnloaded;
+    /// <summary>
     /// Occurs when <see cref="Play()"/>  is called.
     /// </summary>
     public event EventHandler? AudioPlay;
@@ -155,6 +159,8 @@ public class AudioPlayer : IDisposable
         Bass.StreamFree(StreamHandle);
         StreamHandle = 0;
         CurrentAudio = null;
+        
+        AudioUnloaded?.Invoke(this, EventArgs.Empty);
     }
 
     /// <summary>
