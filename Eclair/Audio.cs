@@ -11,7 +11,7 @@ using TagFile = TagLib.File;
 
 namespace Eclair;
 
-public class Audio : Core.IAudio, IDisposable
+public class Audio : Core.ISong, IDisposable
 {
     void InitializeMetadata()
     {
@@ -33,10 +33,6 @@ public class Audio : Core.IAudio, IDisposable
         if (string.IsNullOrEmpty(Title))
             Title = FileName;
         Performers = string.Join(", ", Tags.Performers);
-        FullTitle = !string.IsNullOrWhiteSpace(Performers) ?
-            $"{Performers} - " :
-            "";
-        FullTitle += Title;
         Album = Tags.Album;
     }
     
@@ -93,7 +89,6 @@ public class Audio : Core.IAudio, IDisposable
     public Tag Tags { get; }
 
     public Image? Image { get; private set; }
-    public string FullTitle { get; private set; }
     public string Title { get; private set; }
     public string Performers { get; private set; }
     public string Album { get; private set; }

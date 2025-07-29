@@ -57,9 +57,9 @@ public partial class MainView : UserControl
         if (audio is not Audio a)
             throw new UnreachableException();
 
-        ViewModel.Title = audio.Title;
-        ViewModel.Performers = !string.IsNullOrEmpty(audio.Performers) ? audio.Performers : "-";
-        ViewModel.Album = !string.IsNullOrEmpty(audio.Album) ? audio.Album : "-";
+        ViewModel.Title = a.Title;
+        ViewModel.Performers = !string.IsNullOrEmpty(a.Performers) ? a.Performers : "-";
+        ViewModel.Album = !string.IsNullOrEmpty(a.Album) ? a.Album : "-";
         ViewModel.ImageSource = a.Image?.Source;
     }
     #endregion
