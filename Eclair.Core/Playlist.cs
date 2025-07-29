@@ -42,7 +42,7 @@ public class Playlist(AudioPlayer? player = null) : IPlaylist
     }
     public bool Next()
     {
-        if (Index == List.Count - 1) return false;
+        if (Index >= List.Count - 1) return false;
         Index++;
         return true;
     }
