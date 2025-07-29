@@ -10,7 +10,12 @@
     </Application.DataTemplates>
 
     <Application.Resources>
-        <FontFamily x:Key="FontAwesome">avares://Eclair/Assets/Font Awesome 7 Free-Regular-400.otf#Font Awesome</FontFamily>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <MergeResourceInclude Source="/Assets/Colors.axaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <FontFamily x:Key="FontAwesome">avares://Eclair/Assets/Font Awesome 7 Free-Regular-400.otf#Font Awesome</FontFamily>
+        </ResourceDictionary>
     </Application.Resources>
 
     <Application.Styles>
