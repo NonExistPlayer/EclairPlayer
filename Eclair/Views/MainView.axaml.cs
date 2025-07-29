@@ -1,6 +1,6 @@
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using Eclair.Core;
 using Eclair.ViewModels;
 using Avalonia.Layout;
@@ -8,12 +8,12 @@ using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Media;
 using Avalonia.Platform.Storage;
+using static Eclair.ViewModels.MainViewModel;
 
 namespace Eclair.Views;
 
 public partial class MainView : UserControl
 {
-    readonly List<Audio> playlist = [];
     MainViewModel ViewModel => (MainViewModel)DataContext!;
     readonly AudioPlayer player;
 
@@ -21,15 +21,14 @@ public partial class MainView : UserControl
     {
         InitializeComponent();
         player = new(true);
-        Logger.Instance.Log("Bass initialized.");
 
         player.AudioPlay +=
             (_, _) =>
-                PlayButton.Content = ViewModel.PauseIcon;
+                ViewModel.PlayIcon = CreateIcon(PauseIconValue);
 
         player.AudioPaused +=
             (_, _) =>
-                PlayButton.Content = ViewModel.PlayIcon;
+                ViewModel.PlayIcon = CreateIcon(PlayIconValue);
 
         player.AudioLoaded += AudioLoaded;
         player.PluginLoaded += PluginLoaded;
@@ -45,66 +44,6 @@ public partial class MainView : UserControl
         player.PluginLoad("wv"  );
     }
 
-    void AddAudioToPanel(Audio audio)
-    {
-        if (playlist.Contains(audio))
-        {
-            Logger.Instance.Log("Audio already in playlist, skipping.");
-            return;
-        }
-        
-        var border = new Border
-        {
-            CornerRadius = new(5),
-            Margin = new(5),
-            Background = Brushes.Gray,
-            HorizontalAlignment = HorizontalAlignment.Stretch
-        };
-
-        var panel = new DockPanel();
-
-        Image? img = null;
-
-        if (audio.Image != null)
-        {
-            img = new()
-            {
-                Source = audio.Image.Source,
-                MaxWidth = 47,
-                Margin = new(5, 0),
-            };
-        }
-
-        var title = new TextBlock
-        {
-            Text = audio.FullTitle,
-            FontWeight = ReferenceEquals(player.CurrentAudio, audio) ? FontWeight.Bold : FontWeight.Normal,
-            VerticalAlignment = VerticalAlignment.Center,
-            HorizontalAlignment = HorizontalAlignment.Center
-        };
-
-        var playButton = new Button
-        {
-            Content = ViewModel.PlayIcon
-        };
-
-        playButton.Click += (_, _) =>
-        {
-            if (ReferenceEquals(player.CurrentAudio, audio))
-                player.Stop();
-            else
-                player.LoadAudio(audio);
-            player.Play();
-        };
-        
-        if (img != null)
-            panel.Children.Add(img);
-        panel.Children.AddRange([playButton, title]);
-        border.Child = panel;
-        TracksPanel.Children.Add(border);
-        playlist.Add(audio);
-    }
-
     #region Core Events
     static void PluginLoaded(object? sender, PluginLoadEventArgs e) =>
         Logger.Instance.Log($"Successfully loaded bass lib: {e.Library}, hnd: {e.Handle}.");
@@ -113,11 +52,13 @@ public partial class MainView : UserControl
     void AudioLoaded(object? sender, IAudio audio)
     {
         Logger.Instance.Log($"Audio loaded: '{audio.LocalPath ?? audio.FileName}'.");
-        ViewModel.Title = audio.FullTitle;
-
+        
         if (audio is not Audio a)
             throw new UnreachableException();
-                
+
+        ViewModel.Title = audio.Title;
+        ViewModel.Performers = !string.IsNullOrEmpty(audio.Performers) ? audio.Performers : "-";
+        ViewModel.Album = !string.IsNullOrEmpty(audio.Album) ? audio.Album : "-";
         ViewModel.ImageSource = a.Image?.Source;
     }
     #endregion
@@ -127,6 +68,56 @@ public partial class MainView : UserControl
     {
         if (player.IsPlaying) player.Pause();
         else                  player.Play();
+    }
+
+    void Next_Click(object? sender, RoutedEventArgs e)
+    {
+        ViewModel.Playlist.Player ??= player;
+        ViewModel.Playlist.PlayNext();
+    }
+
+    void Prev_Click(object? sender, RoutedEventArgs e)
+    {
+        ViewModel.Playlist.Player ??= player;
+        ViewModel.Playlist.PlayPrevious();
+    }
+
+    void List_Play_Click(object? sender, RoutedEventArgs re)
+    {
+        var button = (Button)sender!;
+        var audio = (IAudio)button.Tag!;
+    
+        ViewModel.Playlist.Index = ViewModel.Playlist.IndexOf(audio);
+        
+        player.LoadAudio(audio);
+        
+        Logger.Instance.Log("Attaching events...");
+        button.Click         -= List_Play_Click;
+        button.Click         += Play_Click;
+        player.AudioPlay     += Play;
+        player.AudioPaused   += Paused;
+        player.AudioUnloaded += Unloaded;
+        
+        player.Play();
+        
+        return;
+
+        void Paused(object? s, EventArgs e) =>
+            button.Content = CreateIcon(CirclePlayIconValue, 18);
+
+        void Play(object? s, EventArgs e) =>
+            button.Content = CreateIcon(CirclePauseIconValue, 18);
+
+        void Unloaded(object? s, EventArgs e)
+        {
+            Logger.Instance.Log("Unattaching events...");
+            button.Content = CreateIcon(CirclePlayIconValue, 18);
+            button.Click         += List_Play_Click;
+            button.Click         -= Play_Click;
+            player.AudioPlay     -= Play;
+            player.AudioPaused   -= Paused;
+            player.AudioUnloaded -= Unloaded;
+        }
     }
 
     // ReSharper disable once AsyncVoidMethod
@@ -144,17 +135,14 @@ public partial class MainView : UserControl
                         MimeTypes = ["audio/mpeg"]
                     }
                 ],
-                AllowMultiple = false
+                AllowMultiple = true
             }
         );
 
-        if (files.Count == 1)
-        {
-            var file = files[0];
-            var audio = new Audio(file, await file.OpenReadAsync());
-            player.LoadAudio(audio);
-            AddAudioToPanel(audio);
-        }
+        if (!files.Any()) return;
+        
+        foreach (var file in files)
+            ViewModel.Playlist.Add(new Audio(file, await file.OpenReadAsync()));
     }
     #endregion
 }

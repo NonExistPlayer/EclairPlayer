@@ -2,9 +2,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:i="https://github.com/projektanker/icons.avalonia"
-			       xmlns:l="clr-namespace:Eclair"
+			 xmlns:l="clr-namespace:Eclair"
+             xmlns:v="clr-namespace:Eclair.Views"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:Eclair.ViewModels"
+             xmlns:core="clr-namespace:Eclair.Core;assembly=Eclair.Core"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Eclair.Views.MainView"
              x:DataType="vm:MainViewModel">
@@ -14,23 +16,28 @@
     <vm:MainViewModel />
   </Design.DataContext>
 
-  <Grid>
+  <Grid RowDefinitions="Auto,Auto,*">
     <Grid.Styles>
-        <Style Selector="Button">
-            <Setter Property="Background" Value="Transparent" />
+        <Style Selector="Border.tracks">
+            <Setter Property="Background" Value="{DynamicResource AltBackground}"/>
         </Style>
-        <Style Selector="Button:pointerover /template/ ContentPresenter">
-            <Setter Property="Background" Value="Transparent" />
-        </Style>
-        <Style Selector="Button:pressed /template/ ContentPresenter">
-            <Setter Property="Background" Value="Transparent" />
+        
+        <Style Selector="DockPanel.rounded > Button">
+            <Setter Property="Background" Value="Transparent"/>
+            
+            <Style Selector="^:nth-child(1)">
+                <Setter Property="CornerRadius" Value="50 0 0 50"/>
+            </Style>
+            
+            <Style Selector="^:nth-last-child(1)">
+                <Setter Property="CornerRadius" Value="0 50 50 0"/>
+            </Style>
+            
+            <Style Selector="^:pressed /template/ ContentPresenter">
+                <Setter Property="Background" Value="Transparent"/>
+            </Style>
         </Style>
     </Grid.Styles>
-    <Grid.RowDefinitions>
-      <RowDefinition Height="Auto"/>
-      <RowDefinition Height="Auto"/>
-			<RowDefinition Height="*"/>
-    </Grid.RowDefinitions>
 
     <Menu>
       <MenuItem Header="{l:Localize MenuFile}">
@@ -44,38 +51,77 @@
              Text="yep, this is placeholder"
              Margin="5"/>
     
-    <ScrollViewer Grid.Row="2"
-                  VerticalScrollBarVisibility="Auto"
-                  HorizontalScrollBarVisibility="Disabled">
-        <StackPanel Name="TracksPanel"
-                    Spacing="10">
+    <Grid Grid.Row="2"
+          ColumnDefinitions="2*, *">
+        <StackPanel VerticalAlignment="Center">
+            <Image Source="{Binding ImageSource}"
+                   MaxHeight="256"/>
+            <TextBlock Text="{Binding Title}"
+                       FontSize="32"
+                       FontWeight="Bold"
+                       HorizontalAlignment="Center"/>
+            <TextBlock Text="{Binding Performers}"
+                       FontSize="18"
+                       HorizontalAlignment="Center"/>
+            <TextBlock Text="{Binding Album}"
+                       FontSize="10"
+                       HorizontalAlignment="Center"/>
+            
+            <Border CornerRadius="50"
+                    Margin="25"
+                    Background="{DynamicResource AltBackground}"
+                    HorizontalAlignment="Center">
+                <DockPanel Classes="rounded">
+                    <Button i:Attached.Icon="{x:Static vm:MainViewModel.PrevIconValue}"
+                            FontSize="{x:Static vm:MainViewModel.FontSize}"
+                            Click="Prev_Click"/>
+                    <Button Content="{Binding PlayIcon}"
+                            Click="Play_Click"/>
+                    <Button i:Attached.Icon="{x:Static vm:MainViewModel.NextIconValue}"
+                            FontSize="{x:Static vm:MainViewModel.FontSize}"
+                            Click="Next_Click"/>
+                </DockPanel>
+            </Border>
         </StackPanel>
-    </ScrollViewer>
-
-    <Border Grid.Row="2"
-            Background="Gray"
-            CornerRadius="15"
-            Margin="10"
-            VerticalAlignment="Bottom"
-            Height="60">
-      <DockPanel>
-        <StackPanel VerticalAlignment="Center"
-                    Orientation="Horizontal"
-                    Margin="5 0"
-                    Spacing="10">
-          <Image Source="{Binding ImageSource}"
-                 MaxWidth="48"/>
-          <TextBlock Text="{Binding Title}"/>
-        </StackPanel>
-
-        <StackPanel Orientation="Horizontal"
-                    HorizontalAlignment="Right"
-                    Margin="5 0"
-                    Spacing="10">
-          <Button Name="PlayButton" Content="{Binding PlayIcon}" Click="Play_Click"/>
-          <Button Name="NextButton" Content="{Binding NextIcon}"/>
-        </StackPanel>
-      </DockPanel>
-    </Border>
+        
+        <Grid Grid.Column="1"
+              RowDefinitions="Auto,*">
+            <TextBlock Text="{l:Localize Tracks}"
+                       FontSize="24"
+                       FontWeight="Bold"
+                       HorizontalAlignment="Center"/>
+            
+            <ListBox Grid.Row="1"
+                     Focusable="False"
+                     SelectionMode="Multiple"
+                     Background="Transparent"
+                     ScrollViewer.AllowAutoHide="False"
+                     ScrollViewer.VerticalScrollBarVisibility="Visible"
+                     ItemsSource="{Binding Playlist}">
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel />
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+    
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <DockPanel>
+                            <Button FontSize="18"
+                                    CornerRadius="20"
+                                    Click="List_Play_Click"
+                                    Tag="{Binding}"
+                                    Background="Transparent"
+                                    i:Attached.Icon="{x:Static vm:MainViewModel.CirclePlayIconValue}"/>
+                            <TextBlock Text="{Binding FileName}"
+                                       FontWeight="Bold"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"/>
+                        </DockPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Grid>
+    </Grid>
   </Grid>
 </UserControl>
