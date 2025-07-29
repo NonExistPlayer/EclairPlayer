@@ -129,4 +129,7 @@
   <data name="Tracks" xml:space="preserve">
     <value>Треки</value>
   </data>
+  <data name="TracksContextRemove" xml:space="preserve">
+    <value>Убрать</value>
+  </data>
 </root>

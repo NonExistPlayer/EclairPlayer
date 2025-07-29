@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Immutable;
 using System.Diagnostics;
 using System.Linq;
 using Eclair.Core;
@@ -118,6 +119,13 @@ public partial class MainView : UserControl
             player.AudioPaused   -= Paused;
             player.AudioUnloaded -= Unloaded;
         }
+    }
+    
+    void TracksContext_Remove(object? sender, RoutedEventArgs e)
+    {
+        var list = ViewModel.SelectedItems.ToImmutableList();
+        foreach (var item in list)
+            ViewModel.Playlist.Remove(item);
     }
 
     // ReSharper disable once AsyncVoidMethod

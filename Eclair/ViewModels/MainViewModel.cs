@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Avalonia.Interactivity;
 using Avalonia.Media;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -37,7 +38,9 @@ public partial class MainViewModel : ViewModelBase
     
     [ObservableProperty]
     ObservablePlaylist playlist = [];
-    
+    [ObservableProperty]
+    List<IAudio> selectedItems = [];
+
     [ObservableProperty]
     IImage? imageSource;
     #endregion

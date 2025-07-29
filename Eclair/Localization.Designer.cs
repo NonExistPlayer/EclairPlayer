@@ -68,5 +68,11 @@ namespace Eclair {
                 return ResourceManager.GetString("Tracks", resourceCulture);
             }
         }
+        
+        internal static string TracksContextRemove {
+            get {
+                return ResourceManager.GetString("TracksContextRemove", resourceCulture);
+            }
+        }
     }
 }

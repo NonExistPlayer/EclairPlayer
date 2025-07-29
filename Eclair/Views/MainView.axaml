@@ -95,9 +95,17 @@
                      Focusable="False"
                      SelectionMode="Multiple"
                      Background="Transparent"
-                     ScrollViewer.AllowAutoHide="False"
                      ScrollViewer.VerticalScrollBarVisibility="Visible"
-                     ItemsSource="{Binding Playlist}">
+                     ItemsSource="{Binding Playlist}"
+                     SelectedItems="{Binding SelectedItems}">
+                <ListBox.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="{l:Localize TracksContextRemove}"
+                                  Click="TracksContext_Remove"
+                                  HotKey="Delete"/>
+                    </ContextMenu>
+                </ListBox.ContextMenu>                
+                
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <VirtualizingStackPanel />
