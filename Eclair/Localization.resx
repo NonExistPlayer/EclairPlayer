@@ -123,4 +123,10 @@
   <data name="MenuFileOpen" xml:space="preserve">
     <value>Open</value>
   </data>
+  <data name="TrackNotLoaded" xml:space="preserve">
+    <value>The track is not loaded.</value>
+  </data>
+  <data name="Tracks" xml:space="preserve">
+    <value>Tracks</value>
+  </data>
 </root>

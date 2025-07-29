@@ -56,5 +56,17 @@ namespace Eclair {
                 return ResourceManager.GetString("MenuFileOpen", resourceCulture);
             }
         }
+        
+        internal static string TrackNotLoaded {
+            get {
+                return ResourceManager.GetString("TrackNotLoaded", resourceCulture);
+            }
+        }
+        
+        internal static string Tracks {
+            get {
+                return ResourceManager.GetString("Tracks", resourceCulture);
+            }
+        }
     }
 }
