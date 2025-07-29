@@ -12,4 +12,5 @@ public interface IAudio
     public string FullTitle { get; }
     public string Title { get; }
     public string Performers { get; }
+    public string Album { get; }
 }

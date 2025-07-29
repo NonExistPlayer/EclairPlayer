@@ -19,7 +19,14 @@ public class Audio : Core.IAudio, IDisposable
         {
             var image = Tags.Pictures[0];
             using MemoryStream ms = new(image.Data.Data);
-            Image = new() { Source = new Bitmap(ms) };
+            try
+            {
+                Image = new() { Source = new Bitmap(ms) };
+            }
+            catch (Exception ex)
+            {
+                Logger.Instance.Warn($"Caught {ex.GetType()}: '{ex.Message}'.");
+            }
         }
     
         Title = Tags.Title;
@@ -30,6 +37,7 @@ public class Audio : Core.IAudio, IDisposable
             $"{Performers} - " :
             "";
         FullTitle += Title;
+        Album = Tags.Album;
     }
     
 #pragma warning disable CS8618
@@ -88,8 +96,7 @@ public class Audio : Core.IAudio, IDisposable
     public string FullTitle { get; private set; }
     public string Title { get; private set; }
     public string Performers { get; private set; }
-    
-    public static bool operator ==(Audio? left, Audio? right)
+    public string Album { get; private set; }
 
     public void Dispose()
     {
