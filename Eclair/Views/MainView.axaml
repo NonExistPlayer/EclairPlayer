@@ -17,28 +17,6 @@
   </Design.DataContext>
 
   <Grid RowDefinitions="Auto,Auto,*">
-    <Grid.Styles>
-        <Style Selector="Border.tracks">
-            <Setter Property="Background" Value="{DynamicResource AltBackground}"/>
-        </Style>
-        
-        <Style Selector="DockPanel.rounded > Button">
-            <Setter Property="Background" Value="Transparent"/>
-            
-            <Style Selector="^:nth-child(1)">
-                <Setter Property="CornerRadius" Value="50 0 0 50"/>
-            </Style>
-            
-            <Style Selector="^:nth-last-child(1)">
-                <Setter Property="CornerRadius" Value="0 50 50 0"/>
-            </Style>
-            
-            <Style Selector="^:pressed /template/ ContentPresenter">
-                <Setter Property="Background" Value="Transparent"/>
-            </Style>
-        </Style>
-    </Grid.Styles>
-
     <Menu>
       <MenuItem Header="{l:Localize MenuFile}">
         <MenuItem Header="{l:Localize MenuFileOpen}" Click="Open_Click"/>
