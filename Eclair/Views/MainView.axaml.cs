@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Diagnostics;
 using System.Linq;
@@ -7,6 +8,7 @@ using Eclair.ViewModels;
 using Avalonia.Layout;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
+using Avalonia.LogicalTree;
 using Avalonia.Media;
 using Avalonia.Platform.Storage;
 using static Eclair.ViewModels.MainViewModel;
@@ -126,6 +128,40 @@ public partial class MainView : UserControl
         var list = ViewModel.SelectedItems.ToImmutableList();
         foreach (var item in list)
             ViewModel.Playlist.Remove(item);
+    }
+    void Playlist_SelectionChanged(object? sender, SelectionChangedEventArgs e)
+    {
+        var children = Tracks.GetLogicalChildren()
+            .OfType<ListBoxItem>()
+            .ToList();
+
+        List<ImmutableList<ListBoxItem>> groups = [];
+        List<ListBoxItem> selected = [];
+        
+        foreach (var child in children)
+        {
+            child.Classes.Clear();
+
+            if (child.IsSelected)
+                selected.Add(child);
+            else if (selected.Count > 0)
+            {
+                groups.Add(selected.ToImmutableList());
+                selected.Clear();
+            }
+        }
+        
+        if (selected.Count > 0)
+            groups.Add(selected.ToImmutableList());
+
+        foreach (var group in groups.Where(g => g.Count > 1))
+        {
+            group[0].Classes.Add("first-selected");
+            group[^1].Classes.Add("last-selected");
+    
+            for (int i = 1; i < group.Count - 1; i++)
+                group[i].Classes.Add("center-selected");
+        }
     }
 
     // ReSharper disable once AsyncVoidMethod

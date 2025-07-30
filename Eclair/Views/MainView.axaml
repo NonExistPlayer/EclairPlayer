@@ -70,10 +70,12 @@
                        HorizontalAlignment="Center"/>
             
             <ListBox Grid.Row="1"
+                     Name="Tracks"
                      Classes="tracks"
                      Focusable="False"
                      SelectionMode="Multiple"
                      Background="Transparent"
+                     SelectionChanged="Playlist_SelectionChanged"
                      ScrollViewer.VerticalScrollBarVisibility="Visible"
                      ItemsSource="{Binding Playlist}"
                      SelectedItems="{Binding SelectedItems}">
@@ -87,7 +89,8 @@
                 
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <VirtualizingStackPanel />
+                        <!-- disabling virtualization, because it breaks Playlist_SelectionChanged() -->
+                        <StackPanel />
                     </ItemsPanelTemplate>
                 </ListBox.ItemsPanel>
     

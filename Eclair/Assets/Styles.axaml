@@ -17,6 +17,16 @@
     </Style>
     
     <Style Selector="ListBox.tracks > ListBoxItem">
+        <Style Selector="^:not(.center-selected)">
+            <Setter Property="CornerRadius" Value="20"/>
+        </Style>
+        <Style Selector="^.first-selected">
+            <Setter Property="CornerRadius" Value="20 20 0 0"/>
+        </Style>
+        <Style Selector="^.last-selected">
+            <Setter Property="CornerRadius" Value="0 0 20 20"/>
+        </Style>
+        
         <Style Selector="^:selected /template/ ContentPresenter">
             <Style.Animations>
                 <Animation Duration="0:0:0.2" FillMode="Forward">
