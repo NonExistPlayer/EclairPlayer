@@ -70,6 +70,7 @@
                        HorizontalAlignment="Center"/>
             
             <ListBox Grid.Row="1"
+                     Classes="tracks"
                      Focusable="False"
                      SelectionMode="Multiple"
                      Background="Transparent"
@@ -97,7 +98,6 @@
                                     CornerRadius="20"
                                     Click="List_Play_Click"
                                     Tag="{Binding}"
-                                    Background="Transparent"
                                     i:Attached.Icon="{x:Static vm:MainViewModel.CirclePlayIconValue}"/>
                             <TextBlock Text="{Binding FileName}"
                                        FontWeight="Bold"
