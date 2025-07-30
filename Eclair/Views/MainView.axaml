@@ -97,6 +97,7 @@
                             <Button FontSize="18"
                                     CornerRadius="20"
                                     Click="List_Play_Click"
+                                    Background="Transparent"
                                     Tag="{Binding}"
                                     i:Attached.Icon="{x:Static vm:MainViewModel.CirclePlayIconValue}"/>
                             <TextBlock Text="{Binding FileName}"
